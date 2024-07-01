@@ -1,1 +1,35 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.carousel';
+@import 'ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+*.element {
+  zoom: 2; /* This scales the element by 2 times */
+}
+/* Importing Bootstrap SCSS file. */
+@import 'bootstrap/scss/bootstrap';
+
+:root{
+    --main: #131313;
+    --secondary:rgb(228, 228, 228);
+}
+::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for Firefox */
+/* Note: This might not work in all versions of Firefox */
+/* For newer versions of Firefox, you might need to use a different approach */
+html {
+    scrollbar-width: none; /* Firefox 64+ */
+    -ms-overflow-style: none;
+}
+body {
+    scrollbar-width: none; /* Firefox 64+ */
+}
+
+/* Hide scrollbar for Edge */
+/* Note: Edge currently supports only hiding the scrollbar by setting width to 0 */
+/* This might not completely hide the scrollbar, but reduces its width to the minimum */
+@supports (-ms-ime-align: auto) {
+    ::-webkit-scrollbar {
+        width: 0;
+    }
+}
