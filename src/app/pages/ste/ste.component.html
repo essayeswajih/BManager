@@ -1,0 +1,85 @@
+<main class="stePage">
+    <aside class="dashboard">
+        <div class="dashBtn"><i class="fa-solid fa-chevron-right"></i></div>
+        <div class="dashboardName">Dashboard</div>
+        
+        <div class="dashboardDiv">
+            <ul class="dashboardItems">
+                <li class="dashboardItem"> 
+                    <div class="fc nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Données</a>
+                        <div class="dropdown-menu m-0">
+                            <a  (click)="navigateToPage('depot')"  class="dropdown-item">Les Dépots</a>
+                            <a (click)="navigateToPage('famille')" class="dropdown-item">Familles d'articles</a>
+                            <a (click)="navigateToPage('article')" class="dropdown-item">Les Articles</a>
+                            <a (click)="navigateToPage('client')" class="dropdown-item">Clients</a>
+                            <a (click)="navigateToPage('fournisseur')" class="dropdown-item">Fournisseur</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dashboardItem">
+                    <div class="fc nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Ventes</a>
+                        <div class="dropdown-menu m-0">
+                            <a class="dropdown-item">Devis</a>
+                            <a class="dropdown-item">Bon de commande</a>
+                            <a class="dropdown-item">bon de livraison</a>
+                            <a class="dropdown-item">Facture</a>
+                            <a class="dropdown-item">Bon de retour</a>
+                            <a class="dropdown-item">Avoir</a>
+                            <a class="dropdown-item">Bon Pour</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dashboardItem">
+                    <div class="fc nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Achats</a>
+                        <div class="dropdown-menu m-0">
+                            <a class="dropdown-item">Bon de commade</a>
+                            <a class="dropdown-item">bon de livraison</a>
+                            <a class="dropdown-item">Facture</a>
+                            <a class="dropdown-item">Bon de retour</a>
+                            <a class="dropdown-item">Avoir</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dashboardItem">
+                    <div class="fc nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mon Stock</a>
+                        <div class="dropdown-menu m-0">
+                            <a class="dropdown-item">Bon d'entrée</a>
+                            <a class="dropdown-item">bon de sortie</a>
+                            <a class="dropdown-item">Bon de transfert</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dashboardItem">
+                    <div class="fc nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mon Réglements</a>
+                        <div class="dropdown-menu m-0">
+                            <a class="dropdown-item">Clients</a>
+                            <a class="dropdown-item">Fournisseur</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="dashboardItem">
+                    <div class="fc nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Encaissement</a>
+                        <div class="dropdown-menu m-0">
+                            <a class="dropdown-item">Gestion Caisse</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </aside>
+    <main class="container steActionsContainer">
+        <div class="row justify-content-center">
+        <div class="col-sm-12 steActions">
+                <app-mes-donee [pageName]="pageName"></app-mes-donee>
+        </div>
+
+        </div>
+
+    </main>
+</main>

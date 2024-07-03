@@ -1,0 +1,54 @@
+<form [formGroup]="familleForm">
+    <label for="familles" class="form-label">Familles d'articles:</label>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom Famille</th>
+                    <th>Adresse</th>
+                    <th>Nom Depot</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><input class="form-control" type="text" name="nomFamille" id="nomFamille" formControlName="nomFamille"></td>
+                    <td><input class="form-control" type="text" name="adresse" id="adresse" formControlName="adresse"></td>
+                    <td><select class="form-control" name="depot" id="depot" formControlName="idDepot" >
+                        @for(depot of allDepots;track $index){
+                            <option [value]="depot.idDepot">{{depot.nom}}</option>
+                        }
+                    </select></td>
+                    <td><button class="btn btn-success" (click)="onAdd()">Ajout</button></td>
+                </tr>
+                @for (famille of familles; track $index) {
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td><input class="form-control" type="text" name="nomFamille" id="nomFamille" [value]="famille.nomFamille" (keyup)="check(famille,$event,'nomFamille')"></td>
+                    <td><input class="form-control" type="text" name="adresse" id="adresse" [value]="famille.adresse" (keyup)="check(famille,$event,'adresse')"></td>
+                    <td>
+                        <select class="form-control" name="depot" id="depot" [selectedIndex]="0" (change)="check(famille,$event,'depot')" >
+                            <option  [value]="famille.depot.idDepot">{{famille.depot.nom}}</option>
+                            @for(depot of allDepots;track $index){
+                                @if(depot.idDepot != famille.depot.idDepot){
+                                    <option [value]="depot.idDepot">{{depot.nom}}</option>
+                                }
+                            }
+                        </select>
+                    </td>
+                    <td><button class="btn btn-danger" (click)="onDelete(famille.idFamille)">Supprimer</button></td>
+                </tr>
+                }
+            </tbody>
+            @if(famillesUpdated.length>0){
+            <tfoot>
+                <tr>
+                    <td colspan="5"><button class="btn btn-success" (click)="onSave()">Save</button></td>
+                </tr>
+            </tfoot>
+            }
+        </table>
+    </div>
+</form>

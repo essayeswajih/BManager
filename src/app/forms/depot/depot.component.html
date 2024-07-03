@@ -1,0 +1,38 @@
+<form [formGroup]="depotForm">
+    <label for="cars" class="form-label">Mes Depots:</label>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nom Depot</th>
+                    <th>Adresse</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr >
+                    <td></td>
+                    <td><input class="form-control" type="text" name="nom" id="nom" formControlName="nom"></td>
+                    <td><input class="form-control" type="text" name="adresse" id="adresse" formControlName="adresse"></td>
+                    <td><button class="btn btn-success" (click)="onAdd()">Ajout</button></td>
+                </tr>
+                @for (depot of depots; track $index) {
+                <tr>
+                    <td>{{$index+1}}</td>
+                    <td><input class="form-control" type="text" name="nomDepot" id="nomDepot" [value]="depot.nom" (keyup)="check(depot,$event,'nom')"></td>
+                    <td><input class="form-control" type="text" name="adresseDepot" id="adresseDepot" [value]="depot.adresse"  (keyup)="check(depot,$event,'adresse')"></td>
+                    <td><button class="btn btn-danger" (click)="onDelete(depot.idDepot)" >Supprimer</button></td>
+                </tr>
+                }
+            </tbody>
+            @if(depotsUpdated.length>0){
+                <tfoot>
+                    <tr>
+                        <td colspan="4"><button class="btn btn-success" (click)="onSave()" >Save</button></td>
+                    </tr>
+                </tfoot>
+            }
+        </table>
+    </div>
+</form>

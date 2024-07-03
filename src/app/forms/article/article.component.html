@@ -1,0 +1,169 @@
+<form [formGroup]="articleForm">
+    <label for="articles" class="form-label">Les Articles:</label>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>refArticle</th>
+                    <th>refFournisseur</th>
+                    <th>Designation</th>
+                    <th>Famille</th>
+                    <th>Model</th>
+                    <th>Achat HT</th>
+                    <th>Vente Ht</th>
+                    <th>Remise</th>
+                    <th>Fodec</th>
+                    <th>TVA</th>
+                    <th>Timbre</th>
+                    <th>Montant Marge</th>
+                    <th>Achat TTC</th>
+                    <th>Vente TTC</th>
+                    <th>Unite</th>
+                    <th>Devise</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                    <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" formControlName="refFournisseur"></td>
+                    <td><input class="form-control" type="text" name="id" id="id" placeholder="id"></td>
+                    <td><input class="form-control" type="text" name="designation" id="designation" value="vane"></td>
+                    <td>
+                        <select  class="form-control" name="famille" id="famille">
+                            <option value="famille">f1</option>
+                        </select>
+                    </td>
+                    <td><input class="form-control" type="text" name="model" id="model" value="M150"></td>
+                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" value="30"></td>
+                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" value="40"></td>
+                    <td><input class="form-control" type="text" name="remise" id="remise" value="article1"></td>
+                    <td><input class="form-control" type="checkbox" name="fodec" id="fodec"></td>
+                    <td>
+                        <select class="form-control" name="tva" id="tva">
+                            <option value="17">17%</option>
+                            <option value="13">13%</option>
+                            <option value="7">7%</option>
+                        </select>
+                    </td>
+                    <td><input class="form-control" type="text" name="timbre" id="timbre" value="dsd2s2"></td>
+                    <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" value="20%"></td>
+                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" value="50DT"></td>
+                    <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" value="70DT"></td>
+                    <td>
+                        <select class="form-control" name="unite" id="unite">
+                            <option value="piece">Piéce</option>
+                            <option value="litre">litre</option>
+                            <option value="ml">ml</option>
+                            <option value="kg">kg</option>
+                            <option value="m2">m2</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="deveise" id="devise">
+                            <option value="DNT">DNT</option>
+                            <option value="Dollar">Dollar</option>
+                            <option value="Euro">Euro</option>
+                        </select>
+                    </td>
+                    <td><button class="btn btn-success">Ajout</button></td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td><input class="form-control" type="text" name="refArticle" id="refArticle" value="refArticle"></td>
+                    <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" value="refFournisseur"></td>
+                    <td><input class="form-control" type="text" name="designation" id="designation" value="vane"></td>
+                    <td>
+                        <select  class="form-control" name="famille" id="famille">
+                            <option value="famille">f1</option>
+                        </select>
+                    </td>
+                    <td><input class="form-control" type="text" name="model" id="model" value="M150"></td>
+                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" value="30"></td>
+                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" value="40"></td>
+                    <td><input class="form-control" type="text" name="remise" id="remise" value="article1"></td>
+                    <td><input class="form-control" type="checkbox" name="fodec" id="fodec"></td>
+                    <td>
+                        <select class="form-control" name="tva" id="tva">
+                            <option value="17">17%</option>
+                            <option value="13">13%</option>
+                            <option value="7">7%</option>
+                        </select>
+                    </td>
+                    <td><input class="form-control" type="text" name="timbre" id="timbre" value="dsd2s2"></td>
+                    <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" value="20%"></td>
+                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" value="50DT"></td>
+                    <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" value="70DT"></td>
+                    <td>
+                        <select class="form-control" name="unite" id="unite">
+                            <option value="piece">Piéce</option>
+                            <option value="litre">litre</option>
+                            <option value="ml">ml</option>
+                            <option value="kg">kg</option>
+                            <option value="m2">m2</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="deveise" id="devise">
+                            <option value="DNT">DNT</option>
+                            <option value="Dollar">Dollar</option>
+                            <option value="Euro">Euro</option>
+                        </select>
+                    </td>
+                    <td><button class="btn btn-danger">Supprimer</button></td>
+                </tr>
+                <tr>
+                    <td>11</td>
+                    <td><input class="form-control" type="text" name="refArticle" id="refArticle" value="refArticle"></td>
+                    <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" value="refFournisseur"></td>
+                    <td><input class="form-control" type="text" name="designation" id="designation" value="robiné"></td>
+                    <td>
+                        <select  class="form-control" name="famille" id="famille">
+                            <option value="famille">f1</option>
+                        </select>
+                    </td>
+                    <td><input class="form-control" type="text" name="model" id="model" value="M150"></td>
+                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" value="30"></td>
+                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" value="40"></td>
+                    <td><input class="form-control" type="text" name="remise" id="remise" value="article1"></td>
+                    <td><input class="form-control" type="checkbox" name="fodec" id="fodec"></td>
+                    <td>
+                        <select class="form-control" name="tva" id="tva">
+                            <option value="17">17%</option>
+                            <option value="13">13%</option>
+                            <option value="7">7%</option>
+                        </select>
+                    </td>
+                    <td><input class="form-control" type="text" name="timbre" id="timbre" value="dsd2s2"></td>
+                    <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" value="20%"></td>
+                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" value="50DT"></td>
+                    <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" value="70DT"></td>
+                    <td>
+                        <select class="form-control" name="unite" id="unite">
+                            <option value="piece">Piéce</option>
+                            <option value="litre">litre</option>
+                            <option value="ml">ml</option>
+                            <option value="kg">kg</option>
+                            <option value="m2">m2</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select class="form-control" name="deveise" id="devise">
+                            <option value="DNT">DNT</option>
+                            <option value="Dollar">Dollar</option>
+                            <option value="Euro">Euro</option>
+                        </select>
+                    </td>
+                    <td><button class="btn btn-danger">Supprimer</button></td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="18"><button class="btn btn-success">Save</button></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    
+</form>

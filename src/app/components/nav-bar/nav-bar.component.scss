@@ -1,0 +1,36 @@
+.navbar{
+    background-color: rgba(107, 106, 106, 0.614);
+    backdrop-filter: blur(5px);
+    z-index: 99;
+    position: fixed;
+    top: 50;
+    width: 100%;
+    color: var(--secondary);
+    transition: top 1s ease;
+}
+  
+.sticky {
+    top: 0 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.395);
+}
+.navbar .navbar-brand{
+    color: var(--secondary);
+    font-size: 1.8rem;
+    font-weight: bolder;
+}
+.navbar-brand{
+    font-weight: 600;
+}
+.nav-item{
+    
+    color: var(--secondary);
+}
+.nav-link{
+    font-weight: 100;
+    color: var(--secondary) !important;
+}
+
+.active{
+    font-weight: 500;
+    color: white;
+}

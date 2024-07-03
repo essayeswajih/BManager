@@ -1,0 +1,70 @@
+<form [formGroup]="fournisseurForm">
+    <label for="fournisseurs" class="form-label">Fournisseur:</label>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Intitulé</th>
+            <th>Matricule Fiscale</th>
+            <th>Email</th>
+            <th>Adresse</th>
+            <th>Tel</th>
+            <th>Fax</th>
+            <th>Forme Juridique</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Row for adding a new fournisseur -->
+          <tr>
+            <td>+</td>
+            <td><input class="form-control" type="text" formControlName="intitule" placeholder="Intitulé"></td>
+            <td><input class="form-control" type="text" formControlName="matriculeFiscale" placeholder="Matricule Fiscale"></td>
+            <td><input class="form-control" type="email" formControlName="email" placeholder="Email"></td>
+            <td><input class="form-control" type="text" formControlName="adresse" placeholder="Adresse"></td>
+            <td><input class="form-control" type="text" formControlName="tel" placeholder="Tel"></td>
+            <td><input class="form-control" type="text" formControlName="fax" placeholder="Fax"></td>
+            <td>
+                <select class="form-control" name="formeJurudique" id="formeJurudique " formControlName="formeJurudique" [selectedIndex]="0" >
+                    @for(formeJurudique of formeJurudiques;track $index){
+                        <option  [value]="formeJurudique">{{formeJurudique}}</option>
+                    }
+                </select>
+            </td>
+            <td><button class="btn btn-success" (click)="onAdd()">Ajout</button></td>
+          </tr>
+          
+          <!-- Rows for editing existing fournisseurs -->
+          <tr *ngFor="let fournisseur of fournisseursWithChanges; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td><input class="form-control" type="text" [value]="fournisseur.intitule" (keyup)="check(fournisseur, $event, 'intitule')" placeholder="Intitulé"></td>
+            <td><input class="form-control" type="text" [value]="fournisseur.matriculeFiscale" (keyup)="check(fournisseur, $event, 'matriculeFiscale')" placeholder="Matricule Fiscale"></td>
+            <td><input class="form-control" type="email" [value]="fournisseur.email" (keyup)="check(fournisseur, $event, 'email')" placeholder="Email"></td>
+            <td><input class="form-control" type="text" [value]="fournisseur.adresse" (keyup)="check(fournisseur, $event, 'adresse')" placeholder="Adresse"></td>
+            <td><input class="form-control" type="text" [value]="fournisseur.tel" (keyup)="check(fournisseur, $event, 'tel')" placeholder="Tel"></td>
+            <td><input class="form-control" type="text" [value]="fournisseur.fax" (keyup)="check(fournisseur, $event, 'fax')" placeholder="Fax"></td>
+            <td>
+                <select class="form-control" name="formeJurudique" id="formeJurudique" [selectedIndex]="0" (change)="check(fournisseur,$event,'formeJurudique')" >
+                    <option  [value]="fournisseur.formeJurudique">{{fournisseur.formeJurudique}}</option>
+                    @for(formeJurudique of formeJurudiques;track $index){
+                        @if(formeJurudique != fournisseur.formeJurudique){
+                            <option [value]="formeJurudique">{{formeJurudique}}</option>
+                        }
+                    }
+                </select>
+            </td>
+            <td><button class="btn btn-danger" (click)="onDelete(fournisseur.idFournisseur)">Supprimer</button></td>
+          </tr>
+        </tbody>
+        
+        <!-- Display save button if there are updated fournisseurs -->
+        <tfoot *ngIf="fournisseursUpdated.length > 0">
+          <tr>
+            <td colspan="9"><button class="btn btn-success" (click)="onSave()">Save</button></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </form>
+  

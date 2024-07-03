@@ -1,0 +1,22 @@
+main{
+    min-height: 100vh;
+}
+.row1Elem{
+    background-color: #f5f5f5;
+    margin: 10px;
+    height: 17em;
+    border-radius: 10px;
+}
+.row1{
+    margin: 30px;
+}
+/* styles.css or component.css */
+.zoom-element {
+    zoom: 1.5;
+  }
+  
+
+.zoom-element {
+    transform: scale(1.5);
+    transform-origin: 0 0;
+}

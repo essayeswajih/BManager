@@ -1,0 +1,63 @@
+.stePage{
+    min-height:100vh;
+    background-color: #131313;
+    padding-top: 100px;
+    color: var(--secondary);
+}
+.dashboard{
+    background-color: rgba(255, 255, 255, 0.299);
+    color: var(--secondary);
+    padding: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 3px 0px7px gray;
+    min-height: 50vh;
+    position: fixed;
+    left: -220px;
+    z-index: 98;
+    width: fit-content;
+    transition-duration: 1s;
+    backdrop-filter: blur(5px);
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.523);
+}
+.dashboard:hover{
+    left: 0px;
+}
+.dashboardItems{
+    width: 100%;
+    height: 100%;
+    list-style-type: none;
+    padding-top: 30px;
+    padding-left: 0 !important;
+}
+.dashboardItem{
+    padding: 15px 10px 15px 10px;
+    background-color: #1313133f;
+    list-style: none;
+    margin-bottom: 10px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1em;
+    transition-duration: 100ms;
+    min-width: 200px;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.153);
+}
+.dashboardItem:hover{
+    background-color: #131313b9;
+    box-shadow: 3px 3px 7px rgba(0, 0, 0, 0.523);
+}
+.dashboardName{
+    font-weight: 600;
+    font-size: 1.2em;
+}
+.dashBtn{
+    position: relative;
+    left: 200px;
+    height: 10px;
+}
+.steActions{
+    color: antiquewhite;
+    background-color: rgba(255, 255, 255, 0.299);
+    min-height: 70vh;
+    border-radius: 1em;
+}

@@ -1,0 +1,41 @@
+.sesialMediaList{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+}
+.sesialMediaDiv{
+    margin-right: 0;
+    padding-right: 0;
+    height: 40px;
+}
+.sesialMediaItem{
+    padding: 5px 7px 5px 7px;
+}
+i,svg{
+    height: 10px;
+    background-color: transparent;
+    fill: var(--secondary);
+}
+main{
+    background-color: var(--main);
+    color: var(--secondary);
+    height: auto;
+    transition: top 1s ease;
+}
+.nav{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-around !important;
+    align-items: center !important;
+}
+.fc{
+    width: fit-content;
+}
+.dropdown-toggle{
+    color: var(--secondary);
+    margin-left: 0;
+    padding-left: 0;
+}
