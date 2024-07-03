@@ -6,7 +6,7 @@ import { SteComponent } from './pages/ste/ste.component';
 const routes: Routes = [
   { path: '', component:HomeComponent },
   { path:'ste/:id',component:SteComponent},
-  { path:'ste/:id/page/id',component:SteComponent},
+  { path:'ste/:id/page/:pageName',component:SteComponent},
   { path:'**',component:HomeComponent}
 ];
 
