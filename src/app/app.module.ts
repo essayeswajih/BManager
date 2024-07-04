@@ -19,7 +19,7 @@ import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     NgbModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule 
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()

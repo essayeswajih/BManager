@@ -12,12 +12,34 @@ export class ArticleComponent implements OnInit {
   articles: any[] = [];
   articlesWithChanges: any[] = [];
   articlesUpdated: any[] = [];
+  tvaList = [
+    19,17,13,7
+  ];
+  unites = [
+    'pièce','kg','litre','ml','m','m²','m³','cm','cm²','cm³',
+  ];
+  devises = [
+    'EUR','USD','DNT'
+  ];
+  familles = [];
 
   constructor(private fb: FormBuilder, private steService: SteService) {
     this.articleForm = this.fb.group({
-      idDepot: ['', Validators.required], // Assuming idDepot is required for an article
+      refArticle: ['', Validators.required], // Assuming idDepot is required for an article
+      refFournisseur: ['', Validators.required],
       designation: ['', Validators.required],
-      famille: ['', Validators.required],
+      famille:[],
+      model:[],
+      achatHT:[],
+      montantMarge:[],
+      venteHT:[],
+      fodec:[],
+      tva:[],
+      timbre:[],
+      achatTTC:[],
+      venteTTC:[],
+      unite:[],
+      devise:[],
     });
   }
 

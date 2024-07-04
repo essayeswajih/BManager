@@ -33,3 +33,15 @@ body {
         width: 0;
     }
 }
+.form-check-input{
+    min-width: 70px;
+    min-height: 40px;
+    background-color: #333333c4 !important;
+    border-radius: 5px;
+    margin: 0 !important;
+}
+.form-check,.form-switch{
+    margin: 0 !important;
+    padding: 0 !important;
+
+}

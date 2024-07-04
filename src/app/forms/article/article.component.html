@@ -12,7 +12,6 @@
                     <th>Model</th>
                     <th>Achat HT</th>
                     <th>Vente Ht</th>
-                    <th>Remise</th>
                     <th>Fodec</th>
                     <th>TVA</th>
                     <th>Timbre</th>
@@ -27,24 +26,27 @@
             <tbody>
                 <tr>
                     <td></td>
+                    <td><input class="form-control" type="text" name="refArticle" id="refArticle" formControlName="refArticle"></td>
                     <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" formControlName="refFournisseur"></td>
-                    <td><input class="form-control" type="text" name="id" id="id" placeholder="id"></td>
-                    <td><input class="form-control" type="text" name="designation" id="designation" value="vane"></td>
+                    <td><input class="form-control" type="text" name="designation" id="designation" formControlName="designation"></td>
                     <td>
-                        <select  class="form-control" name="famille" id="famille">
+                        <select  class="form-control" name="famille" id="famille" formControlName="famille">
                             <option value="famille">f1</option>
                         </select>
                     </td>
-                    <td><input class="form-control" type="text" name="model" id="model" value="M150"></td>
-                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" value="30"></td>
-                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" value="40"></td>
-                    <td><input class="form-control" type="text" name="remise" id="remise" value="article1"></td>
-                    <td><input class="form-control" type="checkbox" name="fodec" id="fodec"></td>
+                    <td><input class="form-control" type="text" name="model" id="model" formControlName="model"></td>
+                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" formControlName="achatHT"></td>
+                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" formControlName="ventetHT"></td>
+                    <td>
+                        <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" name="fodec" id="fodec" formControlName="fodec">
+                        </div>
+                    </td>
                     <td>
                         <select class="form-control" name="tva" id="tva">
-                            <option value="17">17%</option>
-                            <option value="13">13%</option>
-                            <option value="7">7%</option>
+                            @for(tva of tvaList;track $index){
+                                    <option [value]="tva">{{tva}}%</option>
+                            }
                         </select>
                     </td>
                     <td><input class="form-control" type="text" name="timbre" id="timbre" value="dsd2s2"></td>
@@ -62,105 +64,74 @@
                     </td>
                     <td>
                         <select class="form-control" name="deveise" id="devise">
-                            <option value="DNT">DNT</option>
-                            <option value="Dollar">Dollar</option>
-                            <option value="Euro">Euro</option>
+                            @for(devise of devises;track $index){
+                                    <option [value]="devise">{{devise}}</option>
+                            }
                         </select>
                     </td>
-                    <td><button class="btn btn-success">Ajout</button></td>
+                    <td><button class="btn btn-success" (click)="onAdd()">Ajout</button></td>
                 </tr>
-                <tr>
-                    <td>10</td>
-                    <td><input class="form-control" type="text" name="refArticle" id="refArticle" value="refArticle"></td>
-                    <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" value="refFournisseur"></td>
-                    <td><input class="form-control" type="text" name="designation" id="designation" value="vane"></td>
-                    <td>
-                        <select  class="form-control" name="famille" id="famille">
-                            <option value="famille">f1</option>
-                        </select>
-                    </td>
-                    <td><input class="form-control" type="text" name="model" id="model" value="M150"></td>
-                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" value="30"></td>
-                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" value="40"></td>
-                    <td><input class="form-control" type="text" name="remise" id="remise" value="article1"></td>
-                    <td><input class="form-control" type="checkbox" name="fodec" id="fodec"></td>
-                    <td>
-                        <select class="form-control" name="tva" id="tva">
-                            <option value="17">17%</option>
-                            <option value="13">13%</option>
-                            <option value="7">7%</option>
-                        </select>
-                    </td>
-                    <td><input class="form-control" type="text" name="timbre" id="timbre" value="dsd2s2"></td>
-                    <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" value="20%"></td>
-                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" value="50DT"></td>
-                    <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" value="70DT"></td>
-                    <td>
-                        <select class="form-control" name="unite" id="unite">
-                            <option value="piece">Piéce</option>
-                            <option value="litre">litre</option>
-                            <option value="ml">ml</option>
-                            <option value="kg">kg</option>
-                            <option value="m2">m2</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-control" name="deveise" id="devise">
-                            <option value="DNT">DNT</option>
-                            <option value="Dollar">Dollar</option>
-                            <option value="Euro">Euro</option>
-                        </select>
-                    </td>
-                    <td><button class="btn btn-danger">Supprimer</button></td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td><input class="form-control" type="text" name="refArticle" id="refArticle" value="refArticle"></td>
-                    <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" value="refFournisseur"></td>
-                    <td><input class="form-control" type="text" name="designation" id="designation" value="robiné"></td>
-                    <td>
-                        <select  class="form-control" name="famille" id="famille">
-                            <option value="famille">f1</option>
-                        </select>
-                    </td>
-                    <td><input class="form-control" type="text" name="model" id="model" value="M150"></td>
-                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" value="30"></td>
-                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" value="40"></td>
-                    <td><input class="form-control" type="text" name="remise" id="remise" value="article1"></td>
-                    <td><input class="form-control" type="checkbox" name="fodec" id="fodec"></td>
-                    <td>
-                        <select class="form-control" name="tva" id="tva">
-                            <option value="17">17%</option>
-                            <option value="13">13%</option>
-                            <option value="7">7%</option>
-                        </select>
-                    </td>
-                    <td><input class="form-control" type="text" name="timbre" id="timbre" value="dsd2s2"></td>
-                    <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" value="20%"></td>
-                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" value="50DT"></td>
-                    <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" value="70DT"></td>
-                    <td>
-                        <select class="form-control" name="unite" id="unite">
-                            <option value="piece">Piéce</option>
-                            <option value="litre">litre</option>
-                            <option value="ml">ml</option>
-                            <option value="kg">kg</option>
-                            <option value="m2">m2</option>
-                        </select>
-                    </td>
-                    <td>
-                        <select class="form-control" name="deveise" id="devise">
-                            <option value="DNT">DNT</option>
-                            <option value="Dollar">Dollar</option>
-                            <option value="Euro">Euro</option>
-                        </select>
-                    </td>
-                    <td><button class="btn btn-danger">Supprimer</button></td>
-                </tr>
+                @for( article of articles; track $index){
+                    <tr>
+                        <td>{{$index+1}}</td>
+                        <td><input class="form-control" type="text" name="refArticle" id="refArticle" [value]="article.refArticle"></td>
+                        <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" [value]="article.refFournisseur"></td>
+                        <td><input class="form-control" type="text" name="designation" id="designation" [value]="article.designation"></td>
+                        <td>
+                            <select  class="form-control" name="famille" id="famille">
+                                <option value="famille">f1</option>
+                            </select>
+                        </td>
+                        <td><input class="form-control" type="text" name="model" id="model" [value]="article.model"></td>
+                        <td><input class="form-control" type="text" name="achatHT" id="achatHT" [value]="article.achatHT"></td>
+                        <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" [value]="article.ventetHT"></td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" [name]="article.idArticle"  [id]="article.idArticle" [checked]="article.fodec">
+                            </div>
+                        </td>
+                        <td>
+                            <select class="form-control" name="tva" id="tva">
+                                <option [value]="article.tva">{{article.tva}}%</option>
+                                @for(tva of tvaList;track $index){
+                                    @if(tva != article.tva){
+                                        <option [value]="tva">{{tva}}%</option>
+                                    }
+                                }
+
+                            </select>
+                        </td>
+                        <td><input class="form-control" type="text" name="timbre" id="timbre" [value]="article.timbre"></td>
+                        <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" [value]="article.montantMarge"></td>
+                        <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" [value]="article.achatTTC"></td>
+                        <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" [value]="article.venteTTC"></td>
+                        <td>
+                            <select class="form-control" name="unite" id="unite">
+                                <option [value]="article.unite">{{article.unite}}</option>
+                                @for(unite of unites;track $index){
+                                    @if( unite != article.unite){
+                                        <option [value]="unite">{{unite}}</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <select class="form-control" name="deveise" id="devise">
+                                <option [value]="article.devise">{{article.devise}}</option>
+                                @for(devise of devises;track $index){
+                                    @if( devise != article.devise){
+                                        <option [value]="devise">{{devise}}</option>
+                                    }
+                                }
+                            </select>
+                        </td>
+                        <td><button class="btn btn-danger" (click)="onDelete(article.idArticle)">Supprimer</button></td>
+                    </tr>
+                }
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="18"><button class="btn btn-success">Save</button></td>
+                    <td colspan="17"><button class="btn btn-success" (click)="onSave()">Save</button></td>
                 </tr>
             </tfoot>
         </table>
