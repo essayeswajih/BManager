@@ -7,6 +7,7 @@
                     <th>#</th>
                     <th>refArticle</th>
                     <th>refFournisseur</th>
+                    <th>Fournisseur</th>
                     <th>Designation</th>
                     <th>Famille</th>
                     <th>Model</th>
@@ -28,10 +29,19 @@
                     <td></td>
                     <td><input class="form-control" type="text" name="refArticle" id="refArticle" formControlName="refArticle"></td>
                     <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" formControlName="refFournisseur"></td>
+                    <td>
+                        <select  class="form-control" name="fournisseur" id="fournisseur" formControlName="fournisseur">
+                            @for (fournisseur0 of fournisseurs; track $index) {
+                                <option value="fournisseur0.idFournisseur">{{fournisseur0.intitule}}</option>
+                            }
+                        </select>
+                    </td>
                     <td><input class="form-control" type="text" name="designation" id="designation" formControlName="designation"></td>
                     <td>
                         <select  class="form-control" name="famille" id="famille" formControlName="famille">
-                            <option value="famille">f1</option>
+                            @for (famille of familles; track $index) {
+                                <option [value]="famille.idFamille">{{famille.nomFamille}}</option>
+                            }
                         </select>
                     </td>
                     <td><input class="form-control" type="text" name="model" id="model" formControlName="model"></td>
@@ -43,18 +53,18 @@
                         </div>
                     </td>
                     <td>
-                        <select class="form-control" name="tva" id="tva">
+                        <select class="form-control" name="tva" id="tva" formControlName="tva">
                             @for(tva of tvaList;track $index){
                                     <option [value]="tva">{{tva}}%</option>
                             }
                         </select>
                     </td>
-                    <td><input class="form-control" type="text" name="timbre" id="timbre" value="dsd2s2"></td>
-                    <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" value="20%"></td>
-                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" value="50DT"></td>
-                    <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" value="70DT"></td>
+                    <td><input class="form-control" type="text" name="timbre" id="timbre" formControlName="timbre"></td>
+                    <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" formControlName="montantMarge"></td>
+                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" formControlName="achatTTC"></td>
+                    <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" formControlName="venteTTC"></td>
                     <td>
-                        <select class="form-control" name="unite" id="unite">
+                        <select class="form-control" name="unite" id="unite" formControlName="unite">
                             <option value="piece">Piéce</option>
                             <option value="litre">litre</option>
                             <option value="ml">ml</option>
@@ -63,7 +73,7 @@
                         </select>
                     </td>
                     <td>
-                        <select class="form-control" name="deveise" id="devise">
+                        <select class="form-control" name="deveise" id="devise" formControlName="devise">
                             @for(devise of devises;track $index){
                                     <option [value]="devise">{{devise}}</option>
                             }
@@ -76,10 +86,24 @@
                         <td>{{$index+1}}</td>
                         <td><input class="form-control" type="text" name="refArticle" id="refArticle" [value]="article.refArticle"></td>
                         <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" [value]="article.refFournisseur"></td>
+                        <td>
+                            <select  class="form-control" name="fournisseur" id="fournisseur">
+                                <option [value]="article.fournisseur.idFournisseur">{{article.fournisseur.intitule}}</option>
+                                @for(fournisseur1 of fournisseurs;track $index){
+                                    @if(article.fournisseur.idFournisseur != fournisseur1.idFournisseur){
+                                        <option [value]="fournisseur1.idFournisseur">{{fournisseur1.intitule}}</option>
+                                    }
+                                }
+
+                            </select>
+                        </td>
                         <td><input class="form-control" type="text" name="designation" id="designation" [value]="article.designation"></td>
                         <td>
                             <select  class="form-control" name="famille" id="famille">
-                                <option value="famille">f1</option>
+                                @for (famille of familles; track $index) {
+                                    @if(famille.idFamille != article.famille.idFamille){}
+                                    <option [value]="famille.idFamille">{{famille.nomFamille}}</option>
+                                }
                             </select>
                         </td>
                         <td><input class="form-control" type="text" name="model" id="model" [value]="article.model"></td>
@@ -131,7 +155,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="17"><button class="btn btn-success" (click)="onSave()">Save</button></td>
+                    <td colspan="18"><button class="btn btn-success" (click)="onSave()">Save</button></td>
                 </tr>
             </tfoot>
         </table>

@@ -21,32 +21,41 @@ export class ArticleComponent implements OnInit {
   devises = [
     'EUR','USD','DNT'
   ];
-  familles = [];
+  familles : any = [];
+  fournisseurs : any = [];
 
   constructor(private fb: FormBuilder, private steService: SteService) {
     this.articleForm = this.fb.group({
       refArticle: ['', Validators.required], // Assuming idDepot is required for an article
       refFournisseur: ['', Validators.required],
+      fournisseur:['', Validators.required],
       designation: ['', Validators.required],
-      famille:[],
-      model:[],
-      achatHT:[],
-      montantMarge:[],
-      venteHT:[],
-      fodec:[],
-      tva:[],
-      timbre:[],
-      achatTTC:[],
-      venteTTC:[],
-      unite:[],
-      devise:[],
+      famille:['', Validators.required],
+      model:['', Validators.required],
+      achatHT:['', Validators.required],
+      montantMarge:['', Validators.required],
+      venteHT:['', Validators.required],
+      fodec:[false, Validators.required],
+      tva:['', Validators.required],
+      timbre:['', Validators.required],
+      achatTTC:['', Validators.required],
+      venteTTC:['', Validators.required],
+      unite:['', Validators.required],
+      devise:['', Validators.required],
     });
   }
 
   async ngOnInit() {
     await this.getArticles();
+    await this.getFournisseurs();
+    await this.getFamilles();
   }
-
+  async getFamilles() {
+    this.familles = await this.steService.getFamilles();
+  }
+  async getFournisseurs() {
+    this.fournisseurs = await this.steService.getFournisseurs();
+  }
   async getArticles() {
     try {
       this.articles = await this.steService.getArticles(); // Implement getArticles() in SteService
@@ -63,7 +72,8 @@ export class ArticleComponent implements OnInit {
         let article: any = {
           designation: this.articleForm.value.designation,
           famille: this.articleForm.value.famille,
-          depot: { idDepot: Number(this.articleForm.value.idDepot) } // Assuming idDepot is a number
+          depot: { idDepot: Number(this.articleForm.value.idDepot) },
+          fournisseur: { idFournisseur: Number(this.articleForm.value.idFournisseur)},
         };
         await this.steService.saveArticles(article);
         await this.ngOnInit(); // Refresh data after saving
