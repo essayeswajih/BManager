@@ -86,10 +86,10 @@
                 @for( article of articles; track $index){
                     <tr>
                         <td>{{$index+1}}</td>
-                        <td><input class="form-control" type="text" name="refArticle" id="refArticle" [value]="article.refArticle"></td>
-                        <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" [value]="article.refFournisseur"></td>
+                        <td><input class="form-control" type="text" name="refArticle" id="refArticle" [value]="article.refArticle"  (keyup)="check(article,$event,'refArticle')"></td>
+                        <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" [value]="article.refFournisseur" (keyup)="check(article,$event,'refFournisseur')"></td>
                         <td>
-                            <select  class="form-control" name="fournisseur" id="fournisseur">
+                            <select  class="form-control" name="fournisseur" id="fournisseur" (change)="check(article,$event,'idFournisseur')">
                                 <option [value]="article.fournisseur.idFournisseur">{{article.fournisseur.intitule}}</option>
                                 @for(fournisseur1 of fournisseurs;track $index){
                                     @if(article.fournisseur.idFournisseur != fournisseur1.idFournisseur){
@@ -99,9 +99,9 @@
 
                             </select>
                         </td>
-                        <td><input class="form-control" type="text" name="designation" id="designation" [value]="article.designation"></td>
+                        <td><input class="form-control" type="text" name="designation" id="designation" [value]="article.designation" (keyup)="check(article,$event,'designation')"></td>
                         <td>
-                            <select  class="form-control" name="famille" id="famille">
+                            <select  class="form-control" name="famille" id="famille"  (change)="check(article,$event,'idFamille')">
                                 <option [value]="article.idFamille">{{article.famille.nomFamille}}</option>
                                 @for (famille of familles; track $index) {
                                     @if(famille.idFamille !== article.famille.idFamille){
@@ -110,16 +110,16 @@
                                 }
                             </select>
                         </td>
-                        <td><input class="form-control" type="text" name="model" id="model" [value]="article.model"></td>
-                        <td><input class="form-control" type="text" name="achatHT" id="achatHT" [value]="article.achatHT"></td>
+                        <td><input class="form-control" type="text" name="model" id="model" [value]="article.model" (keyup)="check(article,$event,'model')"></td>
+                        <td><input class="form-control" type="text" name="achatHT" id="achatHT" [value]="article.achatHT" (keyup)="check(article,$event,'achatHT')"></td>
                         
                         <td>
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" [name]="article.idArticle"  [id]="article.idArticle" [checked]="article.fodec">
+                                <input class="form-check-input" type="checkbox" [name]="article.idArticle"  [id]="article.idArticle" [checked]="article.fodec" (change)="check(article,$event,'fodec')">
                             </div>
                         </td>
                         <td>
-                            <select class="form-control" name="tva" id="tva">
+                            <select class="form-control" name="tva" id="tva" (change)="check(article,$event,'tva')">
                                 <option [value]="article.tva">{{article.tva}}%</option>
                                 @for(tva of tvaList;track $index){
                                     @if(tva != article.tva){
@@ -130,13 +130,13 @@
                             </select>
                         </td>
                         <!--<td><input class="form-control" type="text" name="timbre" id="timbre" [value]="article.timbre"></td>-->
-                        <td><input class="form-control" type="text" name="marge" id="marge" [value]="article.marge"></td>
-                        <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" [value]="article.montantMarge"></td>
-                        <td><input class="form-control" type="text" name="venteHT" id="venteHT" [value]="article.venteHT"></td>
+                        <td><input class="form-control" type="text" name="marge" id="marge" [value]="article.marge" (keyup)="check(article,$event,'marge')"></td>
+                        <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" [value]="article.montantMarge" disabled="disabled" (change)="check(article,$event,'montantMarge')"></td>
+                        <td><input class="form-control" type="text" name="venteHT" id="venteHT" [value]="article.venteHT" disabled="disabled" (change)="check(article,$event,'venteHT')"></td>
                         <!--<td><input class="form-control" type="text" name="achatTTC" id="achatTTC" [value]="article.achatTTC"></td>-->
-                        <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" [value]="article.venteTTC"></td>
+                        <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" [value]="article.venteTTC" disabled="disabled" (change)="check(article,$event,'venteTTC')"></td>
                         <td>
-                            <select class="form-control" name="unite" id="unite">
+                            <select class="form-control" name="unite" id="unite" (change)="check(article,$event,'unite')">
                                 <option [value]="article.unite">{{article.unite}}</option>
                                 @for(unite of unites;track $index){
                                     @if( unite != article.unite){
@@ -146,7 +146,7 @@
                             </select>
                         </td>
                         <td>
-                            <select class="form-control" name="deveise" id="devise">
+                            <select class="form-control" name="deveise" id="devise" (change)="check(article,$event,'devise')">
                                 <option [value]="article.devise">{{article.devise}}</option>
                                 @for(devise of devises;track $index){
                                     @if( devise != article.devise){
@@ -160,9 +160,11 @@
                 }
             </tbody>
             <tfoot>
-                <tr>
-                    <td colspan="19"><button class="btn btn-success" (click)="onSave()">Save</button></td>
-                </tr>
+                @if(articlesUpdated.length>0){
+                    <tr>
+                        <td colspan="19"><button class="btn btn-success" (click)="onSave()">Save</button></td>
+                    </tr>
+                }
             </tfoot>
         </table>
     </div>

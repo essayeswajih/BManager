@@ -34,11 +34,11 @@ export class ArticleComponent implements OnInit {
       model:['', Validators.required],
       achatHT:['0.000', Validators.required],
       marge:[20,Validators.min(0)],
-      montantMarge:['0.000', Validators.required],
-      venteHT:['0.000', Validators.required],
+      montantMarge:[{ value: '0.000', disabled: true }, Validators.required],
+      venteHT:[{ value: '0.000', disabled: true }, Validators.required],
       fodec:[false, Validators.required],
       tva:['0', Validators.required],
-      venteTTC:['', Validators.required],
+      venteTTC:[{ value: '0.000', disabled: true }, Validators.required],
       unite:['0', Validators.required],
       devise:['0', Validators.required],
 
@@ -131,6 +131,7 @@ export class ArticleComponent implements OnInit {
       await this.steService.saveAllArticle(this.articlesUpdated);
       alert('Articles updated successfully.');
       await this.getArticles();
+      this.articlesUpdated=[];
       console.log('Articles updated successfully.');
     } catch (error) {
       console.error('Error saving articles:', error);
@@ -138,17 +139,38 @@ export class ArticleComponent implements OnInit {
   }
 
   check(article: any, event: Event, key: string) {
+    
     if (event) {
       const inputElement = event.target as HTMLInputElement;
       const value = inputElement ? inputElement.value : '';
-
+      console.log(article);
+      console.log(key);
+      console.log(value);
       // Update articlesWithChanges
       for (let a of this.articlesWithChanges) {
         if (a.idArticle === article.idArticle) {
-          if (key === 'depot') {
-            // Handle depot change
-            // Implement logic based on your application's requirements
-            console.log('Depot change logic needs implementation.');
+          if(key=== 'achatHT'){
+            a[key] = value;
+            this.calculateFields(a);
+
+          }
+          else if(key=== 'marge'){
+            a[key] = value;
+            this.calculateFields(a);
+          }
+          else if(key === 'fodec'){
+            a[key] = value;
+            this.calculateFields(a);
+          }
+          else if(key==='tva'){
+
+          }
+          else if (key === 'idFournisseur') {
+             a["fournisseur"][key]=value;
+          }
+          else if(key === 'idFamille'){
+            a["famille"][key]=value;
+          
           } else if (a[key] !== value) {
             // Handle other field changes
             a[key] = value;
@@ -157,11 +179,34 @@ export class ArticleComponent implements OnInit {
           break;
         }
       }
-
       this.updateArticlesUpdated();
+
     }
   }
 
+  calculateFields(article: any) {
+    console.log('dsqqqqqqqqqqqqqqqqqqqqqqqqq')
+    let achatHT = parseFloat(article.achatHT);
+    console.log('achatHT',achatHT)
+    let marge = parseFloat(article.marge);
+    let fodec = article.fodec ? achatHT * 0.01 : 0;
+    let tvaPercentage = this.tvaList[parseInt(article.tva)] / 100;
+    console.log("calcule Fields work");
+    let montantMarge = marge * achatHT / 100;
+
+    article.montantMarge= montantMarge ;
+    let venteHT = Number(achatHT) + montantMarge + fodec;
+    article.venteHT = venteHT ;
+    let tva = venteHT * tvaPercentage;
+    let achatTTC = Number(achatHT) + tva;
+    article.achatTTC = achatTTC ;
+    let venteTTC = venteHT + tva;
+    article.venteTTC = venteTTC ;
+    console.log("articleForm", this.articleForm.value);
+    console.log(article)
+  
+    return article;
+  }
   updateArticlesUpdated() {
     // Update articlesUpdated with changed items
     this.articlesUpdated = this.articlesWithChanges.filter(aw => {
