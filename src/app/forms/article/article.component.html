@@ -12,11 +12,13 @@
                     <th>Famille</th>
                     <th>Model</th>
                     <th>Achat HT</th>
-                    <th>Vente Ht</th>
+
                     <th>Fodec</th>
                     <th>TVA</th>
                     <th>Timbre</th>
+                    <th>Montant</th>
                     <th>Montant Marge</th>
+                    <th>Vente Ht</th>
                     <th>Achat TTC</th>
                     <th>Vente TTC</th>
                     <th>Unite</th>
@@ -32,7 +34,7 @@
                     <td>
                         <select  class="form-control" name="fournisseur" id="fournisseur" formControlName="fournisseur">
                             @for (fournisseur0 of fournisseurs; track $index) {
-                                <option value="fournisseur0.idFournisseur">{{fournisseur0.intitule}}</option>
+                                <option [value]="$index">{{fournisseur0.intitule}}</option>
                             }
                         </select>
                     </td>
@@ -40,42 +42,42 @@
                     <td>
                         <select  class="form-control" name="famille" id="famille" formControlName="famille">
                             @for (famille of familles; track $index) {
-                                <option [value]="famille.idFamille">{{famille.nomFamille}}</option>
+                                <option [value]="$index">{{famille.nomFamille}}</option>
                             }
                         </select>
                     </td>
                     <td><input class="form-control" type="text" name="model" id="model" formControlName="model"></td>
-                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" formControlName="achatHT"></td>
-                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" formControlName="ventetHT"></td>
+                    <td><input class="form-control" type="text" name="achatHT" id="achatHT" formControlName="achatHT" (keyup)="calcule()"></td>
+                    
                     <td>
                         <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" name="fodec" id="fodec" formControlName="fodec">
+                        <input class="form-check-input" type="checkbox" name="fodec" id="fodec" formControlName="fodec" (keypress)="calcule()">
                         </div>
                     </td>
                     <td>
-                        <select class="form-control" name="tva" id="tva" formControlName="tva">
+                        <select class="form-control" name="tva" id="tva" formControlName="tva" (keypress)="calcule()">
                             @for(tva of tvaList;track $index){
-                                    <option [value]="tva">{{tva}}%</option>
+                                    <option [value]="$index">{{tva}}%</option>
                             }
                         </select>
                     </td>
-                    <td><input class="form-control" type="text" name="timbre" id="timbre" formControlName="timbre"></td>
+                    <td><input class="form-control" type="text" name="timbre" id="timbre" formControlName="timbre" (keypress)="calcule()"></td>
+                    <td><input class="form-control" type="text" name="marge" id="marge" formControlName="marge" (keypress)="calcule()"></td>
                     <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" formControlName="montantMarge"></td>
+                    <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" formControlName="venteHT"></td>
                     <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" formControlName="achatTTC"></td>
                     <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" formControlName="venteTTC"></td>
                     <td>
                         <select class="form-control" name="unite" id="unite" formControlName="unite">
-                            <option value="piece">Piéce</option>
-                            <option value="litre">litre</option>
-                            <option value="ml">ml</option>
-                            <option value="kg">kg</option>
-                            <option value="m2">m2</option>
+                            @for(unite of unites;track $index){
+                                <option [value]="$index">{{unite}}</option>
+                            }
                         </select>
                     </td>
                     <td>
                         <select class="form-control" name="deveise" id="devise" formControlName="devise">
                             @for(devise of devises;track $index){
-                                    <option [value]="devise">{{devise}}</option>
+                                    <option [value]="$index">{{devise}}</option>
                             }
                         </select>
                     </td>
@@ -100,15 +102,17 @@
                         <td><input class="form-control" type="text" name="designation" id="designation" [value]="article.designation"></td>
                         <td>
                             <select  class="form-control" name="famille" id="famille">
+                                <option [value]="article.idFamille">{{article.famille.nomFamille}}</option>
                                 @for (famille of familles; track $index) {
-                                    @if(famille.idFamille != article.famille.idFamille){}
-                                    <option [value]="famille.idFamille">{{famille.nomFamille}}</option>
+                                    @if(famille.idFamille !== article.famille.idFamille){
+                                        <option [value]="famille.idFamille">{{famille.nomFamille}}</option>
+                                    }
                                 }
                             </select>
                         </td>
                         <td><input class="form-control" type="text" name="model" id="model" [value]="article.model"></td>
                         <td><input class="form-control" type="text" name="achatHT" id="achatHT" [value]="article.achatHT"></td>
-                        <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" [value]="article.ventetHT"></td>
+                        
                         <td>
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox" [name]="article.idArticle"  [id]="article.idArticle" [checked]="article.fodec">
@@ -126,7 +130,9 @@
                             </select>
                         </td>
                         <td><input class="form-control" type="text" name="timbre" id="timbre" [value]="article.timbre"></td>
+                        <td><input class="form-control" type="text" name="marge" id="marge" [value]="article.marge"></td>
                         <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" [value]="article.montantMarge"></td>
+                        <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" [value]="article.ventetHT"></td>
                         <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" [value]="article.achatTTC"></td>
                         <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" [value]="article.venteTTC"></td>
                         <td>
@@ -155,7 +161,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="18"><button class="btn btn-success" (click)="onSave()">Save</button></td>
+                    <td colspan="19"><button class="btn btn-success" (click)="onSave()">Save</button></td>
                 </tr>
             </tfoot>
         </table>

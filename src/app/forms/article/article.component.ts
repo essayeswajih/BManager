@@ -13,35 +13,38 @@ export class ArticleComponent implements OnInit {
   articlesWithChanges: any[] = [];
   articlesUpdated: any[] = [];
   tvaList = [
-    19,17,13,7
+    19,13,7
   ];
   unites = [
     'pièce','kg','litre','ml','m','m²','m³','cm','cm²','cm³',
   ];
   devises = [
-    'EUR','USD','DNT'
+    'DNT','EUR','USD',
   ];
   familles : any = [];
   fournisseurs : any = [];
 
   constructor(private fb: FormBuilder, private steService: SteService) {
     this.articleForm = this.fb.group({
-      refArticle: ['', Validators.required], // Assuming idDepot is required for an article
-      refFournisseur: ['', Validators.required],
-      fournisseur:['', Validators.required],
+      refArticle: ['ART001', Validators.required], // Assuming idDepot is required for an article
+      refFournisseur: ['FOUR001', Validators.required],
+      fournisseur:['0', Validators.required],
       designation: ['', Validators.required],
-      famille:['', Validators.required],
+      famille:['0', Validators.required],
       model:['', Validators.required],
-      achatHT:['', Validators.required],
-      montantMarge:['', Validators.required],
-      venteHT:['', Validators.required],
+      achatHT:[0, Validators.required],
+      marge:[20,Validators.min(0)],
+      montantMarge:[0, Validators.required],
+      venteHT:[0, Validators.required],
       fodec:[false, Validators.required],
-      tva:['', Validators.required],
-      timbre:['', Validators.required],
+      tva:['0', Validators.required],
+      timbre:[1, Validators.required],
       achatTTC:['', Validators.required],
       venteTTC:['', Validators.required],
-      unite:['', Validators.required],
-      devise:['', Validators.required],
+      unite:['0', Validators.required],
+      devise:['0', Validators.required],
+
+      ventetHT:['', Validators.required]
     });
   }
 
@@ -49,6 +52,14 @@ export class ArticleComponent implements OnInit {
     await this.getArticles();
     await this.getFournisseurs();
     await this.getFamilles();
+    console.log("Articles",this.articles);
+    console.log("Familles",this.familles);
+
+    this.articleForm.patchValue({
+      refArticle: "ART_" + this.articles.length,
+      refFournisseur: "FOUR_" + this.fournisseurs.length,
+    });
+    
   }
   async getFamilles() {
     this.familles = await this.steService.getFamilles();
@@ -65,19 +76,50 @@ export class ArticleComponent implements OnInit {
       console.error('Error fetching articles:', error);
     }
   }
-
+  calcule() {
+    console.log("calcule work");
+  
+    let achatHT = this.articleForm.value.achatHT;
+    let marge = this.articleForm.value.marge;
+    let fodec = this.articleForm.value.fodec ? achatHT * 0.01 : 0;
+    let timbre = this.articleForm.value.timbre;
+    let tva = this.articleForm.value.tva;
+  
+    // Calculate montantMarge
+    let montantMarge = marge * achatHT / 100;
+    this.articleForm.patchValue({ montantMarge: montantMarge });
+  
+    // Calculate venteHT
+    let venteHT = Number(achatHT) + montantMarge  + fodec;
+    this.articleForm.patchValue({ venteHT: venteHT });
+  
+    // Calculate achatTTC
+    let achatTTC = Number(achatHT) * (1 + tva / 100) + Number(timbre);
+    this.articleForm.patchValue({ achatTTC: achatTTC });
+  
+    // Calculate venteTTC
+    let venteTTC = venteHT * (1 + tva / 100);
+    this.articleForm.patchValue({ venteTTC: venteTTC });
+  
+    console.log("articleForm", this.articleForm.value);
+  }
+  
+  
   async onAdd() {
     try {
-      if (this.articleForm.valid) {
-        let article: any = {
-          designation: this.articleForm.value.designation,
-          famille: this.articleForm.value.famille,
-          depot: { idDepot: Number(this.articleForm.value.idDepot) },
-          fournisseur: { idFournisseur: Number(this.articleForm.value.idFournisseur)},
-        };
-        await this.steService.saveArticles(article);
-        await this.ngOnInit(); // Refresh data after saving
-        console.log('Article added successfully.');
+      //this.articleForm.valid
+      if (true) {
+        let article: any = this.articleForm.value;
+        article.fournisseur=this.fournisseurs[this.articleForm.value.fournisseur];
+        article.famille=this.familles[this.articleForm.value.famille];
+        article.unite=this.unites[this.articleForm.value.unite];
+        article.devise=this.devises[this.articleForm.value.devise];
+        article.tva=this.tvaList[this.articleForm.value.tva]
+        console.log("articleForm",this.articleForm);
+        console.log("newArticle",article);
+        //await this.steService.saveArticles(article);
+        //await this.ngOnInit(); // Refresh data after saving
+        //console.log('Article added successfully.');
       }
     } catch (error) {
       console.error('Error adding article:', error);
