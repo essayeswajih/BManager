@@ -32,14 +32,12 @@ export class ArticleComponent implements OnInit {
       designation: ['', Validators.required],
       famille:['0', Validators.required],
       model:['', Validators.required],
-      achatHT:[0, Validators.required],
+      achatHT:['0.000', Validators.required],
       marge:[20,Validators.min(0)],
-      montantMarge:[0, Validators.required],
-      venteHT:[0, Validators.required],
+      montantMarge:['0.000', Validators.required],
+      venteHT:['0.000', Validators.required],
       fodec:[false, Validators.required],
       tva:['0', Validators.required],
-      timbre:[1, Validators.required],
-      achatTTC:['', Validators.required],
       venteTTC:['', Validators.required],
       unite:['0', Validators.required],
       devise:['0', Validators.required],
@@ -81,26 +79,18 @@ export class ArticleComponent implements OnInit {
   
     let achatHT = this.articleForm.value.achatHT;
     let marge = this.articleForm.value.marge;
-    let fodec = this.articleForm.value.fodec ? achatHT * 0.01 : 0;
-    let timbre = this.articleForm.value.timbre;
-    let tva = this.articleForm.value.tva;
-  
-    // Calculate montantMarge
+    let fodec = this.articleForm.value.fodec ? achatHT * 0.01 : 0; 
+
+    let tvaPercentage = this.tvaList [this.articleForm.value.tva] / 100; 
     let montantMarge = marge * achatHT / 100;
     this.articleForm.patchValue({ montantMarge: montantMarge });
-  
-    // Calculate venteHT
-    let venteHT = Number(achatHT) + montantMarge  + fodec;
+    let venteHT = Number(achatHT) + montantMarge + fodec;
     this.articleForm.patchValue({ venteHT: venteHT });
-  
-    // Calculate achatTTC
-    let achatTTC = Number(achatHT) * (1 + tva / 100) + Number(timbre);
+    let tva = venteHT * tvaPercentage;
+    let achatTTC = Number(achatHT) + tva;
     this.articleForm.patchValue({ achatTTC: achatTTC });
-  
-    // Calculate venteTTC
-    let venteTTC = venteHT * (1 + tva / 100);
+    let venteTTC = venteHT + tva;
     this.articleForm.patchValue({ venteTTC: venteTTC });
-  
     console.log("articleForm", this.articleForm.value);
   }
   
@@ -117,9 +107,9 @@ export class ArticleComponent implements OnInit {
         article.tva=this.tvaList[this.articleForm.value.tva]
         console.log("articleForm",this.articleForm);
         console.log("newArticle",article);
-        //await this.steService.saveArticles(article);
-        //await this.ngOnInit(); // Refresh data after saving
-        //console.log('Article added successfully.');
+        await this.steService.saveArticles(article);
+        await this.ngOnInit(); // Refresh data after saving
+        console.log('Article added successfully.');
       }
     } catch (error) {
       console.error('Error adding article:', error);
@@ -127,7 +117,7 @@ export class ArticleComponent implements OnInit {
   }
 
   onDelete(id: number) {
-    this.steService.deleteDepots(id);
+    this.steService.deleteArticle(id);
     this.articles = this.articles.filter(d => d.idArticle !== id);
     this.articlesWithChanges = this.articlesWithChanges.filter(d => d.idDepot !== id);
     console.log(this.articles, 'articles');

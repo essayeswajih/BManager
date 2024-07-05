@@ -11,16 +11,16 @@
                     <th>Designation</th>
                     <th>Famille</th>
                     <th>Model</th>
-                    <th>Achat HT</th>
+                    <th>Achat HT<span>(DNT)</span></th>
 
-                    <th>Fodec</th>
-                    <th>TVA</th>
-                    <th>Timbre</th>
-                    <th>Montant</th>
-                    <th>Montant Marge</th>
-                    <th>Vente Ht</th>
-                    <th>Achat TTC</th>
-                    <th>Vente TTC</th>
+                    <th>Fodec<span>(DNT)</span></th>
+                    <th>TVA<span>(%)</span></th>
+                    <!--<th>Timbre</th>-->
+                    <th>Marge<span>(%)</span></th>
+                    <th>Mont Marge<span>(DNT)</span></th>
+                    <th>Vente Ht<span>(DNT)</span></th>
+                    <!--<th>Achat TTC</th>-->
+                    <th>Vente TTC<span>(DNT)</span></th>
                     <th>Unite</th>
                     <th>Devise</th>
                     <th>Action</th>
@@ -51,21 +51,21 @@
                     
                     <td>
                         <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" name="fodec" id="fodec" formControlName="fodec" (keypress)="calcule()">
+                        <input class="form-check-input" type="checkbox" name="fodec" id="fodec" formControlName="fodec" (keyup)="calcule()">
                         </div>
                     </td>
                     <td>
-                        <select class="form-control" name="tva" id="tva" formControlName="tva" (keypress)="calcule()">
+                        <select class="form-control" name="tva" id="tva" formControlName="tva" (change)="calcule()">
                             @for(tva of tvaList;track $index){
                                     <option [value]="$index">{{tva}}%</option>
                             }
                         </select>
                     </td>
-                    <td><input class="form-control" type="text" name="timbre" id="timbre" formControlName="timbre" (keypress)="calcule()"></td>
-                    <td><input class="form-control" type="text" name="marge" id="marge" formControlName="marge" (keypress)="calcule()"></td>
+                    <!--<td><input class="form-control" type="text" name="timbre" id="timbre" formControlName="timbre" (keypress)="calcule()"></td>-->
+                    <td><input class="form-control" type="text" name="marge" id="marge" formControlName="marge" (keyup)="calcule()"></td>
                     <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" formControlName="montantMarge"></td>
                     <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" formControlName="venteHT"></td>
-                    <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" formControlName="achatTTC"></td>
+                    <!--<td><input class="form-control" type="text" name="achatTTC" id="achatTTC" formControlName="achatTTC"></td>-->
                     <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" formControlName="venteTTC"></td>
                     <td>
                         <select class="form-control" name="unite" id="unite" formControlName="unite">
@@ -129,11 +129,11 @@
 
                             </select>
                         </td>
-                        <td><input class="form-control" type="text" name="timbre" id="timbre" [value]="article.timbre"></td>
+                        <!--<td><input class="form-control" type="text" name="timbre" id="timbre" [value]="article.timbre"></td>-->
                         <td><input class="form-control" type="text" name="marge" id="marge" [value]="article.marge"></td>
                         <td><input class="form-control" type="text" name="montantMarge" id="montantMarge" [value]="article.montantMarge"></td>
-                        <td><input class="form-control" type="text" name="ventetHT" id="ventetHT" [value]="article.ventetHT"></td>
-                        <td><input class="form-control" type="text" name="achatTTC" id="achatTTC" [value]="article.achatTTC"></td>
+                        <td><input class="form-control" type="text" name="venteHT" id="venteHT" [value]="article.venteHT"></td>
+                        <!--<td><input class="form-control" type="text" name="achatTTC" id="achatTTC" [value]="article.achatTTC"></td>-->
                         <td><input class="form-control" type="text" name="venteTTC" id="venteTTC" [value]="article.venteTTC"></td>
                         <td>
                             <select class="form-control" name="unite" id="unite">

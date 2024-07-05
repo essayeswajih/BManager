@@ -140,7 +140,7 @@ export class SteService {
     article.ste={ idSte: this.idSte };
     console.log("article",article)
     try {
-      const response = await this.axios.post("article/save", article);
+      const response = await this.axios.post("articles/save", article);
       if (response.status === 200) {
         return response.data;
       }
@@ -154,7 +154,7 @@ export class SteService {
   async saveAllArticle(depotsUpdated: any[]) {
     console.log("article",depotsUpdated)
     try {
-      const response = await this.axios.post("article/saveAll", depotsUpdated);
+      const response = await this.axios.post("articles/saveAll", depotsUpdated);
       if (response.status === 200) {
         return response.data;
       }
@@ -167,7 +167,7 @@ export class SteService {
   }
   async deleteArticle(id:number){
     try {
-      const response = await this.axios.delete("article/delete/"+id);
+      const response = await this.axios.delete("articles/delete/"+id);
       return true;
     }catch{
       return false;
