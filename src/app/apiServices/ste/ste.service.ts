@@ -222,4 +222,53 @@ export class SteService {
       return false;
     }
   }
+  async getClients(): Promise<any> {
+    try {
+      const response = await this.axios.get("clients/ste/"+this.idSte);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("fournisseur SERVER INTERNAL ERROR", error);
+      throw new Error("fournisseur SERVER INTERNAL ERROR");
+    }
+  }
+  async saveClients(fournisseur:any){
+    fournisseur.ste={ idSte: this.idSte };
+    console.log("fournisseur",fournisseur)
+    try {
+      const response = await this.axios.post("clients/save", fournisseur);
+      if (response.status === 200) {
+        return response.data;
+      }
+      else{
+        return response.data;
+      }
+    }catch(error){
+      return error;
+    }
+  }
+  async saveAllClients(fournisseursUpdated: any[]) {
+
+    console.log("fournisseurs",fournisseursUpdated)
+    try {
+      const response = await this.axios.post("clients/saveAll", fournisseursUpdated);
+      if (response.status === 200) {
+        return response.data;
+      }
+      else{
+        return response.data;
+      }
+    }catch(error){
+      return error;
+    }
+  }
+  async deleteClients(id:number){
+    try {
+      const response = await this.axios.delete("clients/delete/"+id);
+      return true;
+    }catch{
+      return false;
+    }
+  }
 }

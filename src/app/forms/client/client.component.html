@@ -1,4 +1,4 @@
-<form action="form">
+<form [formGroup]="clientForm">
     <label for="clients" class="form-label">Clients:</label>
     <div class="table-responsive">
         <table class="table">
@@ -9,36 +9,47 @@
                     <th>Matricule Fiscale</th>
                     <th>Email</th>
                     <th>Adresse</th>
-                    <th>tel</th>
+                    <th>Tel</th>
                     <th>Fax</th>
+                    <td>Exonéré</td>
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><input class="form-control" type="text" name="id" id="id" placeholder="id"></td>
-                    <td><input class="form-control" type="text" name="intitule" id="intitule" value="Si wajih"></td>
-                    <td><input class="form-control" type="text" name="matriculeFiscale" id="matriculeFiscale" value="54548 4545 454"></td>
-                    <td><input class="form-control" type="text" name="email" id="email" value="wajihsayes@gmail.com"></td>
-                    <td><input class="form-control" type="text" name="adresse" id="adresse" value="Tunis,Monastir"></td>
-                    <td><input class="form-control" type="text" name="tel" id="tel" value="+216 27553981"></td>
-                    <td><input class="form-control" type="text" name="tel" id="tel" value="+216 71553981"></td>
-                    <td><button class="btn btn-success">Ajout</button></td>
+                    <td>+</td>
+                    <td><input class="form-control" type="text" formControlName="name"></td>
+                    <td><input class="form-control" type="text" formControlName="matriculeFiscale"></td>
+                    <td><input class="form-control" type="text" formControlName="email"></td>
+                    <td><input class="form-control" type="text" formControlName="adresse"></td>
+                    <td><input class="form-control" type="text" formControlName="tel"></td>
+                    <td><input class="form-control" type="text" formControlName="fax"></td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" formControlName="exonere">
+                        </div>
+                    </td>
+                    <td><button class="btn btn-success" (click)="onAdd()">Ajout</button></td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td><input class="form-control" type="text" name="intitule" id="intitule" value="Si wajih"></td>
-                    <td><input class="form-control" type="text" name="matriculeFiscale" id="matriculeFiscale" value="54548 4545 454"></td>
-                    <td><input class="form-control" type="text" name="email" id="email" value="wajihsayes@gmail.com"></td>
-                    <td><input class="form-control" type="text" name="adresse" id="adresse" value="Tunis,Monastir"></td>
-                    <td><input class="form-control" type="text" name="tel" id="tel" value="+216 27553981"></td>
-                    <td><input class="form-control" type="text" name="tel" id="tel" value="+216 71553981"></td>
-                    <td><button class="btn btn-danger">Supprimer</button></td>
+                <tr *ngFor="let client of clients; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td><input class="form-control" type="text" [value]="client.name" (keyup)="check(client, $event, 'name')"></td>
+                    <td><input class="form-control" type="text" [value]="client.matriculeFiscale" (keyup)="check(client, $event, 'matriculeFiscale')"></td>
+                    <td><input class="form-control" type="text" [value]="client.email" (keyup)="check(client, $event, 'email')"></td>
+                    <td><input class="form-control" type="text" [value]="client.adresse" (keyup)="check(client, $event, 'adresse')"></td>
+                    <td><input class="form-control" type="text" [value]="client.tel" (keyup)="check(client, $event, 'tel')"></td>
+                    <td><input class="form-control" type="text" [value]="client.fax" (keyup)="check(client, $event, 'fax')"></td>
+                    <td>
+                        <div class="form-check form-switch">
+                            <input class="form-check-input" type="checkbox" [name]="client.exonere"  [id]="client.exonere" [checked]="client.exonere" (change)="check(client,$event,'exonere')">
+                        </div>
+                    </td>
+                    <td><button class="btn btn-danger" (click)="onDelete(client.idClient)">Supprimer</button></td>
                 </tr>
             </tbody>
-            <tfoot>
+            <tfoot *ngIf="clientsUpdated.length > 0">
                 <tr>
-                    <td colspan="10"><button class="btn btn-success">Save</button></td>
+                    <td colspan="9"><button class="btn btn-success" (click)="onSave()">Save</button></td>
                 </tr>
             </tfoot>
         </table>

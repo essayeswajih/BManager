@@ -150,20 +150,21 @@ export class ArticleComponent implements OnInit {
       for (let a of this.articlesWithChanges) {
         if (a.idArticle === article.idArticle) {
           if(key=== 'achatHT'){
-            a[key] = value;
+            a[key] = parseFloat(value);
             this.calculateFields(a);
 
           }
           else if(key=== 'marge'){
-            a[key] = value;
+            a[key] = parseFloat(value);
             this.calculateFields(a);
           }
           else if(key === 'fodec'){
-            a[key] = value;
+            a[key] = !a[key];
             this.calculateFields(a);
           }
           else if(key==='tva'){
-
+            a[key] = parseInt(value);
+            this.calculateFields(a);
           }
           else if (key === 'idFournisseur') {
              a["fournisseur"][key]=value;
@@ -186,11 +187,13 @@ export class ArticleComponent implements OnInit {
 
   calculateFields(article: any) {
     console.log('dsqqqqqqqqqqqqqqqqqqqqqqqqq')
+    console.log(article)
     let achatHT = parseFloat(article.achatHT);
     console.log('achatHT',achatHT)
     let marge = parseFloat(article.marge);
     let fodec = article.fodec ? achatHT * 0.01 : 0;
-    let tvaPercentage = this.tvaList[parseInt(article.tva)] / 100;
+    let tvaPercentage = article.tva / 100;
+    console.log('tvapercentage',tvaPercentage)
     console.log("calcule Fields work");
     let montantMarge = marge * achatHT / 100;
 
@@ -199,13 +202,24 @@ export class ArticleComponent implements OnInit {
     article.venteHT = venteHT ;
     let tva = venteHT * tvaPercentage;
     let achatTTC = Number(achatHT) + tva;
+    console.log('achatTTC',achatTTC,'achatHT',achatHT,'tva',tva)
     article.achatTTC = achatTTC ;
     let venteTTC = venteHT + tva;
     article.venteTTC = venteTTC ;
     console.log("articleForm", this.articleForm.value);
     console.log(article)
-  
+    this.changeArticle(article);
+    console.log('articlesForChange',this.articlesUpdated)
     return article;
+  }
+  async changeArticle(article :any){
+      for(let i =0 ; i < this.articles.length;i++){
+        if(this.articles[i].idArticle === article.idArticle){
+          this.articles[i] = article;
+          this.articlesWithChanges[this.articlesWithChanges.length]=article;
+          await this.steService.saveArticles(article)
+      }
+    }
   }
   updateArticlesUpdated() {
     // Update articlesUpdated with changed items
