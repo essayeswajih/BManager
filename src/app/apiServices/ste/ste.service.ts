@@ -271,4 +271,38 @@ export class SteService {
       return false;
     }
   }
+  async getAllBonCmdA(): Promise<any> {
+    try {
+      const response = await this.axios.get("achat/bonCmd/ste/"+this.idSte);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("BonCommande SERVER INTERNAL ERROR", error);
+      throw new Error("BonCommande SERVER INTERNAL ERROR");
+    }
+  }
+  async saveBonCommande(data:any){
+    data.ste={ idSte: this.idSte };
+    console.log("BonCommande",data)
+    try {
+      const response = await this.axios.post("achat/bonCmd/save", data);
+      if (response.status === 200) {
+        return response.data;
+      }
+      else{
+        return response.data;
+      }
+    }catch(error){
+      return error;
+    }
+  }
+  async deleteBonCommande(id:number){
+    try {
+      const response = await this.axios.delete("achat/bonCmd/delete/"+id);
+      return true;
+    }catch{
+      return false;
+    }
+  }
 }
