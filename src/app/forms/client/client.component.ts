@@ -21,7 +21,8 @@ export class ClientComponent implements OnInit {
       email: ['', Validators.required],
       adresse: ['', Validators.required],
       tel: ['', Validators.required],
-      fax: ['', Validators.required]
+      fax: ['', Validators.required],
+      exonere:['',Validators.required],
     });
   }
 
@@ -71,7 +72,10 @@ export class ClientComponent implements OnInit {
       // Update clientsWithChanges
       for (let c of this.clientsWithChanges) {
         if (c.idClient === client.idClient) {
-          if (c[key] !== value) {
+          if(key=='exonere'){
+            c[key] = !c[key];
+          }
+          else if (c[key] !== value) {
             c[key] = value;
           }
           break;

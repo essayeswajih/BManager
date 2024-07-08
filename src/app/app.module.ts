@@ -20,6 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BonCmdComponent } from './forms/achat/bon-cmd/bon-cmd.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TopBarComponent,
     FooterComponent,
     CarouselComponent,
+    BonCmdComponent,
   ],
   imports: [
     BrowserModule,

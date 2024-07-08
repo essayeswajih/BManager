@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SteComponent {
   id:any;
   pageName:any;
-  pages:String[]=["depot","fournisseur","client","article","famille"];
+  pages:String[]=["depot","fournisseur","client","article","famille",'achat_bon_cmd'];
   constructor(private route:ActivatedRoute,private router: Router) { }
   ngOnInit(){
     this.id = this.route.snapshot.paramMap.get('id');
@@ -18,7 +18,7 @@ export class SteComponent {
       this.checkId(this.id);
     }
     if(this.pageName){
-      //alert('Page Name:'+ this.pageName);
+      this.checkName(this.pageName)
     }
   }
   checkId(id: string) {
@@ -31,13 +31,8 @@ export class SteComponent {
   }
   checkName(pageName:string){
     for (let i of pageName) {
-      if (i.toLowerCase() >= 'a' && i.toLowerCase() <= 'z') {
+      if (!((i.toLowerCase() >= 'a' && i.toLowerCase() <= 'z')||i=='_')) {
         this.router.navigateByUrl("/");
-        break;
-      }
-      if(!(pageName in this.pages)){
-        this.router.navigateByUrl("/");
-        console.log(pageName + "Not Exist")
         break;
       }
     }
