@@ -1,4 +1,4 @@
-<form >
+<form [formGroup]="bonCommandeForm">
     <label for="articles" class="form-label">Bon De Commande:</label>
     <div class="table-responsive">
         <table class="table" >
@@ -11,14 +11,14 @@
             <tbody>
                 <tr>
                     <td>
-                        <select name="fournisseurs" class="form-select" id="fournisseurs">
+                        <select name="fournisseurs" class="form-select" id="fournisseurs" formControlName="fournisseur" (change)="change('fournisseur',$event)">
                             @for (fournisseur of fournisseurList; track $index) {
                                 <option [value]="$index">{{ fournisseur.intitule }}</option>
                             }
                         </select>
                     </td>
                     <td>
-                        <input type="date" class="form-control" name="date" id="date">
+                        <input type="date" class="form-control" name="date" id="date" (change)="change('dateCreation',$event)">
                     </td>
                 </tr>
             </tbody>
@@ -29,14 +29,14 @@
                 </tr>
                 <tr>
                     <td>
-                        <select name="articles" class="form-select" id="articles">
+                        <select name="articles" class="form-select" id="articles" formControlName="article" >
                             @for (article of articleList; track $index) {
                                 <option [value]="$index">{{article.designation}}</option>
                             }
                         </select>
                     </td>
                     <td>
-                        <button type="button" class="btn btn-primary">Ajouter un article</button>
+                        <button type="button" class="btn btn-primary" (click)="ajouter()">Ajouter un article</button>
                     </td>
                 </tr>
             </tfoot>
@@ -58,39 +58,41 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <input type="text" class="form-control" name="refArticle" id="refArticle">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="designationArticle" id="designationArticle">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control x" name="quantiteArticle" id="quantiteArticle">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control x" name="uniteArticle" id="uniteArticle">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control x" name="prixArticle"  id="prixArticle">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control x" name="remiseArticle" id="remiseArticle">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control x" name="totalNetHT" id="totalNetHT">
-                    </td>
-                    <td>
-                        <input type="text" class="form-control x" name="tvaArticle" id="tvaArticle">
-                    </td>
-                    <td>
-                        <button type="button" class="btn btn-danger">Supprimer</button>
-                    </td>
-                </tr>
+                @for (item of bc.getItems(); track $index) {
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="refArticle" id="refArticle" [value]="item.article?.refArticle">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="designationArticle" id="designationArticle"[value]="item.article.designation">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="quantiteArticle" id="quantiteArticle"[value]="item.qte" (keyup)="change3(item,'qte',$event)" >
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="uniteArticle" id="uniteArticle" [value]="item.article.unite">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="prixArticle"  id="prixArticle" [value]="item.article.achatHT">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="remiseArticle" id="remiseArticle" [value]="item.rem">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="totalNetHT" id="totalNetHT" [value]="item.totalNet">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="tvaArticle" id="tvaArticle" [value]="item.article.tva">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="supprimer(item.article.idArticle)" >Supprimer</button>
+                        </td>
+                    </tr>
+            }
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="10"><button class="btn btn-primary">save</button></td>
+                    <td colspan="10"><button class="btn btn-primary" (click)="save()">save</button></td>
                 </tr>
                 
             </tfoot>
