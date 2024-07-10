@@ -92,7 +92,16 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="10"><button class="btn btn-primary" (click)="save()">save</button></td>
+                    @if(bc.getItems().length>0){
+                        <td colspan="10">
+                        @if(bc.getId()==null){
+                            <button class="btn btn-primary" (click)="save()">create</button>
+                        }
+                        @else{
+                            <button class="btn btn-primary" (click)="download()">save</button>
+                        }
+                        </td>
+                    }
                 </tr>
                 
             </tfoot>

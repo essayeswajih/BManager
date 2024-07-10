@@ -10,6 +10,7 @@ import { SteService } from './../../../apiServices/ste/ste.service';
   styleUrls: ['./bon-cmd.component.scss']
 })
 export class BonCmdComponent implements OnInit {
+
 event: any;
 
 
@@ -34,6 +35,9 @@ supprimer(idArticle:Number) {
     this.getArticles();
     this.getFournisseurs();
     this.bc = new createBonCommande(this.bonCommandeForm.value, this.fournisseurList, this.articleList, this.steService);
+  }
+  download() {
+    this.bc.download();
   }
 
   async getArticles() {
@@ -111,11 +115,13 @@ supprimer(idArticle:Number) {
 
 class createBonCommande {
 
+
   private articlesList: any[] = [];
   private items: any[] = [];
   private fournisseur: any;
   private dateCreation: any;
   private steService: SteService;
+  private id!:number;
   
 
   constructor(formValue: any, fournisseurList: any[], articleList: any[], steService: SteService) {
@@ -186,7 +192,13 @@ class createBonCommande {
     }
 
     data.dateCreation = this.dateCreation;
-    this.steService.saveBonCommande(data);
+    this.steService.saveBonCommande(data).then(
+      (data)=>{
+        console.log(data.id)
+        this.id=data.id;
+      }
+    );
+    
     console.log("dataccc",data)
     
   }
@@ -211,5 +223,38 @@ class createBonCommande {
     this.items = itemsList;
     console.log(this.items);
   }
+  getId(){
+    return this.id;
+  }
+  download(): void {
+    const filename = `invoice${this.getId()}.pdf`; // Assuming this.getId() returns a valid identifier
+
+    this.steService.downloadFile(filename)
+      .then((data: ArrayBuffer) => {
+        this.saveFile(data, filename); 
+      })
+      .catch(error => {
+        console.error('Error downloading file:', error);
+        // Handle error as needed
+      });
+  }
+
+  private saveFile(data: ArrayBuffer, filename: string): void {
+    const blob = new Blob([data], { type: 'application/pdf' });
+
+    // Create a download link
+    const downloadLink = document.createElement('a');
+    downloadLink.href = window.URL.createObjectURL(blob);
+    downloadLink.download = filename;
+
+    // Append the link to the body and simulate a click
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+
+    // Clean up
+    document.body.removeChild(downloadLink);
+    window.URL.revokeObjectURL(downloadLink.href);
+  }
+
 }
 

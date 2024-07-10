@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AxiosService } from './../axios/axios.service';
 import { error } from 'console';
+import { catchError, Observable } from 'rxjs';
+import axios from 'axios';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SteService {
+
 
   idSte: number = 53;
   ste: any;
@@ -320,5 +323,13 @@ export class SteService {
       return error;
     }
   
+  }
+
+  downloadFile(url: string): Promise<ArrayBuffer> {
+    const downloadUrl = `http://localhost:9090/api/v1/files/${url}`
+
+    return axios.get<ArrayBuffer>(downloadUrl, {
+      responseType: 'arraybuffer',
+    }).then(response => response.data);
   }
 }

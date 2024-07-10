@@ -21,6 +21,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BonCmdComponent } from './forms/achat/bon-cmd/bon-cmd.component';
+import { BonLivComponent } from './forms/achat/bon-liv/bon-liv.component';
+import { ToastrModule } from 'ngx-toastr';
+
 
 @NgModule({
   declarations: [
@@ -38,6 +41,8 @@ import { BonCmdComponent } from './forms/achat/bon-cmd/bon-cmd.component';
     FooterComponent,
     CarouselComponent,
     BonCmdComponent,
+    BonLivComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -47,7 +52,8 @@ import { BonCmdComponent } from './forms/achat/bon-cmd/bon-cmd.component';
     FontAwesomeModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     provideClientHydration()
