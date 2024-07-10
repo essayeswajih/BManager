@@ -92,6 +92,7 @@ export class ArticleComponent implements OnInit {
     let venteTTC = venteHT + tva;
     this.articleForm.patchValue({ venteTTC: venteTTC });
     console.log("articleForm", this.articleForm.value);
+    
   }
   
   

@@ -17,16 +17,14 @@ supprimer(idArticle:Number) {
   this.bc.removeArticle(idArticle);
 }
 
-save() {
-throw new Error('Method not implemented.');
-}
+
   articleList: any[] = [];
   fournisseurList: any[] = [];
   bonCommandeItems: any = [];
   bonCommandeForm = this.fb.group({
     fournisseur: ['0', Validators.required],
     article: ['0', Validators.required],
-    date: [this.formatDate(new Date()), Validators.required]
+    date: [new Date(), Validators.required]
   });
   bc!: createBonCommande;
 
@@ -74,7 +72,13 @@ throw new Error('Method not implemented.');
       this.bc.setFournisseur(this.fournisseurList[selectedIndex]);
     }
     else if(key=='dateCreation'){
-      this.bc.setDateCreation(this.bonCommandeForm.value.date)
+      const selectedDate = (event?.target as HTMLSelectElement).value;
+      const dateValue = selectedDate ? new Date(selectedDate) : null;
+      this.bonCommandeForm.patchValue({
+        date: dateValue
+      });
+      console.log("date:",this.bonCommandeForm.value)
+      this.bc.setDateCreation(dateValue)
     }
     console.log(this.bc)
   }
@@ -83,24 +87,36 @@ throw new Error('Method not implemented.');
     this.bc.save();
   }
   change3(item: any,key: string,e:Event) {
-    console.log(item)
+    console.log("item",item)
     let value = Number((event?.target as HTMLSelectElement).value);
     if(value>0 || value<99999999) {
       item[key]=value;
+      if(key=='rem'){
+        let r =(item.rem*0.01)*(item.article.achatHT*item['qte']);
+        item['totalNet']=(item.article.achatHT*item['qte'])-r;
+      }
+      if(key=='qte'){
+        let r =(item.rem*0.01)*(item.article.achatHT*value);
+        item['totalNet']=(item.article.achatHT*value)-r;
+        item['totalNet']= item.article.achatHT*value-r;
+      }
     }
     this.bc.update(item);
   }
+  save() {
+    this.bc.save();
+  }
 }
 
+
 class createBonCommande {
-
-
 
   private articlesList: any[] = [];
   private items: any[] = [];
   private fournisseur: any;
   private dateCreation: any;
   private steService: SteService;
+  
 
   constructor(formValue: any, fournisseurList: any[], articleList: any[], steService: SteService) {
     this.fournisseur = fournisseurList[Number(formValue.fournisseur) || 0];
@@ -159,10 +175,10 @@ class createBonCommande {
       fournisseur: { idFournisseur: this.fournisseur.idFournisseur },
       items: []
     };
-
+    console.log("dgsdfdsf",itemsList)
     for (let i = 0; i < itemsList.length; i++) {
       data.items.push({
-        article: { idArticle: itemsList[i].idArticle },
+        article: { idArticle: itemsList[i].article.idArticle },
         qte: itemsList[i].qte,
         remise: itemsList[i].rem,
         totalNet: itemsList[i].totalNet
@@ -170,9 +186,8 @@ class createBonCommande {
     }
 
     data.dateCreation = this.dateCreation;
-
-    //this.steService.saveBonCommande(data);
-    console.log("data",data)
+    this.steService.saveBonCommande(data);
+    console.log("dataccc",data)
     
   }
   setArticleList(articles:any) {
@@ -187,7 +202,7 @@ class createBonCommande {
   update(item: any) {
     let itemsList: any[] = this.getItems();
     for(let i = 0; i<itemsList.length;i++){
-      if(itemsList[i].idArticle==item.idArticle){
+      if(itemsList[i].article.idArticle==item.article.idArticle){
         itemsList[i]=item;
       }
     }

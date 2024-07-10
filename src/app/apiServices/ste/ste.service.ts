@@ -283,11 +283,13 @@ export class SteService {
     }
   }
   async saveBonCommande(data:any){
+    console.log("ddddddddddddddddddddddddd")
     data.ste={ idSte: this.idSte };
     console.log("BonCommande",data)
     try {
       const response = await this.axios.post("achat/bonCmd/save", data);
       if (response.status === 200) {
+        this.toPdf(response.data)
         return response.data;
       }
       else{
@@ -304,5 +306,19 @@ export class SteService {
     }catch{
       return false;
     }
+  }
+  async toPdf(data:any){
+    try {
+      const response = await this.axios.post("achat/bonCmd/toPdf", data);
+      if (response.status === 200) {
+        return response.data;
+      }
+      else{
+        return response.data;
+      }
+    }catch(error){
+      return error;
+    }
+  
   }
 }
