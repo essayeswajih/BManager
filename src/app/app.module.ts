@@ -53,7 +53,8 @@ import { ToastrModule } from 'ngx-toastr';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     FormsModule,
-    ToastrModule.forRoot()
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(), 
   ],
   providers: [
     provideClientHydration()
