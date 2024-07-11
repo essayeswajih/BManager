@@ -355,8 +355,9 @@ export class SteService {
     }
   }
   async getBonLivA(){
+    let id =this.idSte;
     try{
-      return await this.axios.get("achat/bonLiv");
+      return await this.axios.get("achat/bonLiv/ste/"+id);
     }catch(error){
       return error;
     } 
