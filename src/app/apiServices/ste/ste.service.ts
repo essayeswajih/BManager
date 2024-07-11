@@ -354,5 +354,12 @@ export class SteService {
       return error;
     }
   }
+  async getBonLivA(){
+    try{
+      return await this.axios.get("achat/bonLiv");
+    }catch(error){
+      return error;
+    } 
+  }
 
 }

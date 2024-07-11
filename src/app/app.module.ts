@@ -23,6 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BonCmdComponent } from './forms/achat/bon-cmd/bon-cmd.component';
 import { BonLivComponent } from './forms/achat/bon-liv/bon-liv.component';
 import { ToastrModule } from 'ngx-toastr';
+import { FactureComponent } from './forms/achat/facture/facture.component';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ToastrModule } from 'ngx-toastr';
     CarouselComponent,
     BonCmdComponent,
     BonLivComponent,
+    FactureComponent,
     
   ],
   imports: [
