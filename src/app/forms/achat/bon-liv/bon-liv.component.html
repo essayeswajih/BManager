@@ -1,0 +1,39 @@
+<form [formGroup]="form">
+    <label for="articles" class="form-label">Bon De Livraison:</label>
+    <div class="table-responsive">
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th>Generer Un bon de Livraison</th>
+                    <th colspan="1">Date :</th>
+                    <td colspan="2">
+                        <input type="date" class="form-control" name="date" id="date" formControlName="dateCreation" (change)="change('dateCreation',$event)">
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Num Bon Cmd</th>
+                    <th>Date</th>
+                    <th>Fournisseur</th>
+                    <th>Action</th>
+                </tr>
+                @for (bon of bl.getBonList(); track $index) {
+                    <tr>
+                        <td>{{bon.id}}</td>
+                        <td>{{bon.dateCreation}}</td>
+                        <td>{{bon.fournisseur.intitule}}</td>
+                        @if (bon.trans) {
+                            <td><button type="button" class="btn btn-primary" (click)="download(bon.id)">Download</button></td>
+                        }
+                        @else {
+                            <td><button type="button" class="btn btn-primary" (click)="generer(bon)">Generer</button></td>
+                        }
+                        
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
