@@ -227,7 +227,7 @@ class createBonCommande {
     return this.id;
   }
   download(): void {
-    const filename = `invoice${this.getId()}.pdf`; // Assuming this.getId() returns a valid identifier
+    const filename = `bonCmdAchat${this.getId()}.pdf`; // Assuming this.getId() returns a valid identifier
 
     this.steService.downloadFile(filename)
       .then((data: ArrayBuffer) => {

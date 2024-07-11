@@ -8,8 +8,6 @@ import axios from 'axios';
   providedIn: 'root'
 })
 export class SteService {
-
-
   idSte: number = 53;
   ste: any;
   
@@ -317,7 +315,7 @@ export class SteService {
         return response.data;
       }
       else{
-        return response.data;
+        return null;
       }
     }catch(error){
       return error;
@@ -325,6 +323,20 @@ export class SteService {
   
   }
 
+  async toPdf1(data:any){
+    try {
+      const response = await this.axios.post("achat/bonLiv/toPdf", data);
+      if (response.status === 200) {
+        return response.data;
+      }
+      else{
+        return null;
+      }
+    }catch(error){
+      return error;
+    }
+  
+  }
   downloadFile(url: string): Promise<ArrayBuffer> {
     const downloadUrl = `http://localhost:9090/api/v1/files/${url}`
 
@@ -332,4 +344,15 @@ export class SteService {
       responseType: 'arraybuffer',
     }).then(response => response.data);
   }
+  async genererBonLiv(bon: any){
+    try {
+      const response = await this.axios.post("achat/bonLiv/save", bon);
+      if (response.status === 200) {
+        return response.data;
+      }
+    }catch(error){
+      return error;
+    }
+  }
+
 }
