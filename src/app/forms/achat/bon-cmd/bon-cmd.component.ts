@@ -3,6 +3,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SteService } from './../../../apiServices/ste/ste.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-bon-cmd',
@@ -29,12 +30,12 @@ supprimer(idArticle:Number) {
   });
   bc!: createBonCommande;
 
-  constructor(private fb: FormBuilder, private steService: SteService) { }
+  constructor(private fb: FormBuilder, private steService: SteService,private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getArticles();
     this.getFournisseurs();
-    this.bc = new createBonCommande(this.bonCommandeForm.value, this.fournisseurList, this.articleList, this.steService);
+    this.bc = new createBonCommande(this.bonCommandeForm.value, this.fournisseurList, this.articleList, this.steService,this.toastr);
   }
   download() {
     this.bc.download();
@@ -115,7 +116,7 @@ supprimer(idArticle:Number) {
 
 class createBonCommande {
 
-
+  private toastr2!: ToastrService;;
   private articlesList: any[] = [];
   private items: any[] = [];
   private fournisseur: any;
@@ -124,11 +125,12 @@ class createBonCommande {
   private id!:number;
   
 
-  constructor(formValue: any, fournisseurList: any[], articleList: any[], steService: SteService) {
+  constructor(formValue: any, fournisseurList: any[], articleList: any[], steService: SteService,toastr:ToastrService) {
     this.fournisseur = fournisseurList[Number(formValue.fournisseur) || 0];
     this.articlesList = articleList;
     this.steService = steService;
     this.dateCreation = formValue.date;
+    this.toastr2 = toastr;
   }
 
   addArticle(articleIndex: any, qte: number, rem: number) {
@@ -139,6 +141,7 @@ class createBonCommande {
       if (item.article.idArticle === this.articlesList[articleIndex].idArticle) {
         item = itemCreated;
         exist = true;
+        this.toastr2.error('Erreur', 'Déjà Existe')
       }
     }
     if (!exist) {
