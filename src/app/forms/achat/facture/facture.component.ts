@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SteService } from './../../../apiServices/ste/ste.service';
 import { Component } from '@angular/core';
 
@@ -8,18 +9,28 @@ import { Component } from '@angular/core';
 })
 export class FactureComponent {
   f:Facture = new Facture([],this.steService);
-  constructor(private steService: SteService){}
-
+  form :FormGroup;
+  constructor(private fb: FormBuilder,private steService: SteService){
+    this.form = this.fb.group({
+      dateCreation: [new Date(), Validators.required],
+      bons: [0, Validators.required]
+    });
+  }
+  
   ngOnInit(){
     this.steService.getBonLivA().then(
       (data:any)=>{
         if (data.​status==200){
           console.log(data.data)
-          this.f.setBonList(data.data)
+          this.f = new Facture(data.data,this.steService)
+
         }
         
       }
     );
+  }
+  generer(){
+    this.f.generer(this.form.value.dateCreation)
   }
 
 }
@@ -29,6 +40,7 @@ class Facture {
   private bonLivSelected:any[]=[];
   constructor(bonLivList:any,steService: SteService) {
     this.bonLivList=bonLivList;
+    this.steService=steService;
   }
   getBonList(){
     return this.bonLivList;
@@ -76,8 +88,8 @@ class Facture {
       }
     }
   }
-  generer(){
-    this.steService.genererFactureA(this.bonLivSelected)
+  generer(date:any){
+    this.steService.genererFactureA(this.bonLivSelected,date)
   }
   supp(){
     this.bonLivSelected = [];

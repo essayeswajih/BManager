@@ -8,6 +8,7 @@ import axios from 'axios';
   providedIn: 'root'
 })
 export class SteService {
+
   idSte: number = 53;
   ste: any;
   
@@ -361,6 +362,21 @@ export class SteService {
     }catch(error){
       return error;
     } 
+  }
+  genererFactureA(bonLivSelected: any[],date:any){
+    let data :any = {};
+    data.ste = {idSte :this.idSte};
+    data.bonLivAS = bonLivSelected;
+    data.dateCreation = date;
+    this.axios.post("achat/facture/save",data).then(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
+    
   }
 
 }
