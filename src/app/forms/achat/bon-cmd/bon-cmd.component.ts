@@ -136,7 +136,7 @@ class createBonCommande {
     let itemCreated = this.createItem(this.articlesList[articleIndex], qte, rem);
     let exist = false;
     for (let item of this.items) {
-      if (item.idArticle === this.articlesList[articleIndex].idArticle) {
+      if (item.article.idArticle === this.articlesList[articleIndex].idArticle) {
         item = itemCreated;
         exist = true;
       }
@@ -144,6 +144,7 @@ class createBonCommande {
     if (!exist) {
       this.items.push(itemCreated);
     }
+    console.log("exist",exist)
   }
 
   removeArticle(idArticle: any) {
