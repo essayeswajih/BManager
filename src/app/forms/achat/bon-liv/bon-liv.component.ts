@@ -30,7 +30,19 @@ export class BonLivComponent implements OnInit {
   showSuccess() {
     this.toastr.success('Hello world!', 'Toastr fun!');
   }
-
+  supp(idBonLiv: any) {
+    this.steService.deleteBonCommande(idBonLiv).then(
+      (res) => {
+        if(res==true){
+          this.toastr.success("Delete",idBonLiv+" : Deleted Succesully")
+          this.loadBonCmdList();
+        }
+        else{
+          this.toastr.error("Delete",idBonLiv+" : Not Deleted")
+        }
+      }
+    )}
+    
   loadBonCmdList(): void {
     this.steService.getAllBonCmdA().then(
       (data: any[]) => {

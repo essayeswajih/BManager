@@ -4,11 +4,11 @@
         <table class="table" >
             <thead>
                 <tr>
-                    <th>Generer Un bon de Livraison</th>
+                    <th colspan="2">Generer Un bon de Livraison</th>
                     <th colspan="1">Date :</th>
-                    <td colspan="2">
+                    <th >
                         <input type="date" class="form-control" name="date" id="date" formControlName="dateCreation" (change)="change('dateCreation',$event)">
-                    </td>
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -23,13 +23,15 @@
                         <td>{{bon.id}}</td>
                         <td>{{bon.dateCreation}}</td>
                         <td>{{bon.fournisseur.intitule}}</td>
+                        <td>
                         @if (bon.trans) {
-                            <td><button type="button" class="btn btn-primary" (click)="download(bon.id)">Download</button></td>
+                            <button type="button" class="btn btn-primary" (click)="download(bon.id)">Download</button>
                         }
                         @else {
-                            <td><button type="button" class="btn btn-primary" (click)="generer(bon)">Generer</button></td>
+                            <button type="button" class="btn btn-primary" (click)="generer(bon)">Generer</button>
                         }
-                        
+                        <button class="btn btn-danger" (click)="supp(bon.id)">Supprimer</button>
+                    </td>
                     </tr>
                 }
             </tbody>

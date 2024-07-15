@@ -378,5 +378,11 @@ export class SteService {
     );
     
   }
-
+  async deleteBonLivA(idBonLiv: any) {
+    try{
+      return await this.axios.delete("achat/bonLiv/delete/"+idBonLiv);
+    }catch(error){
+      return error;
+    }
+  }
 }
