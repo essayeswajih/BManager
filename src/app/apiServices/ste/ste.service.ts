@@ -385,4 +385,35 @@ export class SteService {
       return error;
     }
   }
+  async saveDevis(data:any){
+    data.ste={ idSte: this.idSte };
+    console.log(data);
+    try{
+      return await this.axios.post("vente/devis/save",data);
+    }catch(error){
+      return error;
+    }
+  }
+  async getDevis(){
+    let id = this.idSte;
+    try{
+      return await axios.get("vente/devis/ste/"+id)
+    }catch(error){
+      return error;
+    }
+  }
+  async getDevisByClient(id:any){
+    try{
+      return await axios.get("vente/devis/client/"+id)
+    }catch(error){
+      return error;
+    }
+  }
+  async deleteDevis(id:any){
+    try{
+      return await this.axios.delete("vente/devis/delete/"+id);
+    }catch(error){
+      return error;
+    }
+  }
 }

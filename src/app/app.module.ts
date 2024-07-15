@@ -24,6 +24,7 @@ import { BonCmdComponent } from './forms/achat/bon-cmd/bon-cmd.component';
 import { BonLivComponent } from './forms/achat/bon-liv/bon-liv.component';
 import { ToastrModule } from 'ngx-toastr';
 import { FactureComponent } from './forms/achat/facture/facture.component';
+import { DevisComponent } from './forms/vente/devis/devis.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { FactureComponent } from './forms/achat/facture/facture.component';
     BonCmdComponent,
     BonLivComponent,
     FactureComponent,
+    DevisComponent,
     
   ],
   imports: [
