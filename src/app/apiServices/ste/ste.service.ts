@@ -395,11 +395,14 @@ export class SteService {
     }
   }
   async getDevis(){
-    let id = this.idSte;
     try{
-      return await axios.get("vente/devis/ste/"+id)
-    }catch(error){
-      return error;
+      const response = await this.axios.get("vente/devis/ste/"+this.idSte);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("BonCommande SERVER INTERNAL ERROR", error);
+      throw new Error("BonCommande SERVER INTERNAL ERROR");
     }
   }
   async getDevisByClient(id:any){
