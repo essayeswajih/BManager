@@ -26,6 +26,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FactureComponent } from './forms/achat/facture/facture.component';
 import { DevisComponent } from './forms/vente/devis/devis.component';
 import { BonLivVComponent } from './forms/vente/bon-liv-v/bon-liv-v.component';
+import { FactureVComponent } from './forms/vente/facture-v/facture-v.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { BonLivVComponent } from './forms/vente/bon-liv-v/bon-liv-v.component';
     FactureComponent,
     DevisComponent,
     BonLivVComponent,
+    FactureVComponent,
     
   ],
   imports: [

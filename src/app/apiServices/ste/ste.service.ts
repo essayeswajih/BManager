@@ -428,4 +428,11 @@ export class SteService {
       return error;
     }
   }
+  async getBonLivV(){
+    try{
+      return await this.axios.get("vente/bonLiv/ste/"+this.idSte);
+    }catch(error){
+      return error;
+    } 
+  }
 }
