@@ -323,27 +323,13 @@ export class SteService {
     }
   
   }
-
-  async toPdf1(data:any){
-    try {
-      const response = await this.axios.post("achat/bonLiv/toPdf", data);
-      if (response.status === 200) {
-        return response.data;
-      }
-      else{
-        return null;
-      }
-    }catch(error){
-      return error;
-    }
-  
-  }
-  downloadFile(url: string): Promise<ArrayBuffer> {
+  async downloadFile(url: string): Promise<ArrayBuffer> {
     const downloadUrl = `http://localhost:9090/api/v1/files/${url}`
 
-    return axios.get<ArrayBuffer>(downloadUrl, {
+    const response = await axios.get<ArrayBuffer>(downloadUrl, {
       responseType: 'arraybuffer',
-    }).then(response => response.data);
+    });
+    return response.data;
   }
   async genererBonLiv(bon: any){
     try {
@@ -415,6 +401,29 @@ export class SteService {
   async deleteDevis(id:any){
     try{
       return await this.axios.delete("vente/devis/delete/"+id);
+    }catch(error){
+      return error;
+    }
+  }
+  async genererBonLivV(devis: any){
+    try {
+      const response = await this.axios.post("vente/bonLiv/save", devis);
+      if (response.status === 200) {
+        return response.data;
+      }
+    }catch(error){
+      return error;
+    }
+  }
+  async toPdfx(data:any,url:string){
+    try {
+      const response = await this.axios.post(url, data);
+      if (response.status === 200) {
+        return response.data;
+      }
+      else{
+        return null;
+      }
     }catch(error){
       return error;
     }

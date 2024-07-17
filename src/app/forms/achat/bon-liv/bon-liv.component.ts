@@ -70,7 +70,7 @@ export class BonLivComponent implements OnInit {
           console.log(data);
           this.toastr.success('Succès', 'Bon de Livraison Généré');
           
-          this.steService.toPdf1(data).then(
+          this.steService.toPdfx(data,"achat/bonLiv/toPdf").then(
             (data)=>{
               if(data=="created"){
                 this.bl.setTransferedBon(bon.id);
