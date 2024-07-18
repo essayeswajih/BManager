@@ -362,7 +362,6 @@ export class SteService {
         console.log(error)
       }
     );
-    
   }
   async deleteBonLivA(idBonLiv: any) {
     try{
@@ -435,5 +434,19 @@ export class SteService {
     }catch(error){
       return error;
     } 
+  }
+  genererFactureV(bonLivSelected: any[],date:any){
+    let data :any = {};
+    data.ste = {idSte :this.idSte};
+    data.bonLivVS = bonLivSelected;
+    data.dateCreation = date;
+    this.axios.post("vente/facture/save",data).then(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.log(error)
+      }
+    );
   }
 }
