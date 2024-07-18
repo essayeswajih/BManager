@@ -82,6 +82,10 @@ class Facture {
           if(this.bonLivSelected[this.bonLivSelected.length-1].bonCmdA.fournisseur.idFournisseur!=this.getBonById(bonId).bonCmdA.fournisseur.idFournisseur){
           this.toastr.error("Il foux choisir la memme client","ERROR")
           value.checked=false;
+          }else{
+            this.bonLivSelected.push(this.getBonById(bonId));
+            console.log(this.bonLivSelected)
+            this.toastr.success("Bon de livraison Selectionné","SUCCESS")
           }
         }else{
           this.bonLivSelected.push(this.getBonById(bonId));
