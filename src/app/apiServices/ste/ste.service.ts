@@ -406,6 +406,7 @@ export class SteService {
     }
   }
   async genererBonLivV(devis: any){
+    
     try {
       const response = await this.axios.post("vente/bonLiv/save", devis);
       if (response.status === 200) {

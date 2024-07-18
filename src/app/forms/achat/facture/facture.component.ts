@@ -1,6 +1,7 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SteService } from './../../../apiServices/ste/ste.service';
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-facture',
@@ -8,9 +9,9 @@ import { Component } from '@angular/core';
   styleUrl: './facture.component.scss'
 })
 export class FactureComponent {
-  f:Facture = new Facture([],this.steService);
+  f:Facture = new Facture([],this.steService,this.toastr);
   form :FormGroup;
-  constructor(private fb: FormBuilder,private steService: SteService){
+  constructor(private fb: FormBuilder,private steService: SteService,private toastr :ToastrService){
     this.form = this.fb.group({
       dateCreation: [new Date(), Validators.required],
       bons: [0, Validators.required]
@@ -22,7 +23,7 @@ export class FactureComponent {
       (data:any)=>{
         if (data.​status==200){
           console.log(data.data)
-          this.f = new Facture(data.data,this.steService)
+          this.f = new Facture(data.data,this.steService,this.toastr)
 
         }
         
@@ -38,9 +39,11 @@ class Facture {
   private steService!: SteService;
   private bonLivList:any[];
   private bonLivSelected:any[]=[];
-  constructor(bonLivList:any,steService: SteService) {
+  private toastr !:ToastrService;
+  constructor(bonLivList:any,steService: SteService,toastr: ToastrService) {
     this.bonLivList=bonLivList;
     this.steService=steService;
+    this.toastr=toastr;
   }
   getBonList(){
     return this.bonLivList;
@@ -75,8 +78,16 @@ class Facture {
     
     if (value.checked) {
       if (this.exist(bonId,this.bonLivSelected)<0){
-        this.bonLivSelected.push(this.getBonById(bonId));
-        console.log(this.bonLivSelected)
+        if(this.bonLivSelected.length>0){
+          if(this.bonLivSelected[this.bonLivSelected.length-1].bonCmdA.fournisseur.idFournisseur!=this.getBonById(bonId).bonCmdA.fournisseur.idFournisseur){
+          this.toastr.error("Il foux choisir la memme client","ERROR")
+          value.checked=false;
+          }
+        }else{
+          this.bonLivSelected.push(this.getBonById(bonId));
+          console.log(this.bonLivSelected)
+          this.toastr.success("Bon de livraison Selectionné","SUCCESS")
+        }
       }
     }
     else {
