@@ -80,7 +80,7 @@ class Facture {
       if (this.exist(bonId,this.bonLivSelected)<0){
         if(this.bonLivSelected.length>0){
           if(this.bonLivSelected[this.bonLivSelected.length-1].bonCmdA.fournisseur.idFournisseur!=this.getBonById(bonId).bonCmdA.fournisseur.idFournisseur){
-          this.toastr.error("Il foux choisir la memme client","ERROR")
+          this.toastr.error("Il foux choisir la meme client","ERROR")
           value.checked=false;
           }else{
             this.bonLivSelected.push(this.getBonById(bonId));
