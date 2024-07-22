@@ -27,6 +27,9 @@ import { FactureComponent } from './forms/achat/facture/facture.component';
 import { DevisComponent } from './forms/vente/devis/devis.component';
 import { BonLivVComponent } from './forms/vente/bon-liv-v/bon-liv-v.component';
 import { FactureVComponent } from './forms/vente/facture-v/facture-v.component';
+import { HestoriqueArticleComponent } from './forms/hestorique-article/hestorique-article.component';
+import { LoginComponent } from './auth/login/login.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 
 @NgModule({
@@ -50,6 +53,9 @@ import { FactureVComponent } from './forms/vente/facture-v/facture-v.component';
     DevisComponent,
     BonLivVComponent,
     FactureVComponent,
+    HestoriqueArticleComponent,
+    LoginComponent,
+    RegisterComponent,
     
   ],
   imports: [
