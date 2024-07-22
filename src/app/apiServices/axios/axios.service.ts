@@ -20,12 +20,12 @@ export class AxiosService {
   }
 
   getToken(): string {
-    return 'your-token-here';
+    return 'eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJXYWppaCBFc3NheWVzIiwiaWF0IjoxNzIxNjYyODI0LCJleHAiOjE3MjE3NDkyMjR9.3-vBY6M3-PQ3QvOQonc1Y8RbQ4wJnJBsOVYa0n5CxX0vt9qhbQW5zhqpQoipRXm4';
   }
 
   async get(endPoint: string) {
     const config = this.getConfig();
-    return await axios.get(`${this.API_URL}/${endPoint}`);
+    return await axios.get(`${this.API_URL}/${endPoint}`, this.getConfig());
   }
 
   async post(endPoint: string, data: any) {
