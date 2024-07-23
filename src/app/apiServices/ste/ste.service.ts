@@ -449,4 +449,26 @@ export class SteService {
       }
     );
   }
+  async login(data:any):Promise<any>{
+    try{
+      let respone = await this.axios.post1("login",data);
+      if(respone.status === 200){
+        return respone.data;
+      }
+    }catch(error){
+      console.log(error)
+    }
+    
+  }
+  async register(data:any):Promise<any>{
+    try{
+      let respone = await this.axios.post1("register",data);
+      if(respone.status === 200){
+        return respone.data;
+      }
+    }catch(error){
+      console.log(error)
+    }
+    
+  }
 }

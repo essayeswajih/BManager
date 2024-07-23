@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import axios, { AxiosRequestConfig } from 'axios';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AxiosService {
+  private BASE = "http://localhost:9090";
   private API_URL = 'http://localhost:9090/api/v1';
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   private getConfig(): AxiosRequestConfig {
     const token = this.getToken();
@@ -19,8 +21,11 @@ export class AxiosService {
     };
   }
 
-  getToken(): string {
-    return 'eyJhbGciOiJIUzM4NCJ9.eyJzdWIiOiJXYWppaCBFc3NheWVzIiwiaWF0IjoxNzIxNjYyODI0LCJleHAiOjE3MjE3NDkyMjR9.3-vBY6M3-PQ3QvOQonc1Y8RbQ4wJnJBsOVYa0n5CxX0vt9qhbQW5zhqpQoipRXm4';
+  getToken(): string | null{
+    let token = this.authService.getToken();
+    console.log(token)
+    return this.authService.getToken();
+    
   }
 
   async get(endPoint: string) {
@@ -31,6 +36,9 @@ export class AxiosService {
   async post(endPoint: string, data: any) {
     const config = this.getConfig();
     return await axios.post(`${this.API_URL}/${endPoint}`, data, this.getConfig());
+  }
+  async post1(endPoint: string, data: any) {
+    return await axios.post(`${this.BASE}/${endPoint}`, data);
   }
 
   async delete(endPoint: string) {
