@@ -23,9 +23,7 @@ export class AxiosService {
 
   getToken(): string | null{
     let token = this.authService.getToken();
-    console.log(token)
     return this.authService.getToken();
-    
   }
 
   async get(endPoint: string) {

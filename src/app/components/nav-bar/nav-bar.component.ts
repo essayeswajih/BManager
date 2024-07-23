@@ -1,4 +1,5 @@
 import { Component, HostListener } from '@angular/core';
+import { AuthService } from '../../apiServices/auth/auth.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -7,7 +8,12 @@ import { Component, HostListener } from '@angular/core';
 })
 export class NavBarComponent {
   isSticky = false;
-
+  loggedIn = false
+  constructor(private auth : AuthService){}
+  ngOnInit() {
+    this.loggedIn = this.auth.isUserLoggedIn();
+    console.log(this.loggedIn);
+  }
   @HostListener('window:scroll', [])
   onWindowScroll() {
     // Logic to determine if navbar should be sticky based on scroll position

@@ -10,7 +10,11 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="ste/5">My Company</a>
+            @if(loggedIn){
+              <a class="nav-link" routerLink="ste/5">My Company</a>
+            }@else {
+              <a class="nav-link" routerLink="Login">login</a>
+            }
           </li>
         </ul>
       </div>

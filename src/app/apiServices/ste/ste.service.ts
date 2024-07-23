@@ -25,8 +25,7 @@ export class SteService {
         throw new Error("E1 " + response.data);
       }
     } catch (error) {
-      console.error("STE SERVER INTERNAL ERROR", error);
-      throw new Error("STE SERVER INTERNAL ERROR");
+      console.log("STE SERVER INTERNAL ERROR", error);
     }
   }
 
@@ -37,8 +36,7 @@ export class SteService {
         return response.data;
       }
     } catch (error) {
-      console.error("Depots SERVER INTERNAL ERROR", error);
-      throw new Error("Depots SERVER INTERNAL ERROR");
+      console.log("Depots SERVER INTERNAL ERROR", error);
     }
   }
   async saveDepots(depot:any){
@@ -86,8 +84,7 @@ export class SteService {
         return response.data;
       }
     } catch (error) {
-      console.error("famille SERVER INTERNAL ERROR", error);
-      throw new Error("famille SERVER INTERNAL ERROR");
+      console.log("famille SERVER INTERNAL ERROR", error);
     }
   }
   async saveFamille(famille:any){
@@ -134,8 +131,7 @@ export class SteService {
         return response.data;
       }
     } catch (error) {
-      console.error("Articles SERVER INTERNAL ERROR", error);
-      throw new Error("Articles SERVER INTERNAL ERROR");
+      console.log("Articles SERVER INTERNAL ERROR", error);
     }
   }
   async saveArticles(article:any){
@@ -182,8 +178,7 @@ export class SteService {
         return response.data;
       }
     } catch (error) {
-      console.error("fournisseur SERVER INTERNAL ERROR", error);
-      throw new Error("fournisseur SERVER INTERNAL ERROR");
+      console.log("fournisseur SERVER INTERNAL ERROR", error);
     }
   }
   async saveFournisseur(fournisseur:any){
@@ -231,8 +226,7 @@ export class SteService {
         return response.data;
       }
     } catch (error) {
-      console.error("fournisseur SERVER INTERNAL ERROR", error);
-      throw new Error("fournisseur SERVER INTERNAL ERROR");
+      console.log("fournisseur SERVER INTERNAL ERROR", error);
     }
   }
   async saveClients(fournisseur:any){
@@ -280,8 +274,7 @@ export class SteService {
         return response.data;
       }
     } catch (error) {
-      console.error("BonCommande SERVER INTERNAL ERROR", error);
-      throw new Error("BonCommande SERVER INTERNAL ERROR");
+      console.log("BonCommande SERVER INTERNAL ERROR", error);
     }
   }
   async saveBonCommande(data:any){
@@ -386,8 +379,7 @@ export class SteService {
         return response.data;
       }
     } catch (error) {
-      console.error("BonCommande SERVER INTERNAL ERROR", error);
-      throw new Error("BonCommande SERVER INTERNAL ERROR");
+      console.log("getDevis SERVER INTERNAL ERROR", error);
     }
   }
   async getDevisByClient(id:any){
