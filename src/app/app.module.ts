@@ -30,9 +30,11 @@ import { FactureVComponent } from './forms/vente/facture-v/facture-v.component';
 import { HestoriqueArticleComponent } from './forms/hestorique-article/hestorique-article.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 
 @NgModule({
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,
