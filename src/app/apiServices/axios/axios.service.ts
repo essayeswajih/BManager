@@ -6,8 +6,8 @@ import { AuthService } from '../auth/auth.service';
   providedIn: 'root'
 })
 export class AxiosService {
-  private BASE = "http://localhost:9090";
-  private API_URL = 'http://localhost:9090/api/v1';
+  private BASE = "https://bmanagerrestapi.onrender.com";
+  private API_URL = 'https://bmanagerrestapi.onrender.com/api/v1';
 
   constructor(private authService:AuthService) { }
 
