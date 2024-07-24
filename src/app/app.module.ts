@@ -1,6 +1,5 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule, provideClientHydration } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
@@ -30,12 +29,28 @@ import { FactureVComponent } from './forms/vente/facture-v/facture-v.component';
 import { HestoriqueArticleComponent } from './forms/hestorique-article/hestorique-article.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
+    ArticleComponent,
+
+    FournisseurComponent,
+    DepotComponent,
+    FamilleComponent,
+    ClientComponent,
+    BonCmdComponent,
+    BonLivComponent,
+    FactureComponent,
+    DevisComponent,
+    BonLivVComponent,
+    FactureVComponent,
+    HestoriqueArticleComponent,
+    LoginComponent,
+    RegisterComponent,
+
+    TopBarComponent,
+    AppComponent,
     AppComponent,
     HomeComponent,
     SteComponent,
@@ -58,7 +73,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     HestoriqueArticleComponent,
     LoginComponent,
     RegisterComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -67,10 +81,10 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
     NgbModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
+
+    ToastrModule.forRoot(),
     ReactiveFormsModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot(), 
+    
   ],
   providers: [
     provideClientHydration()

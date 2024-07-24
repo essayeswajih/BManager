@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SteService } from '../../apiServices/ste/ste.service';
+import { SteService } from './../../apiServices/ste/ste.service';
 
 @Component({
   selector: 'app-fournisseur',
