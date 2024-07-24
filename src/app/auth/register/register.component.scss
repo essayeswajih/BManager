@@ -1,0 +1,66 @@
+main{
+    min-height: 100vh;
+    background-color: rgb(25, 26, 25);
+}
+form{
+    background-color: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 7px rgb(0, 0, 0);
+}
+.fff{
+    min-height: 100vh;
+}
+app-register{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.btnDiv{
+    width: fit-content;
+}
+.form-group{
+    margin: 5px;
+}
+.body{
+    background-color: rgb(25, 26, 25);
+    margin: 0;
+    padding: 0;
+}
+label{
+    color: white;
+    margin-bottom: 7px;
+    font-size: 1em;
+}
+p{
+    color: white;
+    font-size: 1.5em;
+    text-align: center;
+}
+.btn{
+    margin-top: 10px;
+    background-color: rgb(25, 26, 25);
+    border-color: red;
+}
+.btn:hover{
+    background-color: rgb(45, 46, 45);
+    box-shadow: 0px 0px 7px red;
+}
+input{
+    background-color: rgb(25, 26, 25);
+    border-color: red;
+    transition-duration: 1s;
+    color: whitesmoke;
+    height: 40PX;
+}
+input:focus{
+    background-color: rgb(25, 26, 25);
+    border-color: red;
+    transition-duration: 1s;
+    color: whitesmoke;
+}
+a,.xxx{
+    color: whitesmoke !important;
+    font-size: .8em;
+    font-weight: 400;
+    //text-decoration: none;
+}
