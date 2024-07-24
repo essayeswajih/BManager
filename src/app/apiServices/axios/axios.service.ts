@@ -26,20 +26,54 @@ export class AxiosService {
     return this.authService.getToken();
   }
 
-  async get(endPoint: string) {
+  async get(endPoint: string):Promise<any> {
     const config = this.getConfig();
-    return await axios.get(`${this.API_URL}/${endPoint}`, this.getConfig());
+    try{
+      return await axios.get(`${this.API_URL}/${endPoint}`, this.getConfig());
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
+        console.error('Response data:', error.response?.data);
+        console.error('Response status:', error.response?.status);
+      } else {
+        console.error('Unexpected error:', error);
+      }
+    }
+    
   }
 
-  async post(endPoint: string, data: any) {
+  async post(endPoint: string, data: any):Promise<any>  {
     const config = this.getConfig();
-    return await axios.post(`${this.API_URL}/${endPoint}`, data, this.getConfig());
+    try{
+      return await axios.post(`${this.API_URL}/${endPoint}`, data, this.getConfig());
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
+        console.error('Response data:', error.response?.data);
+        console.error('Response status:', error.response?.status);
+      } else {
+        console.error('Unexpected error:', error);
+      }
+    }
   }
-  async post1(endPoint: string, data: any) {
-    return await axios.post(`${this.BASE}/${endPoint}`, data);
+  async post1(endPoint: string, data: any) :Promise<any> {
+    try{
+      return await axios.post(`${this.BASE}/${endPoint}`, data);
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
+        console.error('Response data:', error.response?.data);
+        console.error('Response status:', error.response?.status);
+      } else {
+        console.error('Unexpected error:', error);
+      }
+    }
   }
 
-  async delete(endPoint: string) {
+  async delete(endPoint: string) :Promise<any> {
     const config = this.getConfig();
     return await axios.delete(`${this.API_URL}/${endPoint}`, this.getConfig());
   }
