@@ -42,10 +42,19 @@ export class AxiosService {
     }
     
   }
-  async getFile(downloadUrl:string){
-    return await axios.get<ArrayBuffer>(this.API_URL+downloadUrl, {
-      responseType: 'arraybuffer',
-    });
+  async getFile(downloadUrl: string) {
+    try {
+      const response = await axios.get<ArrayBuffer>(this.API_URL + downloadUrl, {
+        responseType: 'arraybuffer',
+        headers: {
+          'Authorization': `Bearer ${this.getToken()}`
+        }
+      });
+      return response;
+    } catch (error) {
+      console.error('Error downloading the file:', error);
+      throw error;
+    }
   }
 
   async post(endPoint: string, data: any):Promise<any>  {
