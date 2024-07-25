@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SteService } from './../../apiServices/ste/ste.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-article',
@@ -24,14 +25,16 @@ export class ArticleComponent implements OnInit {
   familles : any = [];
   fournisseurs : any = [];
 
-  constructor(private fb: FormBuilder, private steService: SteService) {
+  constructor(private fb: FormBuilder, private steService: SteService,
+    private Toastr:ToastrService
+  ) {
     this.articleForm = this.fb.group({
       refArticle: ['ART001', Validators.required], // Assuming idDepot is required for an article
       refFournisseur: ['FOUR001', Validators.required],
       fournisseur:['0', Validators.required],
       designation: ['', Validators.required],
       famille:['0', Validators.required],
-      model:['', Validators.required],
+      sousFamille:['', Validators.required],
       achatHT:['0.000', Validators.required],
       marge:[20,Validators.min(0)],
       montantMarge:[{ value: '0.000', disabled: false }, Validators.required],
@@ -130,11 +133,12 @@ export class ArticleComponent implements OnInit {
   async onSave() {
     try {
       await this.steService.saveAllArticle(this.articlesUpdated);
-      alert('Articles updated successfully.');
+      this.Toastr.success('Articles updated successfully !!.',"success");
       await this.getArticles();
       this.articlesUpdated=[];
       console.log('Articles updated successfully.');
     } catch (error) {
+      this.Toastr.error('Error saving articles:','ERROR');
       console.error('Error saving articles:', error);
     }
   }

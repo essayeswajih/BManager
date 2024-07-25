@@ -10,7 +10,7 @@
                     <th>Fournisseur</th>
                     <th>Designation</th>
                     <th>Famille</th>
-                    <th>Model</th>
+                    <th>Sous Famille</th>
                     <th>Achat HT<span>(DNT)</span></th>
 
                     <th>Fodec<span>(DNT)</span></th>
@@ -46,7 +46,7 @@
                             }
                         </select>
                     </td>
-                    <td><input class="form-control" type="text" name="model" id="model" formControlName="model"></td>
+                    <td><input class="form-control" type="text" name="sousFamille" id="sousFamille" formControlName="sousFamille"></td>
                     <td><input class="form-control" type="text" name="achatHT" id="achatHT" formControlName="achatHT" (keyup)="calcule()"></td>
                     
                     <td>
@@ -110,7 +110,7 @@
                                 }
                             </select>
                         </td>
-                        <td><input class="form-control" type="text" name="model" id="model" [value]="article.model" (keyup)="check(article,$event,'model')"></td>
+                        <td><input class="form-control" type="text" name="sousFamille" id="sousFamille" [value]="article.sousFamille" (keyup)="check(article,$event,'sousFamille')"></td>
                         <td><input class="form-control" type="text" name="achatHT" id="achatHT" [value]="article.achatHT" (keyup)="check(article,$event,'achatHT')"></td>
                         
                         <td>
