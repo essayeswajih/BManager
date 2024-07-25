@@ -42,6 +42,11 @@ export class AxiosService {
     }
     
   }
+  async getFile(downloadUrl:string){
+    return await axios.get<ArrayBuffer>(this.API_URL+downloadUrl, {
+      responseType: 'arraybuffer',
+    });
+  }
 
   async post(endPoint: string, data: any):Promise<any>  {
     const config = this.getConfig();

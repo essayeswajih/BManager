@@ -317,11 +317,8 @@ export class SteService {
   
   }
   async downloadFile(url: string): Promise<ArrayBuffer> {
-    const downloadUrl = `http://localhost:9090/api/v1/files/${url}`
-
-    const response = await axios.get<ArrayBuffer>(downloadUrl, {
-      responseType: 'arraybuffer',
-    });
+    const downloadUrl = `/files/${url}`
+   const response = await this.axios.getFile(downloadUrl);
     return response.data;
   }
   async genererBonLiv(bon: any){
