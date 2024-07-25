@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 export class TopBarComponent {
   constructor(private router :Router){}
   open(url: string) {
-    this.router.navigateByUrl(url)
+    window.open(url, '_blank');
   }
 
 }
