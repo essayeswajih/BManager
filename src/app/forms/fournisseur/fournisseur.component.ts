@@ -13,6 +13,7 @@ export class FournisseurComponent implements OnInit {
   fournisseursWithChanges: any[] = [];
   fournisseursUpdated: any[] = [];
   formeJurudiques = [
+    "ANONYME",
     "SARL",
     "SUARL",
     "SAS",
