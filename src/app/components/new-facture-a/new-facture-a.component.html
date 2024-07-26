@@ -1,0 +1,105 @@
+<form [formGroup]="form">
+    <label for="articles" class="form-label">créer un nouveaux facture:</label>
+    <div class="table-responsive">
+        <table class="table" >
+            <thead>
+                <tr>
+                    <th>Fournisseur</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <select name="fournisseurs" class="form-select" id="fournisseurs" formControlName="fournisseur" (change)="change('fournisseur',$event)">
+                            @for (fournisseur of fournisseurList; track $index) {
+                                <option [value]="$index">{{ fournisseur.intitule }}</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <input type="date" class="form-control" name="date" id="date" (change)="change('dateCreation',$event)">
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>Articles</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>
+                        <select name="articles" class="form-select" id="articles" formControlName="article" >
+                            @for (article of articleList; track $index) {
+                                <option [value]="$index">{{article.designation}}</option>
+                            }
+                        </select>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" (click)="ajouter()">Ajouter un article</button>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Ref</th>
+                    <th>Désignation</th>
+                    <th>Quantite</th>
+                    <th>Unité</th>
+                    <th>P.U.H.T</th>
+                    <th>Remise %</th>
+                    <th>Total Net HT</th>
+                    <th>TVA</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (item of items; track $index) {
+                    <tr>
+                        <td>
+                            <input type="text" class="form-control" name="refArticle" id="refArticle" [value]="item.article?.refArticle">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="designationArticle" id="designationArticle"[value]="item.article.designation">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="quantiteArticle" id="quantiteArticle"[value]="item.qte" (keyup)="change3(item,'qte',$event)" >
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="uniteArticle" id="uniteArticle" [value]="item.article.unite">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="prixArticle"  id="prixArticle" [value]="item.article.achatHT">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="remiseArticle" id="remiseArticle" [value]="item.rem"(keyup)="change3(item,'rem',$event)">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="totalNetHT" id="totalNetHT" [value]="item.totalNet">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="tvaArticle" id="tvaArticle" [value]="item.article.tva">
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-danger" (click)="supprimer(item.article)" >Supprimer</button>
+                        </td>
+                    </tr>
+            }
+            </tbody>
+            <tfoot>
+                <tr>
+                    @if(items.length>0){
+                        <td colspan="10">
+                            <button class="btn btn-primary" (click)="save()">create</button>
+                        </td>
+                    }
+                </tr>
+                
+            </tfoot>
+        </table>
+    </div>
+</form>
