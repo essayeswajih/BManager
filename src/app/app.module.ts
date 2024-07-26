@@ -38,7 +38,10 @@ import { NewBonLivVComponent } from './components/new-bon-liv-v/new-bon-liv-v.co
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     ArticleComponent,
-
+    NewBonLivComponent,
+    NewBonLivVComponent,
+    NewFactureAComponent,
+    NewFactureVComponent,
     FournisseurComponent,
     DepotComponent,
     FamilleComponent,
