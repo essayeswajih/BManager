@@ -34,14 +34,11 @@ import { NewFactureAComponent } from './components/new-facture-a/new-facture-a.c
 import { NewFactureVComponent } from './components/new-facture-v/new-facture-v.component';
 import { NewBonLivVComponent } from './components/new-bon-liv-v/new-bon-liv-v.component';
 
+
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     ArticleComponent,
-    NewBonLivComponent,
-    NewBonLivVComponent,
-    NewFactureAComponent,
-    NewFactureVComponent,
     FournisseurComponent,
     DepotComponent,
     FamilleComponent,
@@ -93,6 +90,7 @@ import { NewBonLivVComponent } from './components/new-bon-liv-v/new-bon-liv-v.co
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     ReactiveFormsModule,
+    FormsModule
   ],
   providers: [
     provideClientHydration()

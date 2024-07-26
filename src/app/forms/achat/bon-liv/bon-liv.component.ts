@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { SteService } from '../../../apiServices/ste/ste.service';
 import { ToastrService } from 'ngx-toastr';
-import { error } from 'console';
 
 @Component({
   selector: 'app-bon-liv',
