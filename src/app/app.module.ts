@@ -91,10 +91,8 @@ import { NewBonLivVComponent } from './components/new-bon-liv-v/new-bon-liv-v.co
     NgbModule,
     FontAwesomeModule,
     BrowserAnimationsModule,
-
     ToastrModule.forRoot(),
     ReactiveFormsModule,
-    
   ],
   providers: [
     provideClientHydration()
