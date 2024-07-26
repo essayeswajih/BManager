@@ -127,7 +127,7 @@ export class SteService {
   async getArticles(): Promise<any> {
     try {
       const response = await this.axios.get("articles/ste/"+this.idSte);
-      if (response.status === 200) {
+      if (response?.status === 200) {
         return response.data;
       }
     } catch (error) {
@@ -174,7 +174,7 @@ export class SteService {
   async getFournisseurs(): Promise<any> {
     try {
       const response = await this.axios.get("fournisseur/ste/"+this.idSte);
-      if (response.status === 200) {
+      if (response?.status === 200) {
         return response.data;
       }
     } catch (error) {
@@ -186,7 +186,7 @@ export class SteService {
     console.log("fournisseur",fournisseur)
     try {
       const response = await this.axios.post("fournisseur/save", fournisseur);
-      if (response.status === 200) {
+      if (response?.status === 200) {
         return response.data;
       }
       else{

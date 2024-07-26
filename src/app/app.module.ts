@@ -29,6 +29,10 @@ import { FactureVComponent } from './forms/vente/facture-v/facture-v.component';
 import { HestoriqueArticleComponent } from './forms/hestorique-article/hestorique-article.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { NewBonLivComponent } from './components/new-bon-liv/new-bon-liv.component';
+import { NewFactureAComponent } from './components/new-facture-a/new-facture-a.component';
+import { NewFactureVComponent } from './components/new-facture-v/new-facture-v.component';
+import { NewBonLivVComponent } from './components/new-bon-liv-v/new-bon-liv-v.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -48,7 +52,6 @@ import { RegisterComponent } from './auth/register/register.component';
     HestoriqueArticleComponent,
     LoginComponent,
     RegisterComponent,
-
     TopBarComponent,
     AppComponent,
     AppComponent,
@@ -73,6 +76,10 @@ import { RegisterComponent } from './auth/register/register.component';
     HestoriqueArticleComponent,
     LoginComponent,
     RegisterComponent,
+    NewBonLivComponent,
+    NewFactureAComponent,
+    NewFactureVComponent,
+    NewBonLivVComponent,
   ],
   imports: [
     BrowserModule,
