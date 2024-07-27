@@ -1,12 +1,13 @@
 .form-control{
-    
     max-width: 150px;
     min-height: 40px;
     height: 100%;
-    width: fit-content;
     min-width: 50px;
     background-color:#333333c4;
     color: white;
+}
+th{
+    width: fit-content;
 }
 .form-select{
     background-color:#333333c4;

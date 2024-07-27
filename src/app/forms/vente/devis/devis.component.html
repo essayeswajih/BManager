@@ -50,9 +50,10 @@
                     <th>Désignation</th>
                     <th>Quantite</th>
                     <th>Unité</th>
-                    <th>P.U.H.T</th>
+                    <th>P.V.H.T</th>
                     <th>Remise %</th>
                     <th>Total Net HT</th>
+                    <th>Total TTC</th>
                     <th>TVA</th>
                     <th>Action</th>
                 </tr>
@@ -80,6 +81,9 @@
                         </td>
                         <td>
                             <input type="text" class="form-control x" name="totalNetHT" id="totalNetHT" [value]="item.totalNet">
+                        </td>
+                        <td>
+                            <input type="text" class="form-control x" name="totalTTC" id="totalTTC" [value]="item.totalTTC">
                         </td>
                         <td>
                             <input type="text" class="form-control x" name="tvaArticle" id="tvaArticle" [value]="item.article.tva">

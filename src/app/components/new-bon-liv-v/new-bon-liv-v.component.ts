@@ -9,6 +9,14 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './new-bon-liv-v.component.scss'
 })
 export class NewBonLivVComponent {
+  changeComponent(n: number) {
+    if(this.componentName==1){
+      this.componentName=0;
+    }else{
+      this.componentName=n;
+    }
+  }
+  componentName: number = 1;
   save() {
     throw new Error('Method not implemented.');
     }
@@ -62,7 +70,8 @@ export class NewBonLivVComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = (i.article?.achatHT - (i.article?.achatHT * i.rem / 100)) * i.qte;
+              i.totalNet = (i.article?.venteHT - (i.article?.venteHT * i.rem / 100)) * i.qte;
+              i.totalTTC = i.totalNet + i.totalNet * i.tva / 100;
             }
           }
         }else{
@@ -85,10 +94,12 @@ export class NewBonLivVComponent {
         item.designation = article?.designation;
         item.unite = article?.unite;
         item.puht = article?.achatHT;
-        item.qte = qte || 1;
-        item.rem = rem || 0;
+        item.venteHT = article.venteHT;  
+        item.qte = qte;
+        item.rem = rem;
         item.tva = article?.tva;
-        item.totalNet = (article?.achatHT - (article?.achatHT * rem / 100)) * qte;
+        item.totalNet = (article.venteHT - (article.venteHT * rem / 100)) * qte;
+        item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         return item;
       }
     }

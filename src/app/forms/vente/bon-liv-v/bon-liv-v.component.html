@@ -1,6 +1,7 @@
-<app-new-bon-liv-v></app-new-bon-liv-v>
+<app-new-bon-liv-v [compname]="componentName"></app-new-bon-liv-v>
 <form [formGroup]="form">
-    <label for="articles" class="form-label">créer un nouveaux bon de livraison a base d'un Devis:</label>
+    <label for="articles" class="form-label" (click)="changeComponent(2)">créer un nouveaux bon de livraison a base d'un Devis:</label>
+    @if (componentName==2) {
     <div class="table-responsive">
         <table class="table" >
             <thead>
@@ -38,4 +39,5 @@
             </tbody>
         </table>
     </div>
+    }
 </form>

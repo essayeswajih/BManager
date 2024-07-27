@@ -91,19 +91,22 @@ export class DevisComponent {
     change3(item: any,key: string,e:Event) {
       console.log("item",item)
       let value = Number((event?.target as HTMLSelectElement).value);
-      if(value>0 || value<99999999) {
+      if(value>0) {
         item[key]=value;
         if(key=='rem'){
           let r =(item.rem*0.01)*(item.venteHT*item['qte']);
           item['totalNet']=(item.venteHT*item['qte'])-r;
+          item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         }
         if(key=='qte'){
           let r =(item.rem*0.01)*(item.article.venteHT*value);
           item['totalNet']=(item.venteHT*value)-r;
+          item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         }
         if(key=='venteHT'){
           let r =(item["rem"]*0.01)*(value*item['qte']);
           item['totalNet']=(value*item['qte'])-r;
+          item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         }
       }
       this.bc.update(item);
@@ -173,6 +176,7 @@ export class DevisComponent {
       item.rem = rem || 0;
       item.tva = article?.tva;
       item.totalNet = (article.venteHT - (article.venteHT * rem / 100)) * qte;
+      item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
       return item;
     }
   

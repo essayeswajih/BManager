@@ -9,6 +9,14 @@ import { SteService } from '../../../apiServices/ste/ste.service';
   styleUrl: './bon-liv-v.component.scss'
 })
 export class BonLivVComponent {
+changeComponent(n: number) {
+  if(this.componentName==2){
+    this.componentName=0;
+  }else{
+    this.componentName=n;
+  }
+}
+  componentName:number = 1; 
   devisList: any[] = [];
   form: FormGroup;
   bl:BonLivV = new BonLivV([]);
