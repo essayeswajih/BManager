@@ -460,4 +460,14 @@ export class SteService {
     }
     
   }
+  async getStock() {
+    try {
+      const response = await this.axios.get(`stock/ste/${this.idSte}`);
+      return response.data; 
+    } catch (error) {
+      console.error("get Stock ERROR:", error);
+      throw error;
+    }
+  }
+  
 }

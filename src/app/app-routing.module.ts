@@ -4,6 +4,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { SteComponent } from './pages/ste/ste.component';
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { StockComponent } from './pages/stock/stock.component';
 
 const routes: Routes = [
   { path: '', component:HomeComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path:'ste/:id/page/:pageName',component:SteComponent},
   { path:'Login',component:LoginComponent},
   { path:'Register',component:RegisterComponent},
+  { path: 'Stock', component:StockComponent},
   { path:'**',component:HomeComponent}
 ];
 
