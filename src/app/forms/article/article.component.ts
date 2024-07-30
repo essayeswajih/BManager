@@ -129,10 +129,16 @@ export class ArticleComponent implements OnInit {
 
   onDelete(id: number) {
     this.steService.deleteArticle(id).then(
-      (data:any)=>console.log(data)
+      (data:any)=>{
+        if(data == true){
+          this.Toastr.success('Article deleted','Alert !!')
+        }else{
+          this.Toastr.error('Cant delete this Article !!.',"ERROR");
+        }
+      }
     );
     this.articles = this.articles.filter(d => d.idArticle !== id);
-    this.articlesWithChanges = this.articlesWithChanges.filter(d => d.idDepot !== id);
+    this.articlesWithChanges = this.articles;
     console.log(this.articles, 'articles');
     console.log(this.articlesWithChanges, 'articlesWithChanges');
     this.updateArticlesUpdated();
