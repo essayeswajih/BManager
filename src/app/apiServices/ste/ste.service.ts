@@ -478,4 +478,17 @@ export class SteService {
       throw error;
     }
   }
+  async setInitialStockArticle(idArticle:number,sotckInitiale:number) {
+    let data={
+      idArticle:idArticle,
+      stockInitiale:sotckInitiale
+    }
+    try {
+      const response = await this.axios.post(`stock/setStockInitial/`,data);
+      return response.data; 
+    } catch (error) {
+      console.error("SET setStockInitial ERROR: ", error);
+      throw error;
+    }
+  }
 }

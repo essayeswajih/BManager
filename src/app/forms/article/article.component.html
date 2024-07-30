@@ -23,6 +23,7 @@
                     <th>Vente TTC<span>(DNT)</span></th>
                     <th>Unite</th>
                     <th>Devise</th>
+                    <th>Stock Initial</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -81,6 +82,7 @@
                             }
                         </select>
                     </td>
+                    <td><input class="form-control" type="text" name="sotckInitiale" id="sotckInitiale" formControlName="sotckInitiale"></td>
                     <td><button class="btn btn-success" (click)="onAdd()">Ajout</button></td>
                 </tr>
                 @for( article of articles; track $index){
@@ -155,6 +157,7 @@
                                 }
                             </select>
                         </td>
+                        <td></td>
                         <td><button class="btn btn-danger" (click)="onDelete(article.idArticle)">Supprimer</button></td>
                     </tr>
                 }

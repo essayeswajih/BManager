@@ -44,7 +44,7 @@ export class ArticleComponent implements OnInit {
       venteTTC:[{ value: '0.000', disabled: false }, Validators.required],
       unite:['0', Validators.required],
       devise:['0', Validators.required],
-
+      sotckInitiale:[0,Validators.required],
       ventetHT:['', Validators.required]
     });
   }
@@ -111,17 +111,26 @@ export class ArticleComponent implements OnInit {
         article.tva=this.tvaList[this.articleForm.value.tva]
         console.log("articleForm",this.articleForm);
         console.log("newArticle",article);
-        await this.steService.saveArticles(article);
-        await this.ngOnInit(); // Refresh data after saving
-        console.log('Article added successfully.');
+        await this.steService.saveArticles(article).then(
+          (data:any)=>{
+            if(data?.idArticle){
+              this.steService.setInitialStockArticle(data.idArticle,this.articleForm.value.sotckInitiale);
+            }
+          }
+        );
+        await this.ngOnInit();
+        this.Toastr.success('Article added successfully !!.',"Success");
       }
     } catch (error) {
+      this.Toastr.error('Cant Add this Article !!.',"ERROR");
       console.error('Error adding article:', error);
     }
   }
 
   onDelete(id: number) {
-    this.steService.deleteArticle(id);
+    this.steService.deleteArticle(id).then(
+      (data:any)=>console.log(data)
+    );
     this.articles = this.articles.filter(d => d.idArticle !== id);
     this.articlesWithChanges = this.articlesWithChanges.filter(d => d.idDepot !== id);
     console.log(this.articles, 'articles');
