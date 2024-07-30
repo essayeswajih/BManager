@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stock.component.scss']
 })
 export class StockComponent implements OnInit {
+
   ArticlesList: any[] = [];
   filteredArticles: any[] = [];
   searchQuery: string = '';
   sortBy: string = '0';
+  isActive: boolean = false;
+  selectedArticle:any={};
 
   constructor(private ste: SteService, private toastr: ToastrService) {}
 
@@ -65,6 +68,12 @@ export class StockComponent implements OnInit {
     this.filteredArticles = filtered;
     console.log('Sorted Articles:', this.filteredArticles);
   }
+  Active(){
+    this.isActive = ! this.isActive;
+  }
   
-  
+  select(article:any) {
+    this.selectedArticle=article;
+    this.Active();
+  }
 }

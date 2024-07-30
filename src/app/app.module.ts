@@ -34,7 +34,7 @@ import { NewFactureAComponent } from './components/new-facture-a/new-facture-a.c
 import { NewFactureVComponent } from './components/new-facture-v/new-facture-v.component';
 import { NewBonLivVComponent } from './components/new-bon-liv-v/new-bon-liv-v.component';
 import { StockComponent } from './pages/stock/stock.component';
-import { ComponentsComponent } from './components/components.component';
+import { ArticleDetailsComponent } from './components/article-details/article-details.component';
 
 
 @NgModule({
@@ -55,7 +55,6 @@ import { ComponentsComponent } from './components/components.component';
     LoginComponent,
     RegisterComponent,
     TopBarComponent,
-    AppComponent,
     AppComponent,
     HomeComponent,
     SteComponent,
@@ -83,7 +82,7 @@ import { ComponentsComponent } from './components/components.component';
     NewFactureVComponent,
     NewBonLivVComponent,
     StockComponent,
-    ComponentsComponent,
+    ArticleDetailsComponent,
   ],
   imports: [
     BrowserModule,

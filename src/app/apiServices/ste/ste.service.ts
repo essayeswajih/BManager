@@ -469,5 +469,13 @@ export class SteService {
       throw error;
     }
   }
-  
+  async getHistoriqueArticle(idArticle:number) {
+    try {
+      const response = await this.axios.get(`historiqueArticle/${idArticle}`);
+      return response.data; 
+    } catch (error) {
+      console.error("get HistoriqueArticle ERROR:", error);
+      throw error;
+    }
+  }
 }
