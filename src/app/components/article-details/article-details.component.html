@@ -1,0 +1,92 @@
+@if (this.article?.article) {
+<main class="container">
+    <div class="row justify-content-center align-items-center">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>refArticle</th>
+                        <th>refFournisseur</th>
+                        <th>Fournisseur</th>
+                        <th>Designation</th>
+                        <th>Famille</th>
+                        <th>Sous Famille</th>
+                        <th>Unite</th>
+                    </tr>
+                    <tr>
+                        <td>{{article?.article?.refArticle}}</td>
+                        <td>{{article?.article?.refFournisseur}}</td>
+                        <td>{{article?.article?.fournisseur.intitule}}</td>
+                        <td>{{article?.article?.designation}}</td>
+                        <td>{{article?.article?.famille.nomFamille}}</td>
+                        <td>{{article?.article?.sousFamille}}</td>
+                        <td>{{article?.article?.unite}}</td>
+                    </tr>
+                    
+                    
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Achat HT<span>(DNT)</span></th>
+                        <th>Fodec<span>(DNT)</span></th>
+                        <th>TVA<span>(%)</span></th>
+                        <!--<th>Timbre</th>-->
+                        <th>Marge<span>(%)</span></th>
+                        <th>Mont Marge<span>(DNT)</span></th>
+                        <th>Vente Ht<span>(DNT)</span></th>
+                        <!--<th>Achat TTC</th>-->
+                        <th>Vente TTC<span>(DNT)</span></th>
+                    </tr>
+
+                    <tr>
+                        <td>{{article?.article?.achatHT}} ({{article?.article?.devise}})</td>
+                        <td>{{article?.article?.fodec ? 'Yes' : 'No'}}</td>
+                        <td>{{article?.article?.tva}} (%)</td>
+                        <td>{{article?.article?.marge}} (%)</td>
+                        <td>{{article?.article?.montantMarge}} ({{article.article?.devise}})</td>
+                        <td>{{article?.article?.venteHT}} ({{article.article?.devise}})</td>
+                        <td>{{article?.article?.venteTTC}} ({{article.article?.devise}})</td>
+                    </tr>
+                    <tr>
+                        
+                        <th>Devise</th>
+                        <th>Qte</th>
+                    </tr>
+                    <tr>
+                        
+                        <td>{{article?.article.devise}}</td>
+                        <td>{{article?.qte}}</td>
+                    </tr>
+                    
+                </tbody>
+                @if(historiqueArticle!=[]){
+                @for (item1 of historiqueArticle; track $index) {
+                    {{historiqueArticle.date |json}}
+                <tfoot>
+                    <tr>
+                        <th></th>
+                        <th>Date</th>
+                        <th>Input</th>
+                        <th>output</th>
+                        <th>docName</th>
+                        <th>PUHT</th>
+                        <th>PTUHT</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>{{item1?.date}}</td>
+                        <td>{{item1?.input}}</td>
+                        <td>{{item1?.output}}</td>
+                        <td>{{item1?.docName}}</td>
+                        <td>{{item1?.price}}</td>
+                        <td>{{ item1?.output > 0 ? (item1?.price * item1?.output) : (item1?.price * item1?.input) }}
+                        </td>
+                    </tr>
+                </tfoot>
+            }
+            }
+            </table>
+        </div>
+    </div>
+</main>
+}
