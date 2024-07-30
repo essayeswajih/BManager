@@ -484,7 +484,7 @@ export class SteService {
       stockInitiale:sotckInitiale
     }
     try {
-      const response = await this.axios.post(`stock/setStockInitial/`,data);
+      const response = await this.axios.post(`stock/setStockInitial`,data);
       return response.data; 
     } catch (error) {
       console.error("SET setStockInitial ERROR: ", error);
