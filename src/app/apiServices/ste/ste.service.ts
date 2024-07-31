@@ -506,11 +506,11 @@ export class SteService {
       throw error;
     }
   }
-  async saveNewBonLivV(items: any[],fournisseur:any,dateCreation:any) {
+  async saveNewBonLivV(items: any[],client:any,dateCreation:any) {
     let data :any = {};
     data.items = items;
     data.ste = {idSte:this.idSte};
-    data.fournisseur = fournisseur;
+    data.client = client;
     data.dateCreation = dateCreation;
     console.log("dataTosend",data);
     try {
