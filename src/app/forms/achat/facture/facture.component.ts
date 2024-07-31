@@ -79,8 +79,11 @@ class Facture {
     if (value.checked) {
       if (this.exist(bonId,this.bonLivSelected)<0){
         if(this.bonLivSelected.length>0){
-          let item1 = this.bonLivSelected[this.bonLivSelected.length-1].bonCmdA?.fournisseur.idFournisseur ||this.bonLivSelected[this.bonLivSelected.length-1]?.fournisseur.idFournisseur;
-          let item2 = this.getBonById(bonId).bonCmdA?.fournisseur.idFournisseur || this.getBonById(bonId)?.fournisseur.idFournisseur;
+          let lastBonLiv = this.bonLivSelected[this.bonLivSelected.length - 1];
+          let item1 = lastBonLiv.bonCmdA?.fournisseur.idFournisseur || lastBonLiv?.fournisseur.idFournisseur;
+
+          let bonById = this.getBonById(bonId);
+          let item2 = bonById.bonCmdA?.fournisseur.idFournisseur || bonById?.fournisseur.idFournisseur;
           if(item1!=item2){
           this.toastr.error("Il foux choisir la meme client","ERROR")
           value.checked=false;
