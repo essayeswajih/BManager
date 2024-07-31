@@ -103,8 +103,16 @@ export class NewBonLivVComponent {
         let f = this.clientList[this.form.value.client || 0];
         let dateCreation = this.form.value.date;
         this.ste.saveNewBonLivV(this.items,f,dateCreation).then(
-          (response) => {
-            this.tsr.success("Bon de Livraison Crée","success")
+          (data) => {
+            if(data.Response[0]){
+                this.tsr.success("Bon de Livraison Crée","success");
+            }
+            
+            if(data.Response[1]){
+              for(let item of data.Response[1]){
+                this.tsr.error('The '+item+' store will be finished soon.', 'Alert !!!')
+              }
+            }
           }
         );
       }
