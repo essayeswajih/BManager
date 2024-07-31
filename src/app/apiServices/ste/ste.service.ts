@@ -497,6 +497,7 @@ export class SteService {
     data.ste = {idSte:this.idSte};
     data.fournisseur = fournisseur;
     data.dateCreation = dateCreation;
+    console.log("dataTosend",data);
     try {
       const response = await this.axios.post(`achat/bonLiv/saveNew`,data);
       return response.data; 
