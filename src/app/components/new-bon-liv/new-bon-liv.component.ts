@@ -91,6 +91,11 @@ throw new Error('Method not implemented.');
   save() {
     let f = this.fournisseurList[this.form.value.fournisseur || 0];
     let dateCreation = this.form.value.date;
-    this.ste.saveNewBonLiv(this.items,f,dateCreation);
+    this.ste.saveNewBonLiv(this.items,f,dateCreation).then(
+      (response) => {
+        this.tsr.success("Bon de Livraison Crée","success")
+      }
+    );
+    this.items = [];
   }
 }
