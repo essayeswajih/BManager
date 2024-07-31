@@ -27,7 +27,7 @@
                     <tr>
                         <td>{{bon.id}}</td>
                         <td>{{bon.dateCreation}}</td>
-                        <td>{{bon.bonCmdA.fournisseur.intitule || bon.fournisseur.intitule}}</td>
+                        <td>{{bon.bonCmdA?.fournisseur.intitule || bon?.fournisseur.intitule}}</td>
                         <td style="text-align: center;"><input class="form-check-input" type="checkbox" (change)="f.select(bon.id,$event)" value=""></td>
                     </tr>
                 }
