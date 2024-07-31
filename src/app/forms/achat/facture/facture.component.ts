@@ -79,7 +79,9 @@ class Facture {
     if (value.checked) {
       if (this.exist(bonId,this.bonLivSelected)<0){
         if(this.bonLivSelected.length>0){
-          if(this.bonLivSelected[this.bonLivSelected.length-1].bonCmdA.fournisseur.idFournisseur!=this.getBonById(bonId).bonCmdA.fournisseur.idFournisseur){
+          let item1 = this.bonLivSelected[this.bonLivSelected.length-1].bonCmdA?.fournisseur.idFournisseur ||this.bonLivSelected[this.bonLivSelected.length-1]?.fournisseur.idFournisseur;
+          let item2 = this.getBonById(bonId).bonCmdA?.fournisseur.idFournisseur || this.getBonById(bonId)?.fournisseur.idFournisseur;
+          if(item1!=item2){
           this.toastr.error("Il foux choisir la meme client","ERROR")
           value.checked=false;
           }else{
