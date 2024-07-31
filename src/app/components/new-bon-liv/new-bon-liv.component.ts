@@ -9,9 +9,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './new-bon-liv.component.scss'
 })
 export class NewBonLivComponent {
-save() {
-throw new Error('Method not implemented.');
-}
 download() {
 throw new Error('Method not implemented.');
 }
@@ -23,7 +20,7 @@ throw new Error('Method not implemented.');
   articleList:any[]=[];
   items:any[]=[];
   form = this.fb.group({
-    fournisseur: ['0', Validators.required],
+    fournisseur: [0, Validators.required],
     article: [0, Validators.required],
     date: [new Date(), Validators.required]
   });
@@ -90,5 +87,10 @@ throw new Error('Method not implemented.');
     item.tva = article?.tva;
     item.totalNet = (article?.achatHT - (article?.achatHT * rem / 100)) * qte;
     return item;
+  }
+  save() {
+    let f = this.fournisseurList[this.form.value.fournisseur || 0];
+    let dateCreation = this.form.value.date;
+    this.ste.saveNewBonLiv(this.items,f,dateCreation);
   }
 }
