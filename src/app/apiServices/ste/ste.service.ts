@@ -514,7 +514,7 @@ export class SteService {
     data.dateCreation = dateCreation;
     console.log("dataTosend",data);
     try {
-      const response = await this.axios.post(`achat/bonLiv/saveNew`,data);
+      const response = await this.axios.post(`vente/bonLiv/saveNew`,data);
       return response.data; 
     } catch (error) {
       console.error("SteService: saveNewBonLiv ERROR: ", error);
