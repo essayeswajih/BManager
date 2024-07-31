@@ -24,18 +24,18 @@ export class NewBonLivVComponent {
     throw new Error('Method not implemented.');
     }
     
-      fournisseurList:any[]=[];
+      clientList:any[]=[];
       articleList:any[]=[];
       items:any[]=[];
       form = this.fb.group({
-        fournisseur: [0, Validators.required],
+        client: [0, Validators.required],
         article: [0, Validators.required],
         date: [new Date(), Validators.required]
       });
       constructor(private ste: SteService,private tsr:ToastrService,private fb:FormBuilder) { }
       async ngOnInit() {
         this.getArticles();
-        this.getFournisseurs();
+        this.getClients();
       }
       async getArticles() {
         try {
@@ -45,15 +45,15 @@ export class NewBonLivVComponent {
           console.error('Error fetching articles From new Bon Liv:', error);
         }
       }
-    
-      async getFournisseurs() {
+      async getClients() {
         try {
-          this.fournisseurList = await this.ste.getFournisseurs();
-          console.log('Fetched fournisseurs From new Bon Liv:', this.fournisseurList);
+          this.clientList = await this.ste.getClients();
+          console.log('Fetched clients:', this.clientList);
         } catch (error) {
-          console.error('Error fetching fournisseurs:', error);
+          console.error('Error fetching clients:', error);
         }
       }
+    
       ajouter() {
         let article = this.articleList[this.form.value.article||0];
         let item = this.createItem(article,1,0);
@@ -100,13 +100,12 @@ export class NewBonLivVComponent {
         return item;
       }
       save() {
-        let f = this.fournisseurList[this.form.value.fournisseur || 0];
+        let f = this.clientList[this.form.value.client || 0];
         let dateCreation = this.form.value.date;
         this.ste.saveNewBonLivV(this.items,f,dateCreation).then(
           (response) => {
             this.tsr.success("Bon de Livraison Crée","success")
           }
         );
-        this.items = [];
       }
     }

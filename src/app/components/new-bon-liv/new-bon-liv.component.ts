@@ -96,6 +96,5 @@ throw new Error('Method not implemented.');
         this.tsr.success("Bon de Livraison Crée","success")
       }
     );
-    this.items = [];
   }
 }
