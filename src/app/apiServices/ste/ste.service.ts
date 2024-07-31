@@ -506,5 +506,19 @@ export class SteService {
       throw error;
     }
   }
-  
+  async saveNewBonLivV(items: any[],fournisseur:any,dateCreation:any) {
+    let data :any = {};
+    data.items = items;
+    data.ste = {idSte:this.idSte};
+    data.fournisseur = fournisseur;
+    data.dateCreation = dateCreation;
+    console.log("dataTosend",data);
+    try {
+      const response = await this.axios.post(`achat/bonLiv/saveNew`,data);
+      return response.data; 
+    } catch (error) {
+      console.error("SteService: saveNewBonLiv ERROR: ", error);
+      throw error;
+    }
+  }
 }

@@ -17,9 +17,6 @@ export class NewBonLivVComponent {
     }
   }
   componentName: number = 1;
-  save() {
-    throw new Error('Method not implemented.');
-    }
     download() {
     throw new Error('Method not implemented.');
     }
@@ -31,7 +28,7 @@ export class NewBonLivVComponent {
       articleList:any[]=[];
       items:any[]=[];
       form = this.fb.group({
-        fournisseur: ['0', Validators.required],
+        fournisseur: [0, Validators.required],
         article: [0, Validators.required],
         date: [new Date(), Validators.required]
       });
@@ -101,5 +98,15 @@ export class NewBonLivVComponent {
         item.totalNet = (article.venteHT - (article.venteHT * rem / 100)) * qte;
         item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         return item;
+      }
+      save() {
+        let f = this.fournisseurList[this.form.value.fournisseur || 0];
+        let dateCreation = this.form.value.date;
+        this.ste.saveNewBonLivV(this.items,f,dateCreation).then(
+          (response) => {
+            this.tsr.success("Bon de Livraison Crée","success")
+          }
+        );
+        this.items = [];
       }
     }
