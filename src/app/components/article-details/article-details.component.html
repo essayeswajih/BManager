@@ -68,7 +68,8 @@
                         <th>Date</th>
                         <th>Input</th>
                         <th>output</th>
-                        <th>docName</th>
+                        <th>Qte en stock</th>
+                        <th>DocName</th>
                         <th>PUHT</th>
                         <th>PTUHT</th>
                     </tr>
@@ -77,6 +78,7 @@
                         <td>{{item1?.date}}</td>
                         <td>{{item1?.input}}</td>
                         <td>{{item1?.output}}</td>
+                        <td>{{item1?.qteReel}}</td>
                         <td>{{item1?.docName}}</td>
                         <td>{{item1?.price}}</td>
                         <td>{{ item1?.output > 0 ? (item1?.price * item1?.output) : (item1?.price * item1?.input) }}
