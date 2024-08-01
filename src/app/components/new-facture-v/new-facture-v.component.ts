@@ -53,6 +53,8 @@ export class NewFactureVComponent {
           let item = this.createItem(article,1,0);
           console.log(item)
           this.items.push(item)
+        }else{
+          this.tsr.warning("U cant Duplicate an Article","WARN !!")
         }
       }
       checkArticle(article:any){
