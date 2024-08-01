@@ -106,7 +106,7 @@ throw new Error('Method not implemented.');
     let dateCreation = this.form.value.date;
     this.ste.saveNewBonLiv(this.items,f,dateCreation).then(
       (response) => {
-        
+        console.log("xyz",response)
         this.ste.toPdf("achat/bonLiv/toPdf",response.data).then(
           (response1) => {
             this.idBon = response?.id ;
