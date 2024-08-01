@@ -278,13 +278,12 @@ export class SteService {
     }
   }
   async saveBonCommande(data:any){
-    console.log("ddddddddddddddddddddddddd")
     data.ste={ idSte: this.idSte };
     console.log("BonCommande",data)
     try {
       const response = await this.axios.post("achat/bonCmd/save", data);
       if (response.status === 200) {
-        this.toPdf(response.data)
+        this.toPdf("achat/bonCmd/toPdf",response.data)
         return response.data;
       }
       else{
@@ -302,9 +301,9 @@ export class SteService {
       return false;
     }
   }
-  async toPdf(data:any){
+  async toPdf(url:string,data:any){
     try {
-      const response = await this.axios.post("achat/bonCmd/toPdf", data);
+      const response = await this.axios.post(url, data);
       if (response.status === 200) {
         return response.data;
       }
@@ -500,7 +499,13 @@ export class SteService {
     console.log("dataTosend",data);
     try {
       const response = await this.axios.post(`achat/bonLiv/saveNew`,data);
-      return response.data; 
+      if (response.status === 200) {
+        this.toPdf("achat/bonLiv/toPdf",response.data)
+        return response.data;
+      }
+      else{
+        return response.data;
+      }
     } catch (error) {
       console.error("SteService: saveNewBonLiv ERROR: ", error);
       throw error;
