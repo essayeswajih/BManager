@@ -93,9 +93,20 @@
             <tfoot>
                 <tr>
                     @if(items.length>0){
-                        <td colspan="10">
-                            <button class="btn btn-primary" (click)="save()">create</button>
-                        </td>
+                        @if(!created){
+                            <td colspan="10">
+                                <button class="btn btn-primary" (click)="save()">Create</button>
+                            </td>
+                        }@else if (created && !download) {
+                            <td colspan="10">
+                                <button class="btn btn-primary" (click)="download()">Download it !</button>
+                            </td>
+                        }@else if (created && downloaded) {
+                            <td colspan="10">
+                                <button class="btn btn-primary" (click)="clear()">Clear</button>
+                            </td>
+                        }
+
                     }
                 </tr>
                 

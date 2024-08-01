@@ -1,3 +1,4 @@
+import { response } from 'express';
 import { ToastrService } from 'ngx-toastr';
 import { SteService } from './../../apiServices/ste/ste.service';
 import { Component } from '@angular/core';
@@ -9,16 +10,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrl: './new-bon-liv.component.scss'
 })
 export class NewBonLivComponent {
-download() {
-throw new Error('Method not implemented.');
-}
+
 change(arg0: string,$event: Event) {
 throw new Error('Method not implemented.');
 }
-
   fournisseurList:any[]=[];
   articleList:any[]=[];
   items:any[]=[];
+  created :boolean = false;
+  idBon : number = 0;
+  downloaded : boolean = false;
   form = this.fb.group({
     fournisseur: [0, Validators.required],
     article: [0, Validators.required],
@@ -105,8 +106,47 @@ throw new Error('Method not implemented.');
     let dateCreation = this.form.value.date;
     this.ste.saveNewBonLiv(this.items,f,dateCreation).then(
       (response) => {
-        this.tsr.success("Bon de Livraison Crée","success")
+        this.idBon = response?.id ;
+        this.tsr.success("Bon de Livraison Crée","success");
+        this.created = true;
       }
     );
+  }
+  clear() {
+    this.items = [];
+    this.created = false;
+    this.downloaded = false;
+    }
+    download(): void {
+      const filename = `bonLivAchat${this.idBon}.pdf`; // Assuming this.getId() returns a valid identifier
+  
+      this.ste.downloadFile(filename)
+        .then((data: ArrayBuffer) => {
+          this.saveFile(data, filename); 
+        })
+        .catch(error => {
+          console.error('Error downloading file:', error);
+          // Handle error as needed
+        });
+    }
+  
+    private saveFile(data: ArrayBuffer, filename: string): void {
+      const blob = new Blob([data], { type: 'application/pdf' });
+  
+      // Create a download link
+      const downloadLink = document.createElement('a');
+      downloadLink.href = window.URL.createObjectURL(blob);
+      downloadLink.download = filename;
+  
+      // Append the link to the body and simulate a click
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+  
+      // Clean up
+      document.body.removeChild(downloadLink);
+      window.URL.revokeObjectURL(downloadLink.href);
+    
+    this.downloaded = true;
+    this.idBon = 0;
   }
 }
