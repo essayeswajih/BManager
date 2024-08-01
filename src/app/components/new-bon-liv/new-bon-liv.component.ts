@@ -106,9 +106,14 @@ throw new Error('Method not implemented.');
     let dateCreation = this.form.value.date;
     this.ste.saveNewBonLiv(this.items,f,dateCreation).then(
       (response) => {
-        this.idBon = response?.id ;
-        this.tsr.success("Bon de Livraison Crée","success");
-        this.created = true;
+        
+        this.ste.toPdf("achat/bonLiv/toPdf",response.data).then(
+          (response1) => {
+            this.idBon = response?.id ;
+            this.tsr.success("Bon de Livraison Crée","success");
+            this.created = true;
+          }
+        )
       }
     );
   }
