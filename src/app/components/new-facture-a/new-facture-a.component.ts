@@ -9,9 +9,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './new-facture-a.component.scss'
 })
 export class NewFactureAComponent {
-  save() {
-    throw new Error('Method not implemented.');
-    }
     download() {
     throw new Error('Method not implemented.');
     }
@@ -23,7 +20,7 @@ export class NewFactureAComponent {
       articleList:any[]=[];
       items:any[]=[];
       form = this.fb.group({
-        fournisseur: ['0', Validators.required],
+        fournisseur: [0, Validators.required],
         article: [0, Validators.required],
         date: [new Date(), Validators.required]
       });
@@ -90,5 +87,14 @@ export class NewFactureAComponent {
         item.tva = article?.tva;
         item.totalNet = (article?.achatHT - (article?.achatHT * rem / 100)) * qte;
         return item;
+      }
+      save() {
+        let f = this.fournisseurList[this.form.value.fournisseur || 0];
+        let dateCreation = this.form.value.date;
+        this.ste.saveNewFactureA(this.items,f,dateCreation).then(
+          (response) => {
+            this.tsr.success("Bon de Livraison Crée","success")
+          }
+        );
       }
     }
