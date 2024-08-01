@@ -9,13 +9,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './new-facture-a.component.scss'
 })
 export class NewFactureAComponent {
-    download() {
-    throw new Error('Method not implemented.');
-    }
     change(arg0: string,$event: Event) {
     throw new Error('Method not implemented.');
     }
-    
+      created :boolean = false;
+      idBon : number = 0;
+      downloaded : boolean = false;
       fournisseurList:any[]=[];
       articleList:any[]=[];
       items:any[]=[];
@@ -105,8 +104,52 @@ export class NewFactureAComponent {
         let dateCreation = this.form.value.date;
         this.ste.saveNewFactureA(this.items,f,dateCreation).then(
           (response) => {
-            this.tsr.success("Bon de Livraison Crée","success")
+            console.log("xyz",response)
+            this.ste.toPdf("achat/facture/toPdf",response).then(
+              (response1) => {
+                this.idBon = response?.id ;
+                this.tsr.success("Facture Crée","success");
+                this.created = true;
+              },(error)=>{this.tsr.error("Network ERROR !!!","ERROR");}
+            )
           }
         );
+      }
+      
+      clear() {
+        this.items = [];
+        this.created = false;
+        this.downloaded = false;
+      }
+      download(): void {
+        const filename = `factureAchat${this.idBon}.pdf`; // Assuming this.getId() returns a valid identifier
+        this.ste.downloadFile(filename)
+        .then((data: ArrayBuffer) => {
+          this.saveFile(data, filename); 
+        })
+        .catch(error => {
+          console.error('Error downloading file:', error);
+          // Handle error as needed
+        });
+      }
+      
+        private saveFile(data: ArrayBuffer, filename: string): void {
+          const blob = new Blob([data], { type: 'application/pdf' });
+      
+          // Create a download link
+          const downloadLink = document.createElement('a');
+          downloadLink.href = window.URL.createObjectURL(blob);
+          downloadLink.download = filename;
+      
+          // Append the link to the body and simulate a click
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+      
+          // Clean up
+          document.body.removeChild(downloadLink);
+          window.URL.revokeObjectURL(downloadLink.href);
+        
+        this.downloaded = true;
+        this.idBon = 0;
       }
     }

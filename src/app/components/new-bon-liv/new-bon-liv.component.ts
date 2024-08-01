@@ -3,6 +3,7 @@ import { ToastrService } from 'ngx-toastr';
 import { SteService } from './../../apiServices/ste/ste.service';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { error } from 'console';
 
 @Component({
   selector: 'app-new-bon-liv',
@@ -112,7 +113,7 @@ throw new Error('Method not implemented.');
             this.idBon = response?.id ;
             this.tsr.success("Bon de Livraison Crée","success");
             this.created = true;
-          }
+          },(error)=>{this.tsr.error("Network ERROR !!!","ERROR");}
         )
       }
     );
