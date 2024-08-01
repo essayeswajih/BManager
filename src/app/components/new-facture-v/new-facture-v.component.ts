@@ -49,9 +49,19 @@ export class NewFactureVComponent {
       }
       ajouter() {
         let article = this.articleList[this.form.value.article||0];
-        let item = this.createItem(article,1,0);
-        console.log(item)
-        this.items.push(item)
+        if(this.checkArticle(article)){
+          let item = this.createItem(article,1,0);
+          console.log(item)
+          this.items.push(item)
+        }
+      }
+      checkArticle(article:any){
+        for(let item of this.items){
+          if(item.article.idArticle == article.idArticle){
+            return false;
+          }
+        }
+        return true;
       }
       change3(item: any,key: string, event:Event) {
         const value = Number((event?.target as HTMLSelectElement).value);
