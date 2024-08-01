@@ -522,11 +522,11 @@ export class SteService {
       throw error;
     }
   }
-  async saveNewFactureA(items: any[],client:any,dateCreation:any) {
+  async saveNewFactureA(items: any[],fournisseur:any,dateCreation:any) {
     let data :any = {};
     data.items = items;
     data.ste = {idSte:this.idSte};
-    data.client = client;
+    data.fournisseur = fournisseur;
     data.dateCreation = dateCreation;
     console.log("dataTosend",data);
     try {
