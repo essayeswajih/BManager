@@ -500,7 +500,7 @@ export class SteService {
     try {
       const response = await this.axios.post(`achat/bonLiv/saveNew`,data);
       if (response.status === 200) {
-        this.toPdf("achat/bonLiv/toPdf",response.data)
+        this.toPdf("achat/bonLiv/toPdf",response.data[0])
         return response.data;
       }
       else{
