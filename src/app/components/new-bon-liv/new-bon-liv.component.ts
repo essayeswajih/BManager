@@ -116,19 +116,18 @@ throw new Error('Method not implemented.');
     this.items = [];
     this.created = false;
     this.downloaded = false;
-    }
-    download(): void {
-      const filename = `bonLivAchat${this.idBon}.pdf`; // Assuming this.getId() returns a valid identifier
-  
-      this.ste.downloadFile(filename)
-        .then((data: ArrayBuffer) => {
-          this.saveFile(data, filename); 
-        })
-        .catch(error => {
-          console.error('Error downloading file:', error);
-          // Handle error as needed
-        });
-    }
+  }
+  download(): void {
+    const filename = `bonLivAchat${this.idBon}.pdf`; // Assuming this.getId() returns a valid identifier
+    this.ste.downloadFile(filename)
+    .then((data: ArrayBuffer) => {
+      this.saveFile(data, filename); 
+    })
+    .catch(error => {
+      console.error('Error downloading file:', error);
+      // Handle error as needed
+    });
+  }
   
     private saveFile(data: ArrayBuffer, filename: string): void {
       const blob = new Blob([data], { type: 'application/pdf' });
