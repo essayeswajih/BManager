@@ -107,7 +107,7 @@ throw new Error('Method not implemented.');
     this.ste.saveNewBonLiv(this.items,f,dateCreation).then(
       (response) => {
         console.log("xyz",response)
-        this.ste.toPdf("achat/bonLiv/toPdf",response.data).then(
+        this.ste.toPdf("achat/bonLiv/toPdf",response).then(
           (response1) => {
             this.idBon = response?.id ;
             this.tsr.success("Bon de Livraison Crée","success");
