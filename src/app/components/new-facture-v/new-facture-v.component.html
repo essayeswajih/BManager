@@ -11,9 +11,9 @@
             <tbody>
                 <tr>
                     <td>
-                        <select name="fournisseurs" class="form-select" id="fournisseurs" formControlName="fournisseur" (change)="change('fournisseur',$event)">
-                            @for (fournisseur of fournisseurList; track $index) {
-                                <option [value]="$index">{{ fournisseur.intitule }}</option>
+                        <select name="clients" class="form-select" id="clients" formControlName="client" (change)="change('client',$event)">
+                            @for (client of clientList; track $index) {
+                                <option [value]="$index">{{ client.name }}</option>
                             }
                         </select>
                     </td>

@@ -10,9 +10,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewFactureVComponent {
 
-  save() {
-    throw new Error('Method not implemented.');
-    }
     download() {
     throw new Error('Method not implemented.');
     }
@@ -20,18 +17,18 @@ export class NewFactureVComponent {
     throw new Error('Method not implemented.');
     }
     
-      fournisseurList:any[]=[];
+      clientList:any[]=[];
       articleList:any[]=[];
       items:any[]=[];
       form = this.fb.group({
-        fournisseur: ['0', Validators.required],
+        client: [0, Validators.required],
         article: [0, Validators.required],
         date: [new Date(), Validators.required]
       });
       constructor(private ste: SteService,private tsr:ToastrService,private fb:FormBuilder) { }
       async ngOnInit() {
         this.getArticles();
-        this.getFournisseurs();
+        this.getClients();
       }
       async getArticles() {
         try {
@@ -42,12 +39,12 @@ export class NewFactureVComponent {
         }
       }
     
-      async getFournisseurs() {
+      async getClients() {
         try {
-          this.fournisseurList = await this.ste.getFournisseurs();
-          console.log('Fetched fournisseurs From new Bon Liv:', this.fournisseurList);
+          this.clientList = await this.ste.getClients();
+          console.log('Fetched clients:', this.clientList);
         } catch (error) {
-          console.error('Error fetching fournisseurs:', error);
+          console.error('Error fetching clients:', error);
         }
       }
       ajouter() {
@@ -91,5 +88,22 @@ export class NewFactureVComponent {
         item.tva = article?.tva;
         item.totalNet = (article?.achatHT - (article?.achatHT * rem / 100)) * qte;
         return item;
+      }
+      save() {
+        let f = this.clientList[this.form.value.client || 0];
+        let dateCreation = this.form.value.date;
+        this.ste.saveNewFactureV(this.items,f,dateCreation).then(
+          (data) => {
+            if(data.Response[0]){
+                this.tsr.success("Bon de Livraison Crée","success");
+            }
+            
+            if(data.Response[1]){
+              for(let item of data.Response[1]){
+                this.tsr.error('The '+item+' store will be finished soon.', 'Alert !!!')
+              }
+            }
+          }
+        );
       }
     }
