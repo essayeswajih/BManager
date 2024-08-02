@@ -1,3 +1,4 @@
+import { response } from 'express';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { SteService } from '../../apiServices/ste/ste.service';
@@ -109,7 +110,8 @@ export class NewFactureVComponent {
         this.ste.saveNewFactureV(this.items,f,dateCreation).then(
           (data) => {
             if(data.Response[0]){
-              this.ste.toPdf("vente/bonLiv/toPdf",data.Response[0]).then(
+              console.log(data.response);
+              this.ste.toPdf("vente/facture/toPdf",data.Response[0]).then(
                 (response1) => {
                   this.idBon = data.Response[0]?.id ;
                   this.tsr.success("Bon de Livraison Crée","success");
