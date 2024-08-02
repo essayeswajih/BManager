@@ -93,18 +93,18 @@ export class DevisComponent {
       let value = Number((event?.target as HTMLSelectElement).value);
       if(value>0) {
         item[key]=value;
-        if(key=='rem'){
-          let r =(item.rem*0.01)*(item.venteHT*item['qte']);
+        if(key=='remise'){
+          let r =(item.remise*0.01)*(item.venteHT*item['qte']);
           item['totalNet']=(item.venteHT*item['qte'])-r;
           item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         }
         if(key=='qte'){
-          let r =(item.rem*0.01)*(item.article.venteHT*value);
+          let r =(item.remise*0.01)*(item.article.venteHT*value);
           item['totalNet']=(item.venteHT*value)-r;
           item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         }
         if(key=='venteHT'){
-          let r =(item["rem"]*0.01)*(value*item['qte']);
+          let r =(item["remise"]*0.01)*(value*item['qte']);
           item['totalNet']=(value*item['qte'])-r;
           item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         }
