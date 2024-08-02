@@ -12,9 +12,6 @@ import { error } from 'console';
 })
 export class NewBonLivComponent {
 
-change(arg0: string,$event: Event) {
-throw new Error('Method not implemented.');
-}
   fournisseurList:any[]=[];
   articleList:any[]=[];
   items:any[]=[];
@@ -65,6 +62,21 @@ throw new Error('Method not implemented.');
       }
     }
     return true;
+  }
+  change(key: string, event?: Event) {
+    if (key === 'fournisseur') {
+      const selectedIndex = Number((event?.target as HTMLSelectElement).value);
+      this.form.patchValue({
+        fournisseur: selectedIndex
+      });
+    }
+    else if(key=='dateCreation'){
+      const selectedDate = (event?.target as HTMLSelectElement).value;
+      const dateValue = selectedDate ? new Date(selectedDate) : null;
+      this.form.patchValue({
+        date: dateValue
+      });
+    }
   }
   change3(item: any,key: string, event:Event) {
     const value = Number((event?.target as HTMLSelectElement).value);
