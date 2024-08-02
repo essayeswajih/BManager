@@ -109,7 +109,7 @@ export class NewBonLivVComponent {
         item.remise = rem;
         item.tva = article?.tva;
         item.totalNet = (article.venteHT - (article.venteHT * rem / 100)) * qte;
-        item.newVenteHT = item.newVenteHT + item.newVenteHT * item.tva / 100;
+        item.newVenteHT = item.totalNet + item.totalNet * item.tva / 100;
         item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         return item;
       }
