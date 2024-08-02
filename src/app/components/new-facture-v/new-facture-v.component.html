@@ -76,7 +76,7 @@
                             <input type="text" class="form-control x" name="prixArticle"  id="prixArticle" [value]="item.article.achatHT">
                         </td>
                         <td>
-                            <input type="text" class="form-control x" name="remiseArticle" id="remiseArticle" [value]="item.rem"(keyup)="change3(item,'rem',$event)">
+                            <input type="text" class="form-control x" name="remiseArticle" id="remiseArticle" [value]="item.remise"(keyup)="change3(item,'remise',$event)">
                         </td>
                         <td>
                             <input type="text" class="form-control x" name="totalNetHT" id="totalNetHT" [value]="item.totalNet">
@@ -93,9 +93,20 @@
             <tfoot>
                 <tr>
                     @if(items.length>0){
-                        <td colspan="10">
-                            <button class="btn btn-primary" (click)="save()">create</button>
-                        </td>
+                        @if(!created){
+                            <td colspan="10">
+                                <button class="btn btn-primary" (click)="save()">Create</button>
+                            </td>
+                        }@else if (created && !downloaded) {
+                            <td colspan="10">
+                                <button class="btn btn-primary" (click)="download()">Download it !</button>
+                            </td>
+                        }@else if (created && downloaded) {
+                            <td colspan="10">
+                                <button class="btn btn-primary" (click)="clear()">Clear</button>
+                            </td>
+                        }
+
                     }
                 </tr>
                 

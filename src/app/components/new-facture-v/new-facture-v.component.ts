@@ -10,13 +10,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewFactureVComponent {
 
-    download() {
-    throw new Error('Method not implemented.');
-    }
     change(arg0: string,$event: Event) {
     throw new Error('Method not implemented.');
     }
-    
+      created :boolean = false;
+      idBon : number = 0;
+      downloaded : boolean = false;
       clientList:any[]=[];
       articleList:any[]=[];
       items:any[]=[];
@@ -95,10 +94,13 @@ export class NewFactureVComponent {
         item.designation = article?.designation;
         item.unite = article?.unite;
         item.puht = article?.achatHT;
-        item.qte = qte || 1;
-        item.rem = rem || 0;
+        item.venteHT = article.venteHT;  
+        item.qte = qte;
+        item.remise = rem;
         item.tva = article?.tva;
-        item.totalNet = (article?.achatHT - (article?.achatHT * rem / 100)) * qte;
+        item.totalNet = (item.venteHT - (item.venteHT * item.remise / 100)) * qte;
+        item.newVenteHT = item.venteHT - (item.venteHT * item.remise / 100);
+        item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         return item;
       }
       save() {
@@ -106,10 +108,15 @@ export class NewFactureVComponent {
         let dateCreation = this.form.value.date;
         this.ste.saveNewFactureV(this.items,f,dateCreation).then(
           (data) => {
-            if(data[0]){
-                this.tsr.success("Bon de Livraison Crée","success");
-            }
-            
+            if(data.Response[0]){
+              this.ste.toPdf("vente/bonLiv/toPdf",data.Response[0]).then(
+                (response1) => {
+                  this.idBon = data.Response[0]?.id ;
+                  this.tsr.success("Bon de Livraison Crée","success");
+                  this.created = true;
+                },(error)=>{this.tsr.error("Network ERROR !!!","ERROR");}
+              )
+          }
             if(data[1]){
               for(let item of data.Response[1]){
                 this.tsr.error('The '+item+' store will be finished soon.', 'Alert !!!')
@@ -117,5 +124,41 @@ export class NewFactureVComponent {
             }
           }
         );
+      }
+      clear() {
+        this.items = [];
+        this.created = false;
+        this.downloaded = false;
+      }
+      download(): void {
+        const filename = `factureVente${this.idBon}.pdf`; // Assuming this.getId() returns a valid identifier
+        this.ste.downloadFile(filename)
+        .then((data: ArrayBuffer) => {
+          this.saveFile(data, filename); 
+        })
+        .catch(error => {
+          console.error('Error downloading file:', error);
+          // Handle error as needed
+        });
+      }
+      
+        private saveFile(data: ArrayBuffer, filename: string): void {
+          const blob = new Blob([data], { type: 'application/pdf' });
+      
+          // Create a download link
+          const downloadLink = document.createElement('a');
+          downloadLink.href = window.URL.createObjectURL(blob);
+          downloadLink.download = filename;
+      
+          // Append the link to the body and simulate a click
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+      
+          // Clean up
+          document.body.removeChild(downloadLink);
+          window.URL.revokeObjectURL(downloadLink.href);
+        
+        this.downloaded = true;
+        this.idBon = 0;
       }
     }
