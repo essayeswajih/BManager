@@ -119,7 +119,7 @@ export class NewFactureVComponent {
               )
           }
             if(data[1]){
-              for(let item of data.Response[1]){
+              for(let item of data[1]){
                 this.tsr.error('The '+item+' store will be finished soon.', 'Alert !!!')
               }
             }
