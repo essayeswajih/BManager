@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './new-bon-liv-v.component.scss'
 })
 export class NewBonLivVComponent {
+
   changeComponent(n: number) {
     if(this.componentName==1){
       this.componentName=0;
@@ -17,13 +18,13 @@ export class NewBonLivVComponent {
     }
   }
   componentName: number = 1;
-    download() {
-    throw new Error('Method not implemented.');
-    }
+  
     change(arg0: string,$event: Event) {
     throw new Error('Method not implemented.');
     }
-    
+      created :boolean = false;
+      idBon : number = 0;
+      downloaded : boolean = false;
       clientList:any[]=[];
       articleList:any[]=[];
       items:any[]=[];
@@ -127,5 +128,41 @@ export class NewBonLivVComponent {
             }
           }
         );
+      }
+      clear() {
+        this.items = [];
+        this.created = false;
+        this.downloaded = false;
+      }
+      download(): void {
+        const filename = `bonLivVente${this.idBon}.pdf`; // Assuming this.getId() returns a valid identifier
+        this.ste.downloadFile(filename)
+        .then((data: ArrayBuffer) => {
+          this.saveFile(data, filename); 
+        })
+        .catch(error => {
+          console.error('Error downloading file:', error);
+          // Handle error as needed
+        });
+      }
+      
+        private saveFile(data: ArrayBuffer, filename: string): void {
+          const blob = new Blob([data], { type: 'application/pdf' });
+      
+          // Create a download link
+          const downloadLink = document.createElement('a');
+          downloadLink.href = window.URL.createObjectURL(blob);
+          downloadLink.download = filename;
+      
+          // Append the link to the body and simulate a click
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+      
+          // Clean up
+          document.body.removeChild(downloadLink);
+          window.URL.revokeObjectURL(downloadLink.href);
+        
+        this.downloaded = true;
+        this.idBon = 0;
       }
     }
