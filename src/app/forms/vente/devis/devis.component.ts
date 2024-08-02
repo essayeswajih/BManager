@@ -195,7 +195,7 @@ export class DevisComponent {
         data.items.push({
           article: { idArticle: itemsList[i].article.idArticle },
           qte: itemsList[i].qte,
-          remise: itemsList[i].rem,
+          remise: itemsList[i].remise,
           newVenteHT:itemsList[i].venteHT,
           totalNet: itemsList[i].totalNet
         });
