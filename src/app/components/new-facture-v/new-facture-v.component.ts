@@ -109,11 +109,10 @@ export class NewFactureVComponent {
         let dateCreation = this.form.value.date;
         this.ste.saveNewFactureV(this.items,f,dateCreation).then(
           (data) => {
-            if(data.Response[0]){
-              console.log(data.response);
+            if(data[0]){
               this.ste.toPdf("vente/facture/toPdf",data.Response[0]).then(
                 (response1) => {
-                  this.idBon = data.Response[0]?.id ;
+                  this.idBon = data[0]?.id ;
                   this.tsr.success("Bon de Livraison Crée","success");
                   this.created = true;
                 },(error)=>{this.tsr.error("Network ERROR !!!","ERROR");}
