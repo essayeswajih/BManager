@@ -109,8 +109,9 @@ export class NewFactureVComponent {
         let dateCreation = this.form.value.date;
         this.ste.saveNewFactureV(this.items,f,dateCreation).then(
           (data) => {
+            console.log(data)
             if(data[0]){
-              this.ste.toPdf("vente/facture/toPdf",data.Response[0]).then(
+              this.ste.toPdf("vente/facture/toPdf",data[0]).then(
                 (response1) => {
                   this.idBon = data[0]?.id ;
                   this.tsr.success("Bon de Livraison Crée","success");
