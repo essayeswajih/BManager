@@ -106,7 +106,7 @@ export class NewBonLivVComponent {
         item.puht = article?.achatHT;
         item.venteHT = article.venteHT;  
         item.qte = qte;
-        item.rem = rem;
+        item.remise = rem;
         item.tva = article?.tva;
         item.totalNet = (article.venteHT - (article.venteHT * rem / 100)) * qte;
         item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
@@ -118,7 +118,13 @@ export class NewBonLivVComponent {
         this.ste.saveNewBonLivV(this.items,f,dateCreation).then(
           (data) => {
             if(data.Response[0]){
-                this.tsr.success("Bon de Livraison Crée","success");
+                this.ste.toPdf("vente/bonLiv/toPdf",data.Response[0]).then(
+                  (response1) => {
+                    this.idBon = data.Response[0]?.id ;
+                    this.tsr.success("Bon de Livraison Crée","success");
+                    this.created = true;
+                  },(error)=>{this.tsr.error("Network ERROR !!!","ERROR");}
+                )
             }
             
             if(data.Response[1]){

@@ -518,7 +518,7 @@ export class SteService {
       const response = await this.axios.post(`vente/bonLiv/saveNew`,data);
       return response.data; 
     } catch (error) {
-      console.error("SteService: saveNewBonLiv ERROR: ", error);
+      console.error("SteService: saveNewBonLivV ERROR: ", error);
       throw error;
     }
   }
@@ -533,7 +533,7 @@ export class SteService {
       const response = await this.axios.post(`achat/facture/saveNew`,data);
       return response.data; 
     } catch (error) {
-      console.error("SteService: saveNewBonLiv ERROR: ", error);
+      console.error("SteService: saveNewFactureA ERROR: ", error);
       throw error;
     }
   }
@@ -548,7 +548,7 @@ export class SteService {
       const response = await this.axios.post(`vente/facture/saveNew`,data);
       return response.data; 
     } catch (error) {
-      console.error("SteService: saveNewBonLiv ERROR: ", error);
+      console.error("SteService: saveNewFactureV ERROR: ", error);
       throw error;
     }
   }
