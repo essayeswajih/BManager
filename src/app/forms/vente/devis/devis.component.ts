@@ -173,9 +173,9 @@ export class DevisComponent {
       item.puht = article?.achatHT;
       item.venteHT = article.venteHT;  
       item.qte = qte || 1;
-      item.rem = rem || 0;
+      item.remise = rem || 0;
       item.tva = article?.tva;
-      item.totalNet = (article.venteHT - (article.venteHT * rem / 100)) * qte;
+      item.totalNet = (article.venteHT - (article.venteHT * item.remise / 100)) * qte;
       item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
       return item;
     }

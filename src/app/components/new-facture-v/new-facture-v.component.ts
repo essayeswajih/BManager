@@ -11,8 +11,8 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewFactureVComponent {
 
-    change(arg0: string,$event: Event) {
-    throw new Error('Method not implemented.');
+    change(key: string,$event: Event) {
+    
     }
       created :boolean = false;
       idBon : number = 0;
@@ -72,7 +72,7 @@ export class NewFactureVComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = (i.article?.achatHT - (i.article?.achatHT * i.rem / 100)) * i.qte;
+              i.totalNet = (i.article?.achatHT - (i.article?.achatHT * i?.remise / 100)) * i.qte;
             }
           }
         }else{

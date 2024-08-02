@@ -70,7 +70,7 @@ export class NewFactureAComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = (i.article?.achatHT - (i.article?.achatHT * i.rem / 100)) * i.qte;
+              i.totalNet = (i.article?.achatHT - (i.article?.achatHT *  i?.remise  / 100)) * i.qte;
             }
           }
         }else{
@@ -94,9 +94,9 @@ export class NewFactureAComponent {
         item.unite = article?.unite;
         item.puht = article?.achatHT;
         item.qte = qte || 1;
-        item.rem = rem || 0;
+        item.remise = rem || 0;
         item.tva = article?.tva;
-        item.totalNet = (article?.achatHT - (article?.achatHT * rem / 100)) * qte;
+        item.totalNet = (article?.achatHT - (article?.achatHT * item.remise / 100)) * qte;
         return item;
       }
       save() {
