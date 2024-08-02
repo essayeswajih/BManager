@@ -108,7 +108,7 @@ export class NewBonLivVComponent {
         item.qte = qte;
         item.remise = rem;
         item.tva = article?.tva;
-        item.totalNet = (article.venteHT - (article.venteHT * rem / 100)) * qte;
+        item.totalNet = (article.venteHT - (item.venteHT * rem / 100)) * qte;
         item.newVenteHT = item.totalNet + item.totalNet * item.tva / 100;
         item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
         return item;
