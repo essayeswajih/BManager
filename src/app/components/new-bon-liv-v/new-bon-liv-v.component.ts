@@ -19,9 +19,6 @@ export class NewBonLivVComponent {
   }
   componentName: number = 1;
   
-    change(arg0: string,$event: Event) {
-    throw new Error('Method not implemented.');
-    }
       created :boolean = false;
       idBon : number = 0;
       downloaded : boolean = false;
@@ -72,6 +69,21 @@ export class NewBonLivVComponent {
           }
         }
         return true;
+      }
+      change(key: string, event?: Event) {
+        if (key === 'client') {
+          const selectedIndex = Number((event?.target as HTMLSelectElement).value);
+          this.form.patchValue({
+            client: selectedIndex
+          });
+        }
+        else if(key=='dateCreation'){
+          const selectedDate = (event?.target as HTMLSelectElement).value;
+          const dateValue = selectedDate ? new Date(selectedDate) : null;
+          this.form.patchValue({
+            date: dateValue
+          });
+        }
       }
       change3(item: any,key: string, event:Event) {
         const value = Number((event?.target as HTMLSelectElement).value);

@@ -11,9 +11,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class NewFactureVComponent {
 
-    change(key: string,$event: Event) {
-    
-    }
       created :boolean = false;
       idBon : number = 0;
       downloaded : boolean = false;
@@ -38,7 +35,21 @@ export class NewFactureVComponent {
           console.error('Error fetching articles From new Bon Liv:', error);
         }
       }
-    
+    change(key: string, event?: Event) {
+    if (key === 'client') {
+      const selectedIndex = Number((event?.target as HTMLSelectElement).value);
+      this.form.patchValue({
+        client: selectedIndex
+      });
+    }
+    else if(key=='dateCreation'){
+      const selectedDate = (event?.target as HTMLSelectElement).value;
+      const dateValue = selectedDate ? new Date(selectedDate) : null;
+      this.form.patchValue({
+        date: dateValue
+      });
+    }
+  }
       async getClients() {
         try {
           this.clientList = await this.ste.getClients();
