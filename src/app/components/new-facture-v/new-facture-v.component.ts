@@ -83,7 +83,7 @@ export class NewFactureVComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = (i.article?.achatHT - (i.article?.achatHT * i?.remise / 100)) * i.qte;
+              i.totalNet = (i.venteHT - (i.venteHT * i?.remise / 100)) * i.qte;
             }
           }
         }else{
