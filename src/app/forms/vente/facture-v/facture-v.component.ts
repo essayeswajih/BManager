@@ -78,7 +78,7 @@ class Facture {
     if (value.checked) {
       if (this.exist(bonId,this.bonLivSelected)<0){
         if(this.bonLivSelected.length>0){
-          if(this.bonLivSelected[this.bonLivSelected.length-1].devis.client.idClient!=this.getBonById(bonId).devis.client.idClient){
+          if(this.bonLivSelected[this.bonLivSelected.length-1].client.idClient!=this.getBonById(bonId).client.idClient){
           this.toastr.error("Il foux choisir la meme client","ERROR")
           value.checked=false;
           }else{
