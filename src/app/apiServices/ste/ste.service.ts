@@ -3,6 +3,7 @@ import { AxiosService } from './../axios/axios.service';
 import { error } from 'console';
 import { catchError, Observable } from 'rxjs';
 import axios from 'axios';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class SteService {
   idSte: number = 53;
   ste: any;
   
-  constructor(private axios: AxiosService) {}
+  constructor(private axios: AxiosService,private tstr : ToastrService) {}
 
   async getSte(id: number): Promise<any> {
     try {
@@ -430,7 +431,16 @@ export class SteService {
     data.dateCreation = date;
     this.axios.post("vente/facture/save",data).then(
       (response) => {
-        console.log(response)
+        if(response.status == 200){
+          this.tstr.success('Facture générée avec succès');
+          this.tstr.info('wiat for your PDF',"INFO");
+          this.toPdf("vente/facture/toPdf",response?.data).then(
+            (response1) => {
+              let fillename = `factureVente${response.data?.id}.pdf`
+              this.download(fillename);
+            },(error)=>{this.tstr.error("Network ERROR !!!","ERROR");}
+          )
+        }
       },
       (error) => {
         console.log(error)
@@ -551,5 +561,33 @@ export class SteService {
       console.error("SteService: saveNewFactureV ERROR: ", error);
       throw error;
     }
+  }
+  download(filename:string): void {
+    this.ste.downloadFile(filename)
+    .then((data: ArrayBuffer) => {
+      this.saveFile(data, filename); 
+    })
+    .catch((error: any) => {
+      console.error('Error downloading file:', error);
+      // Handle error as needed
+    });
+  }
+  
+    private saveFile(data: ArrayBuffer, filename: string): void {
+      const blob = new Blob([data], { type: 'application/pdf' });
+  
+      // Create a download link
+      const downloadLink = document.createElement('a');
+      downloadLink.href = window.URL.createObjectURL(blob);
+      downloadLink.download = filename;
+  
+      // Append the link to the body and simulate a click
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+  
+      // Clean up
+      document.body.removeChild(downloadLink);
+      window.URL.revokeObjectURL(downloadLink.href);
+    
   }
 }
