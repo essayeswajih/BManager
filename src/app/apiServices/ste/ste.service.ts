@@ -434,12 +434,8 @@ export class SteService {
         if(response.status == 200){
           this.tstr.success('Facture générée avec succès');
           this.tstr.info('wiat for your PDF',"INFO");
-          this.toPdf("vente/facture/toPdf",response?.data).then(
-            (response1) => {
-              let fillename = `factureVente${response.data?.id}.pdf`
-              this.download(fillename);
-            },(error)=>{this.tstr.error("Network ERROR !!!","ERROR");}
-          )
+          let fillename = `factureVente${response.data?.id}.pdf`
+          this.download(fillename);
         }
       },
       (error) => {
