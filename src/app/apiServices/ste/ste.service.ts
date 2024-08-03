@@ -346,7 +346,12 @@ export class SteService {
     data.dateCreation = date;
     this.axios.post("achat/facture/save",data).then(
       (response) => {
-        console.log(response)
+        if(response.status == 200){
+          this.tstr.success('Facture générée avec succès');
+          this.tstr.info('wiat for your PDF',"INFO");
+          let fillename = `factureAchat${response.data?.id}.pdf`
+          this.download(fillename);
+        }
       },
       (error) => {
         console.log(error)
