@@ -563,7 +563,7 @@ export class SteService {
     }
   }
   download(filename:string): void {
-    this.ste.downloadFile(filename)
+    this.downloadFile(filename)
     .then((data: ArrayBuffer) => {
       this.saveFile(data, filename); 
     })
