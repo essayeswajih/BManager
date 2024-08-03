@@ -92,7 +92,8 @@ export class NewBonLivVComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = (i.venteHT - (i.venteHT *  i?.remise / 100)) * i.qte;
+              i.newVenteHT = i.venteHT;
+              i.totalNet = (i.venteHT - (i.venteHT * i?.remise / 100)) * i.qte;
               i.totalTTC = i.totalNet + i.totalNet * i.tva / 100;
             }
           }
