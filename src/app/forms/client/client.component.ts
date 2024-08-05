@@ -46,8 +46,7 @@ export class ClientComponent implements OnInit {
   }
 
   async onAdd() {
-    console.log(this.clientForm.valid);
-    if (this.clientForm.valid) {
+    if (true) {
       await this.steService.saveClients(this.clientForm.value);
       await this.getClients();
       this.updateClientsUpdated();
