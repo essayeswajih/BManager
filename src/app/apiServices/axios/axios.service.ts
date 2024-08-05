@@ -21,10 +21,15 @@ export class AxiosService {
     };
   }
 
-  getToken(): string | null{
+  getToken(): any{
     let token = this.authService.getToken();
-    return this.authService.getToken();
-  }
+    if(token!=null){
+    return token;
+    }
+    else{
+      this.authService.logout();
+    }
+    }
 
   async get(endPoint: string):Promise<any> {
     const config = this.getConfig();

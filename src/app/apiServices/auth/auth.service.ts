@@ -24,11 +24,9 @@ export class AuthService {
       if(token !=null && this.checkExpiredTime(token)){
         return token;
       }else{
-        this.logout();
         return null;
       }
     }
-    this.logout();
     return null;
   }
   
