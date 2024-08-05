@@ -76,6 +76,9 @@ export class NewFactureVComponent {
         }
         return true;
       }
+      roundToThreeDecimal(num: number): number {
+        return parseFloat(num.toFixed(3));
+      }
       change3(item: any,key: string, event:Event) {
         const value = Number((event?.target as HTMLSelectElement).value);
         console.log(value)
@@ -83,9 +86,9 @@ export class NewFactureVComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.newVenteHT = i.venteHT;
-              i.totalNet = (i.venteHT - (i.venteHT * i?.remise / 100)) * i.qte;
-              i.totalTTC = i.totalNet + i.totalNet * i.tva / 100;
+              i.newVenteHT = this.roundToThreeDecimal(i.venteHT);
+              i.totalNet = this.roundToThreeDecimal((i.venteHT - (i.venteHT * i?.remise / 100)) * i.qte);
+              i.totalTTC = this.roundToThreeDecimal(i.totalNet + i.totalNet * i.tva / 100);
             }
           }
         }else{
@@ -108,13 +111,13 @@ export class NewFactureVComponent {
         item.designation = article?.designation;
         item.unite = article?.unite;
         item.puht = article?.achatHT;
-        item.venteHT = article.venteHT;  
+        item.venteHT = this.roundToThreeDecimal(article.venteHT);  
         item.qte = qte;
         item.remise = rem;
         item.tva = article?.tva;
-        item.totalNet = (item.venteHT - (item.venteHT * item.remise / 100)) * qte;
-        item.newVenteHT = item.venteHT - (item.venteHT * item.remise / 100);
-        item.totalTTC = item.totalNet + item.totalNet * item.tva / 100;
+        item.totalNet = this.roundToThreeDecimal(item.venteHT - (item.venteHT * item.remise / 100)) * qte;
+        item.newVenteHT = this.roundToThreeDecimal(item.venteHT - (item.venteHT * item.remise / 100));
+        item.totalTTC = this.roundToThreeDecimal(item.totalNet + item.totalNet * item.tva / 100);
         return item;
       }
       save() {
