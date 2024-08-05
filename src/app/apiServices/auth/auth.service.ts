@@ -18,9 +18,13 @@ export class AuthService {
   isUserEmployee() {}
 
   getToken(): string | null {
-    if (this.isBrowser) {
+    if (this.isBrowser && localStorage.getItem('token')) {
       const token = localStorage.getItem('token');
-      return token; 
+      if(token !=null && this.checkExpiredTime(token)){
+        return token;
+      }else{
+        return null;
+      }
     }
     return null;
   }
