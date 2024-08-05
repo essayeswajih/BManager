@@ -1,6 +1,7 @@
 import { SteService } from './../../apiServices/ste/ste.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-client',
@@ -13,7 +14,7 @@ export class ClientComponent implements OnInit {
   clientsWithChanges: any[] = [];
   clientsUpdated: any[] = [];
 
-  constructor(private steService: SteService, private fb: FormBuilder) {
+  constructor(private steService: SteService, private fb: FormBuilder,private tstr:ToastrService) {
     this.clientForm = this.fb.group({
       idClient: [null],
       name: ['', Validators.required],
@@ -46,8 +47,16 @@ export class ClientComponent implements OnInit {
   }
 
   async onAdd() {
-    if (true) {
-      await this.steService.saveClients(this.clientForm.value);
+    if (true) { //validation neededd
+      await this.steService.saveClients(this.clientForm.value).then(
+        (response) => {
+          if(response){
+            this.tstr.success("Le client a été ajouté avec succès","success")
+          }else{
+            this.tstr.error("Erreur lors de l'ajout du client","error")
+          }
+        }
+      );
       await this.getClients();
       this.updateClientsUpdated();
       this.clientForm.reset();
