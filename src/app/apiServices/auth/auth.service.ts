@@ -11,17 +11,39 @@ export class AuthService {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
   isUserLoggedIn() {
-    return this.getToken()!=null
+    return this.getToken()!=null;
   }
   isUserAdmin() {}
   isUserManager() {}
   isUserEmployee() {}
+  
   getToken(): string | null {
     if (this.isBrowser) {
-      return localStorage.getItem('token');
+      const token = localStorage.getItem('token');
+      return token; 
     }
     return null;
   }
+  
+  checkExpiredTime(token: string): boolean {
+    const tokenData = this.decodeToken(token);
+    if (tokenData && tokenData.exp) {
+      const expirationDate = new Date(tokenData.exp * 1000); // Convert seconds to milliseconds
+      const currentDate = new Date();
+      return currentDate > expirationDate; // Return true if the token is expired
+    }
+      return true;
+  }
+  
+  decodeToken(token: string): any {
+    const parts = token.split('.');
+    if (parts.length !== 3) {
+      throw new Error('Invalid token');
+    }
+    const decoded = atob(parts[1]);
+    return JSON.parse(decoded);
+  }
+  
 
   setToken(token: string): void {
     if (this.isBrowser) {
