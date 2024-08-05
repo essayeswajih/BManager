@@ -51,6 +51,7 @@ export class ClientComponent implements OnInit {
       await this.steService.saveClients(this.clientForm.value).then(
         (response) => {
           if(response){
+            console.log(response)
             this.tstr.success("Le client a été ajouté avec succès","success")
           }else{
             this.tstr.error("Erreur lors de l'ajout du client","error")
