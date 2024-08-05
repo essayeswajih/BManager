@@ -130,7 +130,7 @@ export class NewFactureVComponent {
               this.ste.toPdf("vente/facture/toPdf",data[0]).then(
                 (response1) => {
                   this.idBon = data[0]?.id ;
-                  this.tsr.success("Bon de Livraison Crée","success");
+                  this.tsr.success("Facture Crée","success");
                   this.created = true;
                 },(error)=>{this.tsr.error("Network ERROR !!!","ERROR");}
               )

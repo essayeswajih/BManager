@@ -9,9 +9,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './new-facture-a.component.scss'
 })
 export class NewFactureAComponent {
-    change(arg0: string,$event: Event) {
-    throw new Error('Method not implemented.');
-    }
       created :boolean = false;
       idBon : number = 0;
       downloaded : boolean = false;
@@ -63,6 +60,24 @@ export class NewFactureAComponent {
         }
         return true;
       }
+      change(key: string, event?: Event) {
+        if (key === 'fournisseur') {
+          const selectedIndex = Number((event?.target as HTMLSelectElement).value);
+          this.form.patchValue({
+            fournisseur: selectedIndex
+          });
+        }
+        else if(key=='dateCreation'){
+          const selectedDate = (event?.target as HTMLSelectElement).value;
+          const dateValue = selectedDate ? new Date(selectedDate) : null;
+          this.form.patchValue({
+            date: dateValue
+          });
+        }
+      }
+      roundToThreeDecimal(num: number): number {
+        return parseFloat(num.toFixed(3));
+      }
       change3(item: any,key: string, event:Event) {
         const value = Number((event?.target as HTMLSelectElement).value);
         console.log(value)
@@ -70,7 +85,7 @@ export class NewFactureAComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = (i.article?.achatHT - (i.article?.achatHT *  i?.remise  / 100)) * i.qte;
+              i.totalNet = this.roundToThreeDecimal(i.article?.achatHT - (i.article?.achatHT *  i?.remise  / 100)) * i.qte;
             }
           }
         }else{
@@ -92,11 +107,11 @@ export class NewFactureAComponent {
         item.article = article;
         item.designation = article?.designation;
         item.unite = article?.unite;
-        item.puht = article?.achatHT;
+        item.puht = this.roundToThreeDecimal(article?.achatHT);
         item.qte = qte || 1;
         item.remise = rem || 0;
         item.tva = article?.tva;
-        item.totalNet = (article?.achatHT - (article?.achatHT * item.remise / 100)) * qte;
+        item.totalNet = this.roundToThreeDecimal(article?.achatHT - (article?.achatHT * item.remise / 100)) * qte;
         return item;
       }
       save() {

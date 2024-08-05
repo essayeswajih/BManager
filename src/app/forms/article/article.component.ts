@@ -17,7 +17,7 @@ export class ArticleComponent implements OnInit {
     19,13,7
   ];
   unites = [
-    'pièce','kg','litre','ml','m','m²','m³','cm','cm²','cm³',
+    'p','kg','l','ml','m','m²','m³','cm','cm²','cm³',
   ];
   devises = [
     'DNT','EUR','USD',
