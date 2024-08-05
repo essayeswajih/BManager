@@ -112,10 +112,14 @@ export class ArticleComponent implements OnInit {
         console.log("articleForm",this.articleForm);
         console.log("newArticle",article);
         await this.steService.saveArticles(article).then(
-          (data:any)=>{
+          (data)=>{
             if(data?.idArticle){
               this.steService.setInitialStockArticle(data.idArticle,this.articleForm.value.sotckInitiale);
             }
+          }
+        ).catch(
+          (error)=>{
+            console.error('Error saving article:', "ERROR");
           }
         );
         await this.ngOnInit();

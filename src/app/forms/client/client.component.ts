@@ -57,6 +57,10 @@ export class ClientComponent implements OnInit {
             this.tstr.error("Erreur lors de l'ajout du client","error")
           }
         }
+      ).catch(
+        (error) => {
+          this.tstr.error("Erreur lors de l'ajout du client","error")
+        }
       );
       await this.getClients();
       this.updateClientsUpdated();
