@@ -42,7 +42,7 @@ export class AuthService {
   decodeToken(token: string): any {
     const parts = token.split('.');
     if (parts.length !== 3) {
-      this.route.navigateByUrl("/Login")
+      return null;
     }
     const decoded = atob(parts[1]);
     return JSON.parse(decoded);
