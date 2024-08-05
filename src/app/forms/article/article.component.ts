@@ -77,6 +77,9 @@ export class ArticleComponent implements OnInit {
       console.error('Error fetching articles:', error);
     }
   }
+  roundToThreeDecimal(num: number): number {
+  return parseFloat(num.toFixed(3));
+}
   calcule() {
     console.log("calcule work");
   
@@ -85,14 +88,14 @@ export class ArticleComponent implements OnInit {
     let fodec = this.articleForm.value.fodec ? achatHT * 0.01 : 0; 
 
     let tvaPercentage = this.tvaList [this.articleForm.value.tva] / 100; 
-    let montantMarge = marge * achatHT / 100;
+    let montantMarge = this.roundToThreeDecimal(marge * achatHT / 100);
     this.articleForm.patchValue({ montantMarge: montantMarge });
-    let venteHT = Number(achatHT) + montantMarge + fodec;
+    let venteHT = this.roundToThreeDecimal(Number(achatHT) + montantMarge + fodec);
     this.articleForm.patchValue({ venteHT: venteHT });
-    let tva = venteHT * tvaPercentage;
-    let achatTTC = Number(achatHT) + tva;
+    let tva = this.roundToThreeDecimal(venteHT * tvaPercentage);
+    let achatTTC =this.roundToThreeDecimal(Number(achatHT) + tva);
     this.articleForm.patchValue({ achatTTC: achatTTC });
-    let venteTTC = venteHT + tva;
+    let venteTTC = this.roundToThreeDecimal(venteHT + tva);
     this.articleForm.patchValue({ venteTTC: venteTTC });
     console.log("articleForm", this.articleForm.value);
     
