@@ -215,24 +215,24 @@ export class ArticleComponent implements OnInit {
   calculateFields(article: any) {
     console.log('dsqqqqqqqqqqqqqqqqqqqqqqqqq')
     console.log(article)
-    let achatHT = parseFloat(article.achatHT);
+    let achatHT = this.roundToThreeDecimal(parseFloat(article.achatHT));
     console.log('achatHT',achatHT)
-    let marge = parseFloat(article.marge);
-    let fodec = article.fodec ? achatHT * 0.01 : 0;
+    let marge = this.roundToThreeDecimal(parseFloat(article.marge));
+    let fodec = this.roundToThreeDecimal(article.fodec ? achatHT * 0.01 : 0);
     let tvaPercentage = article.tva / 100;
     console.log('tvapercentage',tvaPercentage)
     console.log("calcule Fields work");
     let montantMarge = marge * achatHT / 100;
 
     article.montantMarge= montantMarge ;
-    let venteHT = Number(achatHT) + montantMarge + fodec;
-    article.venteHT = venteHT ;
+    let venteHT = this.roundToThreeDecimal(Number(achatHT) + montantMarge + fodec);
+    article.venteHT = this.roundToThreeDecimal(venteHT) ;
     let tva = venteHT * tvaPercentage;
-    let achatTTC = Number(achatHT) + tva;
+    let achatTTC = this.roundToThreeDecimal(Number(achatHT) + tva);
     console.log('achatTTC',achatTTC,'achatHT',achatHT,'tva',tva)
-    article.achatTTC = achatTTC ;
+    article.achatTTC = this.roundToThreeDecimal(achatTTC) ;
     let venteTTC = venteHT + tva;
-    article.venteTTC = venteTTC ;
+    article.venteTTC = this.roundToThreeDecimal(venteTTC) ;
     console.log("articleForm", this.articleForm.value);
     console.log(article)
     this.changeArticle(article);
