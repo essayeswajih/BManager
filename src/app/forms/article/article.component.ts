@@ -30,7 +30,7 @@ export class ArticleComponent implements OnInit {
   ) {
     this.articleForm = this.fb.group({
       refArticle: ['ART001', Validators.required], // Assuming idDepot is required for an article
-      refFournisseur: ['FOUR001', Validators.required],
+      //refFournisseur: ['FOUR001', Validators.required],
       fournisseur:['0', Validators.required],
       designation: ['', Validators.required],
       famille:['0', Validators.required],
@@ -58,7 +58,7 @@ export class ArticleComponent implements OnInit {
 
     this.articleForm.patchValue({
       refArticle: "ART_" + this.articles.length,
-      refFournisseur: "FOUR_" + this.fournisseurs.length,
+      //refFournisseur: "FOUR_" + this.fournisseurs.length,
     });
     
   }

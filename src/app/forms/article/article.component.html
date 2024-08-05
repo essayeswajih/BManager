@@ -6,7 +6,7 @@
                 <tr>
                     <th>#</th>
                     <th>refArticle</th>
-                    <th>refFournisseur</th>
+                    <!--<th>refFournisseur</th>-->
                     <th>Fournisseur</th>
                     <th>Designation</th>
                     <th>Famille</th>
@@ -31,7 +31,7 @@
                 <tr>
                     <td>+</td>
                     <td><input class="form-control" type="text" name="refArticle" id="refArticle" formControlName="refArticle"></td>
-                    <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" formControlName="refFournisseur"></td>
+                    <!--<td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" formControlName="refFournisseur"></td>-->
                     <td>
                         <select  class="form-control" name="fournisseur" id="fournisseur" formControlName="fournisseur">
                             @for (fournisseur0 of fournisseurs; track $index) {
@@ -89,7 +89,7 @@
                     <tr>
                         <td>{{$index+1}}</td>
                         <td><input class="form-control" type="text" name="refArticle" id="refArticle" [value]="article.refArticle"  (keyup)="check(article,$event,'refArticle')"></td>
-                        <td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" [value]="article.refFournisseur" (keyup)="check(article,$event,'refFournisseur')"></td>
+                        <!--<td><input class="form-control" type="text" name="refFournisseur" id="refFournisseur" [value]="article.refFournisseur" (keyup)="check(article,$event,'refFournisseur')"></td>-->
                         <td>
                             <select  class="form-control" name="fournisseur" id="fournisseur" (change)="check(article,$event,'idFournisseur')">
                                 <option [value]="article.fournisseur.idFournisseur">{{article.fournisseur.intitule}}</option>
