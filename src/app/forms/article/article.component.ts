@@ -224,7 +224,7 @@ export class ArticleComponent implements OnInit {
     console.log("calcule Fields work");
     let montantMarge = marge * achatHT / 100;
 
-    article.montantMarge= montantMarge ;
+    article.montantMarge= this.roundToThreeDecimal(montantMarge) ;
     let venteHT = this.roundToThreeDecimal(Number(achatHT) + montantMarge + fodec);
     article.venteHT = this.roundToThreeDecimal(venteHT) ;
     let tva = venteHT * tvaPercentage;
