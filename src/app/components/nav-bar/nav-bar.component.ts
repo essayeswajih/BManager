@@ -1,5 +1,6 @@
 import { Component, HostListener } from '@angular/core';
 import { AuthService } from '../../apiServices/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -9,8 +10,9 @@ import { AuthService } from '../../apiServices/auth/auth.service';
 export class NavBarComponent {
   isSticky = false;
   loggedIn = false
-  constructor(private auth : AuthService){}
+  constructor(private auth : AuthService,private route:Router){}
   ngOnInit() {
+    console.log(this.route.getCurrentNavigation())
     this.loggedIn = this.auth.isUserLoggedIn();
     console.log(this.loggedIn);
   }
