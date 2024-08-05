@@ -35,9 +35,9 @@ export class AuthService {
       const currentDate = new Date();
       console.log( currentDate>expirationDate)
       console.log(expirationDate)
-      return currentDate > expirationDate; // Return true if the token is expired
+      return currentDate < expirationDate; // Return true if the token is expired
     }
-      return true;
+      return false;
   }
   
   decodeToken(token: string): any {
