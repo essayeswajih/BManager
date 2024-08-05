@@ -12,7 +12,6 @@ export class NavBarComponent {
   loggedIn = false
   constructor(private auth : AuthService,private route:Router){}
   ngOnInit() {
-    console.log(this.route.getCurrentNavigation())
     this.loggedIn = this.auth.isUserLoggedIn();
     console.log(this.loggedIn);
   }

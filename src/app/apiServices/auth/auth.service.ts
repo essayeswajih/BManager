@@ -12,7 +12,7 @@ export class AuthService {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
   isUserLoggedIn() {
-    return this.getToken()!=null;
+    return this.getToken()!==null;
   }
   isUserAdmin() {}
   isUserManager() {}
@@ -23,8 +23,6 @@ export class AuthService {
       const token = localStorage.getItem('token');
       if(token !=null && this.checkExpiredTime(token)){
         return token;
-      }else{
-        return null;
       }
     }
     return null;
