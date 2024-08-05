@@ -36,6 +36,9 @@ export class AxiosService {
         console.error('Error message:', error.message);
         console.error('Response data:', error.response?.data);
         console.error('Response status:', error.response?.status);
+        if(error.response?.status==401 || error.response?.status == 403){
+          this.authService.logout();
+        }
       } else {
         console.error('Unexpected error:', error);
       }
@@ -52,6 +55,15 @@ export class AxiosService {
       });
       return response;
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Error code:', error.code);
+        console.error('Error message:', error.message);
+        console.error('Response data:', error.response?.data);
+        console.error('Response status:', error.response?.status);
+        if(error.response?.status==401 || error.response?.status == 403){
+          this.authService.logout();
+        }
+      }
       console.error('Error downloading the file:', error);
       throw error;
     }
@@ -67,6 +79,9 @@ export class AxiosService {
         console.error('Error message:', error.message);
         console.error('Response data:', error.response?.data);
         console.error('Response status:', error.response?.status);
+        if(error.response?.status==401 || error.response?.status == 403){
+          this.authService.logout();
+        }
       } else {
         console.error('Unexpected error:', error);
       }
@@ -81,6 +96,9 @@ export class AxiosService {
         console.error('Error message:', error.message);
         console.error('Response data:', error.response?.data);
         console.error('Response status:', error.response?.status);
+        if(error.response?.status==401 || error.response?.status == 403){
+          this.authService.logout();
+        }
       } else {
         console.error('Unexpected error:', error);
       }
@@ -89,6 +107,20 @@ export class AxiosService {
 
   async delete(endPoint: string) :Promise<any> {
     const config = this.getConfig();
+    try{
     return await axios.delete(`${this.API_URL}/${endPoint}`, this.getConfig());
+    }catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('Error code:', error.code);
+      console.error('Error message:', error.message);
+      console.error('Response data:', error.response?.data);
+      console.error('Response status:', error.response?.status);
+      if(error.response?.status==401 || error.response?.status == 403){
+        this.authService.logout();
+      }
+    } else {
+      console.error('Unexpected error:', error);
+    }
+  }
   }
 }

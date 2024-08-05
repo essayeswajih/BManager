@@ -1,5 +1,6 @@
 import { isPlatformBrowser } from '@angular/common';
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Route, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,7 @@ import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 export class AuthService {
   private isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  constructor(@Inject(PLATFORM_ID) private platformId: Object,private route:Router) {
     this.isBrowser = isPlatformBrowser(this.platformId);
   }
   isUserLoggedIn() {
@@ -43,7 +44,7 @@ export class AuthService {
   decodeToken(token: string): any {
     const parts = token.split('.');
     if (parts.length !== 3) {
-      throw new Error('Invalid token');
+      this.route.navigateByUrl("/Login")
     }
     const decoded = atob(parts[1]);
     return JSON.parse(decoded);
@@ -59,6 +60,10 @@ export class AuthService {
     if(this.isBrowser){
       localStorage.removeItem('token');
     }
+  }
+  logout(){
+    this.removeToken();
+    this.route.navigateByUrl("/Login");
   }
   getSte(){}
 }
