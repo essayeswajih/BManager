@@ -18,11 +18,11 @@ export class ClientsComponent {
     })
   }
   ngOnInit(){
-    this.ste.getBonLivV().then(
-      (data:any)=>{
-        if (data.​status==200){
+    this.ste.getClients().then(
+      (data:any[])=>{
+        if (data.length>0){
           console.log(data)
-          this.clientList=data.data;
+          this.clientList=data;
         }
       }
     ).catch(
