@@ -21,7 +21,7 @@ export class BlvComponent {
     this.ste.getBonLivV().then(
       (data:any)=>{
         if (data.​status==200){
-          console.log(data.data)
+          console.log(data)
           this.bonList=data;
         }
       }
