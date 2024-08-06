@@ -35,6 +35,9 @@ import { NewFactureVComponent } from './components/new-facture-v/new-facture-v.c
 import { NewBonLivVComponent } from './components/new-bon-liv-v/new-bon-liv-v.component';
 import { StockComponent } from './pages/stock/stock.component';
 import { ArticleDetailsComponent } from './components/article-details/article-details.component';
+import { ClientsComponent } from './pages/stocks/clients/clients.component';
+import { FournisseursComponent } from './pages/stocks/fournisseurs/fournisseurs.component';
+import { BlvComponent } from './pages/stocks/blv/blv.component';
 
 
 @NgModule({
@@ -68,6 +71,9 @@ import { ArticleDetailsComponent } from './components/article-details/article-de
     NewBonLivVComponent,
     StockComponent,
     ArticleDetailsComponent,
+    ClientsComponent,
+    FournisseursComponent,
+    BlvComponent,
   ],
   imports: [
     BrowserModule,

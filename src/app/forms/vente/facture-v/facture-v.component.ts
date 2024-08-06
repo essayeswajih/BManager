@@ -25,7 +25,6 @@ export class FactureVComponent {
           console.log(data.data)
           this.f = new Facture(data.data,this.steService,this.toastr)
         }
-        
       }
     );
   }
