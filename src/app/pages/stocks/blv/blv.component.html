@@ -12,14 +12,16 @@
             </thead>
             <tbody>
                 @for (item of bonList; track $index) {
-                    <td>{{$index}}</td>
-                    <td>{{item.client.name}}</td>
-                    <td>{{item.dateCreation}}</td>
-                    <td>{{item?.facture?.id}}</td>
-                    <td>{{item?.devis?.id}}</td>
-                    <td>
-                        <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.trans">
-                    </td>
+                    <tr>
+                        <td>{{$index}}</td>
+                        <td>{{item.client.name}}</td>
+                        <td>{{item.dateCreation}}</td>
+                        <td>{{item?.facture?.id}}</td>
+                        <td>{{item?.devis?.id}}</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.trans">
+                        </td>
+                    </tr>
                 }
             </tbody>
         </table>
