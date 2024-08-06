@@ -22,7 +22,7 @@ export class BlvComponent {
       (data:any)=>{
         if (data.​status==200){
           console.log(data)
-          this.bonList=data;
+          this.bonList=data.data;
         }
       }
     ).catch(
