@@ -3,13 +3,22 @@
     <div class="table-responsive">
         <table class="table">
             <thead>
-                <th>Dlient</th>
+                <th>#</th>
+                <th>Client</th>
                 <th>Date</th>
                 <th>Facture</th>
                 <th>Devis</th>
                 <th>trans</th>
             </thead>
-            <tbody></tbody>
+            <tbody>
+                @for (item of bonList; track $index) {
+                    <td>{{item.client.name}}</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                }
+            </tbody>
         </table>
     </div>
 </form>
