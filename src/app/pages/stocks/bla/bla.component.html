@@ -4,22 +4,26 @@
         <table class="table">
             <thead>
                 <th>#</th>
-                <th>Fournisseur</th>
-                <th>Date</th>
-                <th>Facture</th>
-                <th>bon de commande</th>
-                <th>trans</th>
+                <th>Nom</th>
+                <th>MatriculeFiscale</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>tel</th>
+                <th>fax</th>
+                <th>exonere</th>
             </thead>
             <tbody>
                 @for (item of bonList; track $index) {
                     <tr>
                     <td>{{$index}}</td>
-                    <td>{{item.fournisseur.intitule}}</td>
-                    <td>{{item.dateCreation}}</td>
-                    <td>{{item?.facture?.id}}</td>
-                    <td>{{item?.bonCmdA?.id}}</td>
+                    <td>{{item?.name}}</td>
+                    <td>{{item?.matriculeFiscale}}</td>
+                    <td>{{item?.email}}</td>
+                    <td>{{item?.adresse}}</td>
+                    <td>{{item?.tel}}</td>
+                    <td>{{item?.fax}}</td>
                     <td>
-                        <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.trans">
+                        <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.exonere">
                     </td>
                     </tr>
                 }

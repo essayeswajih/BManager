@@ -1,1 +1,29 @@
-<p>clients works!</p>
+<form [formGroup]="clientForm">
+    <label for="articles" class="form-label">Bons de livraison:</label>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Client</th>
+                <th>Date</th>
+                <th>Facture</th>
+                <th>Devis</th>
+                <th>trans</th>
+            </thead>
+            <tbody>
+                @for (item of clientList; track $index) {
+                    <tr>
+                        <td>{{$index}}</td>
+                        <td>{{item.client.name}}</td>
+                        <td>{{item.dateCreation}}</td>
+                        <td>{{item?.facture?.id}}</td>
+                        <td>{{item?.devis?.id}}</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.trans">
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
