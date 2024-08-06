@@ -33,9 +33,6 @@ export class AuthService {
     if (tokenData && tokenData.exp) {
       const expirationDate = new Date(tokenData.exp * 1000); // Convert seconds to milliseconds
       const currentDate = new Date();
-      console.log( currentDate>expirationDate)
-      console.log( currentDate<expirationDate)
-      console.log(expirationDate)
       return currentDate < expirationDate; // Return true if the token is expired
     }
       return false;
