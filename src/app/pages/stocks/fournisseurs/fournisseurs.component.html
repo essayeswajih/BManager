@@ -1,1 +1,33 @@
-<p>fournisseurs works!</p>
+<form [formGroup]="clientForm">
+    <label for="articles" class="form-label">Clients:</label>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>IatriculeFiscale</th>
+                <th>MatriculeFiscale</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>tel</th>
+                <th>fax</th>
+                <th>exonere</th>
+            </thead>
+            <tbody>
+                @for (item of clientList; track $index) {
+                    <tr>
+                        <td>{{$index}}</td>
+                        <td>{{item?.matriculeFiscale}}</td>
+                        <td>{{item?.matriculeFiscale}}</td>
+                        <td>{{item?.email}}</td>
+                        <td>{{item?.adresse}}</td>
+                        <td>{{item?.tel}}</td>
+                        <td>{{item?.fax}}</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.exonere">
+                        </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>
