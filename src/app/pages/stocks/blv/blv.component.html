@@ -17,7 +17,9 @@
                     <td>{{item.dateCreation}}</td>
                     <td>{{item?.facture?.id}}</td>
                     <td>{{item?.devis?.id}}</td>
-                    <td>{{item?.trans}}</td>
+                    <td>
+                        <input type="checkbox" class="form-control" name="trans" id="trans" [value]="item.trans">
+                    </td>
                 }
             </tbody>
         </table>
