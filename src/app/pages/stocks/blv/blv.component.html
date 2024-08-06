@@ -14,10 +14,10 @@
                 @for (item of bonList; track $index) {
                     <td>{{$index}}</td>
                     <td>{{item.client.name}}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                    <td>{{item.dateCreation}}</td>
+                    <td>{{item?.facture.id}}</td>
+                    <td>{{item?.devis.id}}</td>
+                    <td>{{item?.trans}}</td>
                 }
             </tbody>
         </table>
