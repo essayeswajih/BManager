@@ -94,8 +94,8 @@
                             <select  class="form-control" name="fournisseur" id="fournisseur" (change)="check(article,$event,'idFournisseur')">
                                 <option [value]="article.fournisseur.idFournisseur">{{article.fournisseur.intitule}}</option>
                                 @for(fournisseur1 of fournisseurs;track $index){
-                                    @if(article.fournisseur.idFournisseur != fournisseur1.idFournisseur){
-                                        <option [value]="fournisseur1.idFournisseur">{{fournisseur1.intitule}}</option>
+                                    @if(article.fournisseur?.idFournisseur != fournisseur1?.idFournisseur){
+                                        <option [value]="fournisseur1?.idFournisseur">{{fournisseur1.intitule}}</option>
                                     }
                                 }
 
