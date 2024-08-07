@@ -110,6 +110,8 @@ export class ArticleComponent implements OnInit {
       //this.articleForm.valid
       if (true) {
         let article: any = this.articleForm.value;
+        let des:String = this.articleForm.value.designation;
+        article.designation = des.toUpperCase();
         article.fournisseur=this.fournisseurs[this.articleForm.value.fournisseur];
         article.famille=this.familles[this.articleForm.value.famille];
         article.unite=this.unites[this.articleForm.value.unite];
