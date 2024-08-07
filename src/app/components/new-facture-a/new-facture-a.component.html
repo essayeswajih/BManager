@@ -73,10 +73,10 @@
                             <input type="text" class="form-control x" name="uniteArticle" id="uniteArticle" [value]="item.article.unite">
                         </td>
                         <td>
-                            <input type="text" class="form-control x" name="prixArticle"  id="prixArticle" [value]="item.article.achatHT">
+                            <input type="text" class="form-control x" name="prixArticle"  id="prixArticle" [value]="item.article.achatHT" (keyup)="change3(item,'puht',$event)">
                         </td>
                         <td>
-                            <input type="text" class="form-control x" name="remiseArticle" id="remiseArticle" [value]="item.remise"(keyup)="change3(item,'remise',$event)">
+                            <input type="text" class="form-control x" name="remiseArticle" id="remiseArticle" [value]="item.remise"(keyup)="change3(item,'rem',$event)">
                         </td>
                         <td>
                             <input type="text" class="form-control x" name="totalNetHT" id="totalNetHT" [value]="item.totalNet">

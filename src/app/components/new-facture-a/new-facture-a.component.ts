@@ -85,7 +85,7 @@ export class NewFactureAComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = this.roundToThreeDecimal(i.article?.achatHT - (i.article?.achatHT *  i?.remise  / 100)) * i.qte;
+              i.totalNet = this.roundToThreeDecimal(i?.puht - (i?.puht *  i?.remise  / 100)) * i.qte;
             }
           }
         }else{
