@@ -35,7 +35,7 @@ export class ArticleComponent implements OnInit {
       designation: ['', Validators.required],
       famille:['0', Validators.required],
       sousFamille:['', Validators.required],
-      achatHT:['0.000', Validators.required],
+      achatHT:['0', Validators.required],
       marge:[20,Validators.min(0)],
       montantMarge:[{ value: '0', disabled: false }, Validators.required],
       venteHT:[{ value: '0', disabled: false }, Validators.required],
@@ -57,7 +57,10 @@ export class ArticleComponent implements OnInit {
     console.log("Familles",this.familles);
 
     this.articleForm.patchValue({
-      refArticle: "ART_" + this.articles.length,
+      refArticle: "",
+      designation:"",
+      achatHT:"",
+      sousFamille:""
       //refFournisseur: "FOUR_" + this.fournisseurs.length,
     });
     
