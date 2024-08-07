@@ -59,7 +59,7 @@ export class ArticleComponent implements OnInit {
     this.articleForm.patchValue({
       refArticle: "",
       designation:"",
-      achatHT:"",
+      achatHT:"0",
       sousFamille:""
       //refFournisseur: "FOUR_" + this.fournisseurs.length,
     });
