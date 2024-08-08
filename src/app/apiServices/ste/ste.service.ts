@@ -594,6 +594,7 @@ export class SteService {
     data.idSte = this.idSte;
     try{
       const response = await this.axios.post("vente/bonLiv/getById",data);
+      console.log(response);
       if(response.status == 200){
         return response.data;
       }
