@@ -40,5 +40,23 @@ throw new Error('Method not implemented.');
       this.tstr.warning('Please fill out the form correctly.');
     }
   }
+  roundToThreeDecimal(num: number): number {
+    return parseFloat(num.toFixed(3));
+  }
+  change3(item: any,key: string, event:Event) {
+    const value = Number((event?.target as HTMLSelectElement).value);
+    console.log(value)
+    if(value>0){
+      for(let i of this.bon.items){
+        if(i==item){
+          i[key]=value;
+          i.totalNet = this.roundToThreeDecimal(i?.newVenteHT - (i?.newVenteHT *  i?.remise  / 100)) * i.qte;
+        }
+      }
+    console.log(this.bon)
+    }else{
+      this.tstr.error('Veuillez choisir un nombre positif','Error');
+    }
+  }
 }
 

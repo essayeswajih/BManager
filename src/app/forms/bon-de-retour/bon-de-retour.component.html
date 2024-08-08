@@ -34,7 +34,7 @@
                                 {{item?.article?.dateCreation}}
                             </TD>
                             <td>
-                                <input type="text" class="form-control" name="qte" id ="qte" [value]="item?.qte">
+                                <input type="text" class="form-control" name="qte" id ="qte" (change)="change3(item,'puht',$event)" [value]="item?.qte">
                             </td>
                             <td>
                                 <button class="btn btn-danger" (click)="remouve(item?.article?.idArticle)" >Supprimer</button>
