@@ -39,6 +39,7 @@ import { ClientsComponent } from './pages/stocks/clients/clients.component';
 import { FournisseursComponent } from './pages/stocks/fournisseurs/fournisseurs.component';
 import { BlvComponent } from './pages/stocks/blv/blv.component';
 import { BlaComponent } from './pages/stocks/bla/bla.component';
+import { BonDeRetourComponent } from './forms/bon-de-retour/bon-de-retour.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { BlaComponent } from './pages/stocks/bla/bla.component';
     FournisseursComponent,
     BlvComponent,
     BlaComponent,
+    BonDeRetourComponent
   ],
   imports: [
     BrowserModule,
