@@ -24,7 +24,7 @@
                     <th>Qte</th>
                     <th>Action</th>
                 </tr>
-                @if (bon !={}) {
+                @if (bon this.bon?.id != null) {
                     <tr>
                         <td>{{bon?.client?.name}}</td>
                         <td>{{bon?.dateCreation}}</td>
