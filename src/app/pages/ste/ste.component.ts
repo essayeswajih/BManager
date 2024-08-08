@@ -23,7 +23,7 @@ export class SteComponent {
   }
   checkId(id: string) {
     for (let i of id) {
-      if (!(i >= '0') && !(i <= '9')) {
+      if (!(i >= '0' && i <= '99999')) {
         console.log("id problem")
         break;
       }
