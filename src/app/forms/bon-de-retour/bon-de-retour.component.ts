@@ -16,4 +16,13 @@ export class BonDeRetourComponent {
       'id': ['',Validators.required],
     })
   }
+  onClick() {
+    if (this.search.valid) {
+      this.tstr.success(' form correctly.');
+
+    } else {
+      this.tstr.warning('Please fill out the form correctly.');
+    }
+  }
 }
+
