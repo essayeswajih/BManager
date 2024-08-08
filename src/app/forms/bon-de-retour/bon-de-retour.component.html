@@ -1,14 +1,17 @@
-<form >
+<form [formGroup]="search">
     <label for="articles" class="form-label">Bon de retour:</label>
     <div class="table-responsive">
         <table class="table">
             <thead>
                 <tr>
-                    <th>n° bon de livraison</th>
+                    <th colspan="2">n° bon de livraison</th>
                 </tr>
                 <tr>
                     <td>
                         <input class="form-control" type="search" name="" id="">
+                    </td>
+                    <td>
+                        <button class="btn btn-primary">Search</button>
                     </td>
                 </tr>
 
