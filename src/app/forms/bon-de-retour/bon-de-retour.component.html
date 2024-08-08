@@ -26,8 +26,8 @@
                 </tr>
                 @if (bon !={}) {
                     <tr>
-                        <td>{{bon.client.name}}</td>
-                        <td>{{bon.dateCreation}}</td>
+                        <td>{{bon?.client?.name}}</td>
+                        <td>{{bon?.dateCreation}}</td>
                         <td><button class="btn btn-primary">clear</button></td>
                         <td></td>
                     </tr>
