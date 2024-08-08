@@ -604,7 +604,7 @@ export class SteService {
   }
   async saveBonRetour(data:any) {
     try {
-      const response = await this.axios.post(`achat/bonLiv/saveBonRetour`,data);
+      const response = await this.axios.post(`vente/bonLiv/saveBonRetour`,data);
       if (response.status === 200) {
         return response.data;
       }
