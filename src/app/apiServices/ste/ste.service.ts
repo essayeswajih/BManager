@@ -590,7 +590,7 @@ export class SteService {
   }
   async getBonLivVById(idBon:number){
     let data:any = {};
-    data.iidBond = Number(idBon);
+    data.idBon = Number(idBon);
     data.idSte = this.idSte;
     try{
       const response = await this.axios.post("vente/bonLiv/getById",data);
