@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SteService } from '../../apiServices/ste/ste.service';
 import { ToastrService } from 'ngx-toastr';
+import { error } from 'console';
 
 @Component({
   selector: 'app-bon-de-retour',
@@ -19,7 +20,13 @@ export class BonDeRetourComponent {
   onClick() {
     if (this.search.valid) {
       this.tstr.success(' form correctly.');
-      this.ste.getBonLivVById(this.search.value.id);
+      this.ste.getBonLivVById(this.search.value.id).then(
+        (data)=>{
+          console.log(data);
+        }
+      ).catch(
+        (error)=>console.log(error)
+      );
 
     } else {
       this.tstr.warning('Please fill out the form correctly.');
