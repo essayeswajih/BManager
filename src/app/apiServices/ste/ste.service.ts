@@ -588,4 +588,17 @@ export class SteService {
       window.URL.revokeObjectURL(downloadLink.href);
     
   }
+  async getBonLivVById(idBon:number){
+    let data:any = {};
+    data.iidBond = idBon;
+    data.idSte
+    try{
+      const response = await this.axios.post("vente/bonLiv/getById",data);
+      if(response.status == 200){
+        return response.data;
+      }
+    }catch(error){
+      console.log(error)
+    }
+  }
 }
