@@ -20,6 +20,7 @@
             <thead>
                 <tr>
                     <th>Ref Article</th>
+                    <th>Designiation</th>
                     <th>Qte</th>
                     <th>Action</th>
                 </tr>
@@ -29,11 +30,14 @@
                             <td>
                                 {{item?.article?.refArticle}}
                             </td>
+                            <TD>
+                                {{item?.article?.dateCreation}}
+                            </TD>
                             <td>
                                 <input type="text" class="form-control" name="qte" id ="qte" [value]="item?.qte">
                             </td>
                             <td>
-                                <button class="btn btn-danger">Supprimer</button>
+                                <button class="btn btn-danger" (click)="remouve(item?.article?.idArticle)" >Supprimer</button>
                             </td>
                         </tr>
                     }
@@ -43,7 +47,7 @@
             <tfoot>
                 <tr>
                     <td colspan="5">
-                        <button class="btn btn-primary">Save</button>
+                        <button class="btn btn-primary" (click)="save()" >Save</button>
                     </td>
                 </tr>
             </tfoot>

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SteService } from '../../apiServices/ste/ste.service';
 import { ToastrService } from 'ngx-toastr';
-import { error } from 'console';
 
 @Component({
   selector: 'app-bon-de-retour',
@@ -10,6 +9,12 @@ import { error } from 'console';
   styleUrl: './bon-de-retour.component.scss'
 })
 export class BonDeRetourComponent {
+save() {
+throw new Error('Method not implemented.');
+}
+remouve(arg0: any) {
+throw new Error('Method not implemented.');
+}
   search!:FormGroup;
   bon:any = {};
   constructor(private fb:FormBuilder,private ste:SteService,private tstr:ToastrService){
