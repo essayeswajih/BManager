@@ -19,6 +19,7 @@ export class BonDeRetourComponent {
   onClick() {
     if (this.search.valid) {
       this.tstr.success(' form correctly.');
+      this.ste.getBonLivVById(this.search.value.id);
 
     } else {
       this.tstr.warning('Please fill out the form correctly.');
