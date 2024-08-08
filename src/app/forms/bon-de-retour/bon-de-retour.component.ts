@@ -9,9 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './bon-de-retour.component.scss'
 })
 export class BonDeRetourComponent {
-save() {
-throw new Error('Method not implemented.');
-}
+
 remouve(arg0: any) {
 throw new Error('Method not implemented.');
 }
@@ -56,6 +54,17 @@ throw new Error('Method not implemented.');
     console.log(this.bon);
     }else{
       this.tstr.error('Veuillez choisir un nombre positif','Error');
+    }
+  }
+  save() {
+    if(this.bon ! = {}){
+      this.ste.saveBonRetour(this.bon).then(
+        (data)=>{
+          console.log(data)
+        }
+      ).catch(
+        (error)=>console.log(error)
+      );
     }
   }
 }

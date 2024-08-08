@@ -602,4 +602,15 @@ export class SteService {
       console.log(error)
     }
   }
+  async saveBonRetour(data:any) {
+    try {
+      const response = await this.axios.post(`achat/bonLiv/saveBonRetour`,data);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("SteService: saveBonRetour ERROR: ", error);
+      throw error;
+    }
+  }
 }
