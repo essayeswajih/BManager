@@ -31,10 +31,10 @@
                                 {{item?.article?.refArticle}}
                             </td>
                             <TD>
-                                {{item?.article?.dateCreation}}
+                                {{item?.article?.designation}}
                             </TD>
                             <td>
-                                <input type="text" class="form-control" name="qte" id ="qte" (change)="change3(item,'puht',$event)" [value]="item?.qte">
+                                <input type="text" class="form-control" name="qte" id ="qte" (keypress)="change3(item,'puht',$event)" [value]="item?.qte">
                             </td>
                             <td>
                                 <button class="btn btn-danger" (click)="remouve(item?.article?.idArticle)" >Supprimer</button>

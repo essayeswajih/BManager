@@ -53,7 +53,7 @@ throw new Error('Method not implemented.');
           i.totalNet = this.roundToThreeDecimal(i?.newVenteHT - (i?.newVenteHT *  i?.remise  / 100)) * i.qte;
         }
       }
-    console.log(this.bon)
+    console.log(this.bon);
     }else{
       this.tstr.error('Veuillez choisir un nombre positif','Error');
     }
