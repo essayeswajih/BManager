@@ -19,18 +19,35 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th>Client</th>
+                    <th>dateCreation</th>
+                    <th>Clear</th>
+                </tr>
+
+            </thead>
+            <tfoot>
+                @if (bon?.id != null) {
+                    <tr>
+                        <td>{{bon?.client?.name}}</td>
+                        <td>{{bon?.dateCreation}}</td>
+                        <td><button class="btn btn-primary">clear</button></td>
+                    </tr>
+                }
+            </tfoot>
+
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
                     <th>Ref Article</th>
                     <th>Designiation</th>
                     <th>Qte</th>
                     <th>Action</th>
                 </tr>
-                @if (bon this.bon?.id != null) {
-                    <tr>
-                        <td>{{bon?.client?.name}}</td>
-                        <td>{{bon?.dateCreation}}</td>
-                        <td><button class="btn btn-primary">clear</button></td>
-                        <td></td>
-                    </tr>
+                @if (bon?.id != null) {
+
                     @for (item of bon?.items; track $index) {
                         <tr>
                             <td>
