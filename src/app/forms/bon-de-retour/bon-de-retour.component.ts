@@ -23,6 +23,9 @@ export class BonDeRetourComponent {
       this.ste.getBonLivVById(this.search.value.id).then(
         (data)=>{
           console.log("data",data);
+          if(data){
+            this.bon = data;
+          }
         }
       ).catch(
         (error)=>console.log(error)

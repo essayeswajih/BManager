@@ -20,32 +20,25 @@
             <thead>
                 <tr>
                     <th>Ref Article</th>
-                    <td>
-                        Client
-                    </td>
-                    <td>
-                        Date
-                    </td>
                     <th>Qte</th>
                     <th>Action</th>
                 </tr>
-                <tr>
-                    <td>
-                        ref article
-                    </td>
-                    <td>
-                        client
-                    </td>
-                    <td>
-                        date
-                    </td>
-                    <td>
-                        <input type="text" class="form-control" name="qte" id ="qte">
-                    </td>
-                    <td>
-                        <button class="btn btn-danger">Supprimer</button>
-                    </td>
-                </tr>
+                @if (bon !={}) {
+                    @for (item of bon?.items; track $index) {
+                        <tr>
+                            <td>
+                                {{item?.article?.refArticle}}
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" name="qte" id ="qte" [value]="item?.qte">
+                            </td>
+                            <td>
+                                <button class="btn btn-danger">Supprimer</button>
+                            </td>
+                        </tr>
+                    }
+                }
+
             </thead>
             <tfoot>
                 <tr>
