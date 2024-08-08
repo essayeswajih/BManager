@@ -14,7 +14,7 @@ remouve(arg0: any) {
 throw new Error('Method not implemented.');
 }
   search!:FormGroup;
-  bon:any = {};
+  bon :any= {};
   constructor(private fb:FormBuilder,private ste:SteService,private tstr:ToastrService){
     this.search = this.fb.group({
       'id': ['',Validators.required],
@@ -57,7 +57,7 @@ throw new Error('Method not implemented.');
     }
   }
   save() {
-    if(this.bon ! = {}){
+    if(this.bon?.id != null){
       this.ste.saveBonRetour(this.bon).then(
         (data)=>{
           console.log(data)
