@@ -34,7 +34,7 @@
                                 {{item?.article?.designation}}
                             </TD>
                             <td>
-                                <input type="text" class="form-control" name="qte" id ="qte" (keypress)="change3(item,'qte',$event)" [value]="item?.qte">
+                                <input type="text" class="form-control" name="qte" id ="qte" (keyup)="change3(item,'qte',$event)" [value]="item?.qte">
                             </td>
                             <td>
                                 <button class="btn btn-danger" (click)="remouve(item?.article?.idArticle)" >Supprimer</button>
