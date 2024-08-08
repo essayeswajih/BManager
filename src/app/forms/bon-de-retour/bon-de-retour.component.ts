@@ -22,7 +22,7 @@ export class BonDeRetourComponent {
       this.tstr.success(' form correctly.');
       this.ste.getBonLivVById(this.search.value.id).then(
         (data)=>{
-          console.log(data);
+          console.log("data",data);
         }
       ).catch(
         (error)=>console.log(error)
