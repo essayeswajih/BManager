@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AxiosService } from './../axios/axios.service';
-import { error } from 'console';
+import { Console, error } from 'console';
 import { catchError, Observable } from 'rxjs';
 import axios from 'axios';
 import { ToastrService } from 'ngx-toastr';
@@ -97,7 +97,7 @@ export class SteService {
         return response.data;
       }
     }catch(error){
-      return error;
+      console.log(error);
     }
   }
   async saveAllFamille(depotsUpdated: any[]) {
