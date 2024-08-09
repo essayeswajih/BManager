@@ -96,9 +96,6 @@ export class SteService {
       if (response.status === 200) {
         return response.data;
       }
-      else{
-        return response.data;
-      }
     }catch(error){
       return error;
     }
