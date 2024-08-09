@@ -1,6 +1,7 @@
 import { SteService } from './../../apiServices/ste/ste.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-famille',
@@ -14,7 +15,7 @@ export class FamilleComponent implements OnInit {
   famillesUpdated: any[] = [];
   allDepots: any[] = [];
 
-  constructor(private fb: FormBuilder, private steService: SteService) {
+  constructor(private fb: FormBuilder, private steService: SteService,private tstr:ToastrService) {
     this.familleForm = this.fb.group({
       idDepot: ['', Validators.required],
       nomFamille: ['', Validators.required],
@@ -41,7 +42,13 @@ export class FamilleComponent implements OnInit {
         adresse: this.familleForm.value.adresse,
         depot: { idDepot: Number(this.familleForm.value.idDepot) }
       };
-      await this.steService.saveFamille(famille);
+      await this.steService.saveFamille(famille).then(
+        (response) => {
+          this.tstr.success('Famille ajoutée avec succès');
+        }
+      ).catch(
+        (error) => { this.tstr.error("INTERNAL SERVER ERROR","ERROR")}
+      );
       await this.ngOnInit();
     }
   }
