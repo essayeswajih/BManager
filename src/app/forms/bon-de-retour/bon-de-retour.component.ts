@@ -10,9 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BonDeRetourComponent {
 
-remouve(arg0: any) {
-throw new Error('Method not implemented.');
-}
+
   search!:FormGroup;
   bon :any= {};
   constructor(private fb:FormBuilder,private ste:SteService,private tstr:ToastrService){
@@ -66,6 +64,15 @@ throw new Error('Method not implemented.');
         (error)=>console.log(error)
       );
     }
+  }
+  remouve(idItem:number) {
+    let list :any = [];
+    for(let i of this.bon?.items){
+      if(i.id != idItem){
+        list.push(i);
+      }
+    }
+    this.bon.items = list;
   }
 }
 
