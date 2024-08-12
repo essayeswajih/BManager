@@ -185,12 +185,15 @@ export class SteService {
     try {
       const response = await this.axios.post("fournisseur/save", fournisseur);
       if (response?.status === 200) {
+        this.tstr.success('Fournisseur added successfully !!.',"Success");
         return response.data;
       }
       else{
+        this.tstr.error('Cant Add this Fournisseur !!.',"ERROR");
         return response.data;
       }
     }catch(error){
+      this.tstr.error('Cant Add this Fournisseur !!.',"ERROR");
       return error;
     }
   }
@@ -227,15 +230,17 @@ export class SteService {
       console.log("fournisseur SERVER INTERNAL ERROR", error);
     }
   }
-  async saveClients(fournisseur:any){
-    fournisseur.ste={ idSte: this.idSte };
-    console.log("fournisseur",fournisseur)
+  async saveClients(client:any){
+    client.ste={ idSte: this.idSte };
+    console.log("fournisseur",client)
     try {
-      const response = await this.axios.post("clients/save", fournisseur);
+      const response = await this.axios.post("clients/save", client);
       if (response.status === 200) {
+        this.tstr.success('Client added successfully !!.',"Success");
         return response.data;
       }
     }catch(error){
+      this.tstr.error('Cant Add this Client !!.',"ERROR");
       return error;
     }
   }
