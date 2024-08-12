@@ -85,7 +85,7 @@ export class NewBonLivComponent {
       for(let i of this.items){
         if(i==item){
           i[key]=value;
-          i.totalNet = (i.article?.achatHT - (i.article?.achatHT * i.remise / 100)) * i.qte;
+          i.totalNet = (i?.newAchatHT - (i?.newAchatHT * i?.remise / 100)) * i?.qte;
         }
       }
     }else{
@@ -107,7 +107,7 @@ export class NewBonLivComponent {
     item.article = article;
     item.designation = article?.designation;
     item.unite = article?.unite;
-    item.puht = article?.achatHT;
+    item.newAchatHT = article?.achatHT;
     item.qte = qte || 1;
     item.remise = rem || 0;
     item.tva = article?.tva;
