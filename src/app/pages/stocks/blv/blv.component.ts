@@ -9,6 +9,12 @@ import { SteService } from '../../../apiServices/ste/ste.service';
   styleUrl: './blv.component.scss'
 })
 export class BlvComponent {
+onSortChange($event: Event) {
+throw new Error('Method not implemented.');
+}
+onSearchChange($event: Event) {
+throw new Error('Method not implemented.');
+}
   bonForm !:FormGroup;
   bonList:any[] = [];
   constructor(private fb :FormBuilder ,private tstr:ToastrService,private ste:SteService){

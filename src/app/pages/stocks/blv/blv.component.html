@@ -2,6 +2,24 @@
     <label for="articles" class="form-label">Bons de livraison:</label>
     <div class="table-responsive">
         <table class="table">
+            <tbody>
+                <tr>
+                    <td class="form-label">search:</td>
+                    <td><input type="search" name="" id="" class="form-control" (input)="onSearchChange($event)"></td>
+                    <td class="form-label">Sorted By:</td>
+                    <td>
+                        <select name="" id="" class="form-control" (change)="onSortChange($event)">
+                            <option value="0">Designiation</option>
+                            <option value="1">Prix d'achat</option>
+                            <option value="2">Disponibilité des stocks</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
             <thead>
                 <th>#</th>
                 <th>Client</th>

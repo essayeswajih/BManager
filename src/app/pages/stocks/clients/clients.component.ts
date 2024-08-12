@@ -9,6 +9,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './clients.component.scss'
 })
 export class ClientsComponent {
+onSortChange($event: Event) {
+throw new Error('Method not implemented.');
+}
+onSearchChange($event: Event) {
+throw new Error('Method not implemented.');
+}
   clientForm !:FormGroup;
   clientList:any[] = [];
   constructor(private fb :FormBuilder ,private tstr:ToastrService,private ste:SteService){

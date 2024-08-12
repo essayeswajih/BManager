@@ -9,6 +9,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './bla.component.scss'
 })
 export class BlaComponent {
+onSortChange($event: Event) {
+throw new Error('Method not implemented.');
+}
+onSearchChange($event: Event) {
+throw new Error('Method not implemented.');
+}
   bonForm !:FormGroup;
   bonList:any[] = [];
   constructor(private fb :FormBuilder ,private tstr:ToastrService,private ste:SteService){

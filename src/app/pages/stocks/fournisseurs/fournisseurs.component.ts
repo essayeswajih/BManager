@@ -9,6 +9,12 @@ import { SteService } from '../../../apiServices/ste/ste.service';
   styleUrl: './fournisseurs.component.scss'
 })
 export class FournisseursComponent {
+onSortChange($event: Event) {
+throw new Error('Method not implemented.');
+}
+onSearchChange($event: Event) {
+throw new Error('Method not implemented.');
+}
   clientForm !:FormGroup;
   clientList:any[] = [];
   constructor(private fb :FormBuilder ,private tstr:ToastrService,private ste:SteService){
