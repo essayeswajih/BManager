@@ -9,12 +9,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './bla.component.scss'
 })
 export class BlaComponent {
-onSortChange($event: Event) {
-throw new Error('Method not implemented.');
-}
-onSearchChange($event: Event) {
-throw new Error('Method not implemented.');
-}
+  filteredBons: any[] = [];
+  searchQuery: string = '';
+  sortBy: string = '0';
   bonForm !:FormGroup;
   bonList:any[] = [];
   constructor(private fb :FormBuilder ,private tstr:ToastrService,private ste:SteService){
@@ -29,6 +26,7 @@ throw new Error('Method not implemented.');
         if (data.​status==200){
           console.log(data)
           this.bonList=data.data;
+          this.filteredBons = this.bonList;
         }
       }
     ).catch(
@@ -36,5 +34,40 @@ throw new Error('Method not implemented.');
         this.tstr.error("INTERNAL SERVER ERROR","ERROR")
       }
     )
+  }
+  onSearchChange(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    this.searchQuery = inputElement.value;
+    this.applyFilters();
+  }
+
+  onSortChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    this.sortBy = selectElement.value;
+    console.log(this.sortBy);
+    this.applyFilters();
+  }
+
+  private applyFilters(): void {
+    console.log('Search Query:', this.searchQuery);
+    let filtered = this.bonList.filter(bon =>
+      (bon.fournisseur?.intitule || '').toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+
+    console.log('Filtered Articles:', filtered);
+    switch (this.sortBy) {
+      case '0': 
+        filtered.sort((a, b) => (a.dateCreation || '').localeCompare(b.dateCreation || ''));
+        break;
+      case '2':
+        filtered.sort((a, b) => (a.trans ? 1 : 0) - (b.trans ? 1 : 0));
+        break;
+      default:
+        filtered.sort((a, b) => (a.fournisseur?.intitule || '').localeCompare(b.fournisseur?.intitule || ''));
+        break;
+    }
+  
+    this.filteredBons = filtered;
+    console.log('Sorted bons:', this.filteredBons);
   }
 }

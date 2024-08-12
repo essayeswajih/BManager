@@ -9,9 +9,9 @@
                     <td class="form-label">Sorted By:</td>
                     <td>
                         <select name="" id="" class="form-control" (change)="onSortChange($event)">
-                            <option value="0">Designiation</option>
-                            <option value="1">Prix d'achat</option>
-                            <option value="2">Disponibilité des stocks</option>
+                            <option value="1">Nom Client</option>
+                            <option value="0">Date</option>
+                            <option value="2">Transfared</option>
                         </select>
                     </td>
                 </tr>
@@ -29,7 +29,7 @@
                 <th>trans</th>
             </thead>
             <tbody>
-                @for (item of bonList; track $index) {
+                @for (item of filteredBons; track $index) {
                     <tr>
                         <td>{{$index}}</td>
                         <td>{{item.client.name}}</td>
