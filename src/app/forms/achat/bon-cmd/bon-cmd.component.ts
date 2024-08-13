@@ -96,19 +96,19 @@ supprimer(idArticle:Number) {
     let value = Number((event?.target as HTMLSelectElement).value);
     if(value>0 || value<99999999) {
       item[key]=value;
-      if(key=='rem'){
-        let r =(item.rem*0.01)*(item.newAchatHT*item['qte']);
+      if(key=='remise'){
+        let r =(item.remise*0.01)*(item.newAchatHT*item['qte']);
         item['totalNet']=(item.newAchatHT*item['qte'])-r;
       }
       if(key=='qte'){
-        let r =(item.rem*0.01)*(item.newAchatHT*value);
-        item['totalNet']=(item.newAchatHT*value)-r;
+        let r =(item.remise*0.01)*(item.newAchatHT*item['qte']);
+        item['totalNet']=(item.newAchatHT*item['qte'])-r;
       }
       if(key='newAchatHT'){
-        let r =(item.rem*0.01)*(item.newAchatHT*item['qte']);
+        let r =(item.remise*0.01)*(item.newAchatHT*item['qte']);
         item['totalNet']=(item.newAchatHT*value)-r;
       }
-      
+      console.log(item)
     }
     this.bc.update(item);
   }
@@ -173,7 +173,7 @@ class createBonCommande {
     item.unite = article?.unite;
     item.newAchatHT = article?.achatHT;
     item.qte = qte || 1;
-    item.rem = rem || 0;
+    item.remise = rem || 0;
     item.tva = article?.tva;
     item.totalNet = (article.achatHT - (article.achatHT * rem / 100)) * qte;
     return item;
