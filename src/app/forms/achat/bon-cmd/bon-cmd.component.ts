@@ -97,14 +97,18 @@ supprimer(idArticle:Number) {
     if(value>0 || value<99999999) {
       item[key]=value;
       if(key=='rem'){
-        let r =(item.rem*0.01)*(item.article.achatHT*item['qte']);
-        item['totalNet']=(item.article.achatHT*item['qte'])-r;
+        let r =(item.rem*0.01)*(item.newAchatHT*item['qte']);
+        item['totalNet']=(item.newAchatHT*item['qte'])-r;
       }
       if(key=='qte'){
-        let r =(item.rem*0.01)*(item.article.achatHT*value);
-        item['totalNet']=(item.article.achatHT*value)-r;
-        item['totalNet']= item.article.achatHT*value-r;
+        let r =(item.rem*0.01)*(item.achatHT*value);
+        item['totalNet']=(item.newAchatHT*value)-r;
       }
+      if(key='newAchatHT'){
+        let r =(item.rem*0.01)*(item.achatHT*item['qte']);
+        item['totalNet']=(item.newAchatHT*value)-r;
+      }
+      
     }
     this.bc.update(item);
   }
@@ -167,7 +171,7 @@ class createBonCommande {
     item.article = article;
     item.designation = article?.designation;
     item.unite = article?.unite;
-    item.puht = article?.achatHT;
+    item.newAchatHT = article?.achatHT;
     item.qte = qte || 1;
     item.rem = rem || 0;
     item.tva = article?.tva;
