@@ -10,7 +10,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class BonLivComponent implements OnInit {
 
-
+  id:number = 0;
   bonCmdList: any[] = [];
   form: FormGroup;
   bl:BonLivA = new BonLivA([]);
@@ -72,7 +72,7 @@ export class BonLivComponent implements OnInit {
           this.steService.toPdfx(data,"achat/bonLiv/toPdf").then(
             (data)=>{
               if(data=="created"){
-                this.bl.setTransferedBon(bon.id);
+                this.bl.setTransferedBon(bon.id,data.id);
 
               }
             }
@@ -127,11 +127,12 @@ class BonLivA{
   public getBonList(){
     return this.bonList;
   }
-  setTransferedBon(id: any) {
+  setTransferedBon(id: any,idbonLiv:any) {
     let x:any[]=[] ;
         for(let i of this.bonList){
           if(i.id == id){
             i.trans = true;
+            i.idbonLiv=idbonLiv;
         }
           x.push(i)
       }
