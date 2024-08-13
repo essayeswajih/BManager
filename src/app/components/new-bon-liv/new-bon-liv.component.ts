@@ -122,6 +122,7 @@ export class NewBonLivComponent {
         console.log("xyz",response)
         this.ste.toPdf("achat/bonLiv/toPdf",response).then(
           (response1) => {
+            alert(this.idBon)
             this.idBon = response?.id ;
             this.tsr.success("Bon de Livraison Crée","success");
             this.created = true;
