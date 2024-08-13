@@ -123,7 +123,7 @@ export class NewBonLivComponent {
         this.ste.toPdf("achat/bonLiv/toPdf",response).then(
           (response1) => {
             alert(this.idBon)
-            this.idBon = response?.id ;
+            this.idBon = response1?.id ;
             this.tsr.success("Bon de Livraison Crée","success");
             this.created = true;
           },(error)=>{this.tsr.error("Network ERROR !!!","ERROR");}
