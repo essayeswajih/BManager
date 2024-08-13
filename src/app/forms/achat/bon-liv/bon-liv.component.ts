@@ -68,11 +68,11 @@ export class BonLivComponent implements OnInit {
           console.log("bon liv",data);
           console.log(data);
           this.toastr.success('Succès', 'Bon de Livraison Généré');
-          
+          this.bl.setCreated(bon.id,data.id);
           this.steService.toPdfx(data,"achat/bonLiv/toPdf").then(
             (data)=>{
               if(data=="created"){
-                this.bl.setTransferedBon(bon.id,data.id);
+                this.bl.setTransferedBon(bon.id);
 
               }
             }
@@ -127,12 +127,21 @@ class BonLivA{
   public getBonList(){
     return this.bonList;
   }
-  setTransferedBon(id: any,idbonLiv:any) {
+  setCreated(id: any,idbonLiv:any) {
+    let x:any[]=[] ;
+        for(let i of this.bonList){
+          if(i.id == id){
+            i.idbonLiv=idbonLiv;
+        }
+          x.push(i)
+      }
+    this.bonList = x;
+  }
+  setTransferedBon(id: any) {
     let x:any[]=[] ;
         for(let i of this.bonList){
           if(i.id == id){
             i.trans = true;
-            i.idbonLiv=idbonLiv;
         }
           x.push(i)
       }
