@@ -96,18 +96,8 @@ supprimer(idArticle:Number) {
     let value = Number((event?.target as HTMLSelectElement).value);
     if(value>0 || value<99999999) {
       item[key]=value;
-      if(key=='remise'){
         let r =(item.remise*0.01)*(item.newAchatHT*item['qte']);
         item['totalNet']=(item.newAchatHT*item['qte'])-r;
-      }
-      if(key=='qte'){
-        let r =(item.remise*0.01)*(item.newAchatHT*item['qte']);
-        item['totalNet']=(item.newAchatHT*item['qte'])-r;
-      }
-      if(key='newAchatHT'){
-        let r =(item.remise*0.01)*(item.newAchatHT*item['qte']);
-        item['totalNet']=(item.newAchatHT*value)-r;
-      }
       console.log(item)
     }
     this.bc.update(item);
