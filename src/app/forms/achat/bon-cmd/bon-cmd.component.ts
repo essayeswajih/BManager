@@ -101,11 +101,11 @@ supprimer(idArticle:Number) {
         item['totalNet']=(item.newAchatHT*item['qte'])-r;
       }
       if(key=='qte'){
-        let r =(item.rem*0.01)*(item.achatHT*value);
+        let r =(item.rem*0.01)*(item.newAchatHT*value);
         item['totalNet']=(item.newAchatHT*value)-r;
       }
       if(key='newAchatHT'){
-        let r =(item.rem*0.01)*(item.achatHT*item['qte']);
+        let r =(item.rem*0.01)*(item.newAchatHT*item['qte']);
         item['totalNet']=(item.newAchatHT*value)-r;
       }
       
