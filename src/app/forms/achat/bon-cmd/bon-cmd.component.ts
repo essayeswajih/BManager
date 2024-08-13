@@ -184,7 +184,8 @@ class createBonCommande {
       data.items.push({
         article: { idArticle: itemsList[i].article.idArticle },
         qte: itemsList[i].qte,
-        remise: itemsList[i].rem,
+        remise: itemsList[i].remise,
+        newAchatHT : itemsList[i].newAchatHT,
         totalNet: itemsList[i].totalNet
       });
     }
