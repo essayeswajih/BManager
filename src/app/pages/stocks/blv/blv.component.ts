@@ -71,6 +71,9 @@ export class BlvComponent implements OnInit {
       case '2':
         filtered.sort((a, b) => (a.trans ? 1 : 0) - (b.trans ? 1 : 0));
         break;
+      case '3':
+        filtered.sort((a, b) =>  (b.trans ? 1 : 0) - (a.trans ? 1 : 0));
+        break;
       default:
         filtered.sort((a, b) => (a.client.name || '').localeCompare(b.client.name || ''));
         break;

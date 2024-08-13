@@ -62,6 +62,9 @@ export class BlaComponent {
       case '2':
         filtered.sort((a, b) => (a.trans ? 1 : 0) - (b.trans ? 1 : 0));
         break;
+      case '3':
+        filtered.sort((a, b) => (a.trans ? 1 : 0) - (b.trans ? 1 : 0));
+        break;
       default:
         filtered.sort((a, b) => (a.fournisseur?.intitule || '').localeCompare(b.fournisseur?.intitule || ''));
         break;

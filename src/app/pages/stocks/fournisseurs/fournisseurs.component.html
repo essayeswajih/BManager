@@ -9,9 +9,8 @@
                     <td class="form-label">Sorted By:</td>
                     <td>
                         <select name="" id="" class="form-control" (change)="onSortChange($event)">
-                            <option value="0">Designiation</option>
-                            <option value="1">Prix d'achat</option>
-                            <option value="2">Disponibilité des stocks</option>
+                            <option value="0">Intitulé</option>
+                            <option value="1">Adresse</option>
                         </select>
                     </td>
                 </tr>
@@ -29,11 +28,10 @@
                 <th>Adresse</th>
                 <th>tel</th>
                 <th>fax</th>
-                <th>exonere</th>
             </tr>
             </thead>
             <tbody>
-                @for (item of clientList; track $index) {
+                @for (item of filteredFournisseurs; track $index) {
                     <tr>
                         <td>{{$index}}</td>
                         <td>{{item?.intitule}}</td>
@@ -42,10 +40,7 @@
                         <td>{{item?.adresse}}</td>
                         <td>{{item?.tel}}</td>
                         <td>{{item?.fax}}</td>
-                        <td>
-                            <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.exonere">
-                        </td>
-                        </tr>
+                    </tr>
                 }
             </tbody>
         </table>
