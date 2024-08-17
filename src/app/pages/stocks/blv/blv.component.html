@@ -34,7 +34,7 @@
             </thead>
             <tbody>
                 @for (item of filteredBons; track $index) {
-                    <tr>
+                    <tr (click)="select(item)">
                         <td>{{$index}}</td>
                         <td>{{item.client.name}}</td>
                         <td>{{item.dateCreation}}</td>
