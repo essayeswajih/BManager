@@ -15,7 +15,7 @@
                         <tr>
                             <td>{{bonLiv?.id}}</td>
                             <td>{{bonLiv?.ref}}</td>
-                            <td>{{"bonLivAchat"+bonLiv?.id}}</td>
+                            <td>{{"bonLivAchat"+bonLiv?.id+".pdf"}}</td>
                             <td>{{bonLiv?.fournisseur.intitule}}</td>
                             <td>{{bonLiv?.dateCreation}}</td>
                             <td>{{bonLiv?.trans}}</td>
@@ -26,7 +26,6 @@
                    
                     @if(bonLiv?.items!=[]){
                     @for (item1 of bonLiv?.items; track $index) {
-                        {{historiqueBonLiv?.date |json}}
                     <tbody>
                         <tr>
                             <th>Réf Article</th>
