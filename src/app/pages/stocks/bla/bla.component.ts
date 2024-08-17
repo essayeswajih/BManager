@@ -82,7 +82,6 @@ export class BlaComponent {
   }
   
   select(bonLiv:any) {
-    alert("bon liv selected")
     this.selectedBonLiv=bonLiv;
     this.Active();
   }

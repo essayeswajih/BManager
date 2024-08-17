@@ -17,6 +17,9 @@ export class BlvComponent implements OnInit {
   bonForm!: FormGroup;
   bonList: any[] = [];
 
+  isActive: boolean = false;
+  selectedBonLiv:any={};
+
   constructor(
     private fb: FormBuilder,
     private tstr: ToastrService,
@@ -81,5 +84,13 @@ export class BlvComponent implements OnInit {
   
     this.filteredBons = filtered;
     console.log('Sorted bons:', this.filteredBons);
+  }
+  Active(){
+    this.isActive = ! this.isActive;
+  }
+  
+  select(bonLiv:any) {
+    this.selectedBonLiv=bonLiv;
+    this.Active();
   }
 }
