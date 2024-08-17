@@ -23,44 +23,11 @@
                         
                         
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th>Achat HT<span>(DNT)</span></th>
-                            <th>Fodec<span>(DNT)</span></th>
-                            <th>TVA<span>(%)</span></th>
-                            <!--<th>Timbre</th>-->
-                            <th>Marge<span>(%)</span></th>
-                            <th>Mont Marge<span>(DNT)</span></th>
-                            <th>Vente Ht<span>(DNT)</span></th>
-                            <!--<th>Achat TTC</th>-->
-                            <th>Vente TTC<span>(DNT)</span></th>
-                        </tr>
-    
-                        <tr>
-                            <td>{{bonLiv?.article?.achatHT}} ({{bonLiv?.article?.devise}})</td>
-                            <td>{{bonLiv?.article?.fodec ? 'Yes' : 'No'}}</td>
-                            <td>{{bonLiv?.article?.tva}} (%)</td>
-                            <td>{{bonLiv?.article?.marge}} (%)</td>
-                            <td>{{bonLiv?.article?.montantMarge}} ({{bonLiv.article?.devise}})</td>
-                            <td>{{bonLiv?.article?.venteHT}} ({{bonLiv.article?.devise}})</td>
-                            <td>{{bonLiv?.article?.venteTTC}} ({{bonLiv.article?.devise}})</td>
-                        </tr>
-                        <tr>
-                            
-                            <th>Devise</th>
-                            <th>Qte</th>
-                        </tr>
-                        <tr>
-                            
-                            <td>{{bonLiv?.article!?.devise}}</td>
-                            <td>{{bonLiv?.qte}}</td>
-                        </tr>
-                        
-                    </tbody>
+                   
                     @if(bonLiv?.items!=[]){
                     @for (item1 of bonLiv?.items; track $index) {
                         {{historiqueBonLiv?.date |json}}
-                    <tfoot>
+                    <tbody>
                         <tr>
                             <th>Réf Article</th>
                             <th>Designation</th>
@@ -77,7 +44,7 @@
                             <td>{{item1?.remise}}</td>
                             <td>{{item1?.totalNet}}</td>
                         </tr>
-                    </tfoot>
+                    </tbody>
                 }
                 }
                 </table>
