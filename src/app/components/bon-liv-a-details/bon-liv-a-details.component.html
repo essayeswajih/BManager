@@ -52,33 +52,31 @@
                         </tr>
                         <tr>
                             
-                            <td>{{bonLiv?.article.devise}}</td>
+                            <td>{{bonLiv?.article!?.devise}}</td>
                             <td>{{bonLiv?.qte}}</td>
                         </tr>
                         
                     </tbody>
-                    @if(historiqueBonLiv!=[]){
-                    @for (item1 of historiqueBonLiv; track $index) {
+                    @if(bonLiv?.items!=[]){
+                    @for (item1 of bonLiv?.items; track $index) {
                         {{historiqueBonLiv?.date |json}}
                     <tfoot>
                         <tr>
-                            <th>Date</th>
-                            <th>Input</th>
-                            <th>output</th>
-                            <th>Qte en stock</th>
-                            <th>DocName</th>
+                            <th>Réf Article</th>
+                            <th>Designation</th>
+                            <th>Qte</th>
                             <th>PUHT</th>
-                            <th>PTUHT</th>
+                            <th>Remise</th>
+                            <th>Total Net HT</th>
                         </tr>
                         <tr>
-                            <td>{{item1?.date}}</td>
-                            <td>{{item1?.input}}</td>
-                            <td>{{item1?.output}}</td>
-                            <td>{{item1?.qteReel}}</td>
-                            <td>{{item1?.docName}}</td>
-                            <td>{{item1?.price}}</td>
-                            <td>{{ item1?.output > 0 ? (item1?.price * item1?.output) : (item1?.price * item1?.input) }}
-                            </td>
+                            <td>{{item1?.article.refArticle}}</td>
+                            <td>{{item1?.designation}}</td>
+                            <td>{{item1?.qte}}</td>
+                            <td>{{item1?.newAchatHT}}</td>
+                            <td>{{item1?.remise}}</td>
+                            <td>{{item1?.totalNet}}</td>
+                            <td>{{ item1?.output > 0 ? (item1?.price * item1?.output) : (item1?.price * item1?.input) }}</td>
                         </tr>
                     </tfoot>
                 }
