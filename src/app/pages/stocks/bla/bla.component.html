@@ -1,3 +1,6 @@
+<div>
+    <app-article-details class="articleDetails" (click)="Active()" [ngClass]="isActive ? 'active' : 'hidden'" [article] = selectedBonLiv></app-article-details>
+</div>
 <form [formGroup]="bonForm">
     <label for="articles" class="form-label">Bons de livraison:</label>
     <div class="table-responsive">

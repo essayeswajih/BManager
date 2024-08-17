@@ -14,6 +14,10 @@ export class BlaComponent {
   sortBy: string = '0';
   bonForm !:FormGroup;
   bonList:any[] = [];
+
+  isActive: boolean = false;
+  selectedBonLiv:any={};
+  
   constructor(private fb :FormBuilder ,private tstr:ToastrService,private ste:SteService){
     this.bonForm = fb.group({
       'ClientName': [''],
@@ -72,5 +76,13 @@ export class BlaComponent {
   
     this.filteredBons = filtered;
     console.log('Sorted bons:', this.filteredBons);
+  }
+  Active(){
+    this.isActive = ! this.isActive;
+  }
+  
+  select(bonLiv:any) {
+    this.selectedBonLiv=bonLiv;
+    this.Active();
   }
 }

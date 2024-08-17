@@ -40,6 +40,8 @@ import { FournisseursComponent } from './pages/stocks/fournisseurs/fournisseurs.
 import { BlvComponent } from './pages/stocks/blv/blv.component';
 import { BlaComponent } from './pages/stocks/bla/bla.component';
 import { BonDeRetourComponent } from './forms/bon-de-retour/bon-de-retour.component';
+import { BonLivADetailsComponent } from './components/bon-liv-a-details/bon-liv-a-details.component';
+import { BonLivVDetailsComponent } from './components/bon-liv-v-details/bon-liv-v-details.component';
 
 
 @NgModule({
@@ -77,7 +79,9 @@ import { BonDeRetourComponent } from './forms/bon-de-retour/bon-de-retour.compon
     FournisseursComponent,
     BlvComponent,
     BlaComponent,
-    BonDeRetourComponent
+    BonDeRetourComponent,
+    BonLivADetailsComponent,
+    BonLivVDetailsComponent
   ],
   imports: [
     BrowserModule,
