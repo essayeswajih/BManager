@@ -29,7 +29,7 @@
                             <th>Designiation</th>
                             <th>Prix d'achat</th>
                             <th>Stock</th>
-                            <th><input type="checkbox" name="" id=""></th>
+                            <td></td>
                         </tr>
                         @for (item of filteredArticles; track $index) {
                             <tr (click)="select(item)">
@@ -43,6 +43,7 @@
                                  }@else{
                                     <td><span class="green">{{item.qte}}</span></td>
                                  }
+                                 <th><input type="checkbox" name="" id=""></th>
                             </tr>
                         }
                     </tbody>
