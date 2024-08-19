@@ -30,7 +30,7 @@
                             <td></td>
                         </tr>
                         @for (item of filteredArticles; track $index) {
-                            <tr (click)="select(item)">
+                            <tr (dblclick)="select(item)">
                                 <td>{{item.article?.refArticle}}</td>
                                 <td>{{item.article?.designation}}</td>
                                 <td>{{item.article?.achatHT}}</td>
