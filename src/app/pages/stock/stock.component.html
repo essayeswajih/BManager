@@ -20,12 +20,16 @@
                                     <option value="2">Disponibilité des stocks</option>
                                 </select>
                             </td>
+                            <td>
+                                Select All
+                            </td>
                         </tr>
                         <tr>
                             <th>Ref</th>
                             <th>Designiation</th>
                             <th>Prix d'achat</th>
                             <th>Stock</th>
+                            <th><input type="checkbox" name="" id=""></th>
                         </tr>
                         @for (item of filteredArticles; track $index) {
                             <tr (click)="select(item)">
