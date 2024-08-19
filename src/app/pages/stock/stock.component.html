@@ -20,7 +20,7 @@
                                     <option value="2">Disponibilité des stocks</option>
                                 </select>
                             </td>
-                            <td class="form-label">Select All:<input type="checkbox" class="form-check-input" name="" id="" [checked]="checkedAll()"></td>
+                            <td class="form-label">Select All:<input type="checkbox" class="form-check-input" name="" id="" [checked]="checkAll" (change)="checkedAll()"></td>
                         </tr>
                         <tr>
                             <th>Ref</th>
