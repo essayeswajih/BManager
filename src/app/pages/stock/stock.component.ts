@@ -90,13 +90,11 @@ export class StockComponent implements OnInit {
         x.checked=true;
       }
       this.checkAll=true;
-      return true;
     }else{
       for(let x of this.filteredArticles){
         x.checked=false;
       }
       this.checkAll=false;
-      return false
     }
   }
 
