@@ -15,7 +15,7 @@ export class StockComponent implements OnInit {
   sortBy: string = '0';
   isActive: boolean = false;
   selectedArticle:any={};
-
+  checkedArticles:any[] = [];
   constructor(private ste: SteService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
@@ -23,6 +23,9 @@ export class StockComponent implements OnInit {
       (data: any) => {
         this.ArticlesList = data;
         this.filteredArticles = this.ArticlesList;
+        for(let x of this.filteredArticles){
+          this.checkedArticles.push({"article":x,"checked":false});
+        }
         console.log(this.ArticlesList);
       }
     ).catch((error) => {
@@ -75,5 +78,9 @@ export class StockComponent implements OnInit {
   select(article:any) {
     this.selectedArticle=article;
     this.Active();
+  }
+  check(article:any){
+    console.log(article)
+    //this.selectedArticle=this.ArticlesList.find(article => article.idArticle === idArticle);
   }
 }
