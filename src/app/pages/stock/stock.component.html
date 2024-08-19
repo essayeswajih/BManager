@@ -10,9 +10,8 @@
                 <table class="table">
                     <tbody>
                         <tr>
-                            <td class="form-label">search: <input type="search" name="search" id="search" class="form-control" (input)="onSearchChange($event)"></td>
-                            <td class="form-label">Sorted By:</td>
-                            <td>
+                            <td class="form-label"><input type="search" name="search" id="search" placeholder="Search For" class="form-control" (input)="onSearchChange($event)"></td>
+                            <td class="form-label">Sorted By:
                                 <select name="" id="" class="form-control" (change)="onSortChange($event)">
                                     <option value="0">Designiation</option>
                                     <option value="1">Prix d'achat</option>
@@ -21,6 +20,7 @@
                             </td>
                             <td class="form-label">Select All:<input type="checkbox" class="form-check-input" name="checkAll" id="checkAll" [checked]="checkAll" (change)="checkedAll()"></td>
                             <td class="form-label">Transfer to</td>
+                            <td></td>
                         </tr>
                         <tr>
                             <th>Ref</th>
