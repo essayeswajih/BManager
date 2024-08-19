@@ -20,7 +20,7 @@
                                     <option value="2">Disponibilité des stocks</option>
                                 </select>
                             </td>
-                            <td class="form-label">Select All:<input type="checkbox" class="form-check-input" name="" id=""></td>
+                            <td class="form-label">Select All:<input type="checkbox" class="form-check-input" name="" id="" [checked]="checkedAll()"></td>
                         </tr>
                         <tr>
                             <th>Ref</th>
@@ -41,7 +41,7 @@
                                  }@else{
                                     <td><span class="green">{{item.qte}}</span></td>
                                  }
-                                 <td><input type="checkbox"  class="form-check-input" name="" id="" (change)="check(item?.article)"></td>
+                                 <td><input type="checkbox"  class="form-check-input" name="" id="" (change)="check(item?.article)" [checked]="item.checked"></td>
                             </tr>
                         }
                     </tbody>
