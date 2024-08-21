@@ -86,6 +86,7 @@ export class StockComponent implements OnInit {
       x.checked=true;
       }
     }
+    console.log(this.filteredArticles)
   }
   checkedAll() {
     if(!this.checkAll){
