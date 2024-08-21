@@ -83,7 +83,7 @@ export class StockComponent implements OnInit {
   check(article:any){
     for(let x of this.filteredArticles){
       if(x.article.idArticle === article.idArticle){
-      x.checked=true;
+      x.checked == false ? x.checked=true : x.checked=false;
       }
     }
     console.log(this.filteredArticles)
