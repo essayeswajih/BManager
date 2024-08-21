@@ -81,8 +81,11 @@ export class StockComponent implements OnInit {
     this.Active();
   }
   check(article:any){
-    console.log(article)
-    //this.selectedArticle=this.ArticlesList.find(article => article.idArticle === idArticle);
+    for(let x of this.filteredArticles){
+      if(x.article.id === article.id){
+      x.checked=true;
+      }
+    }
   }
   checkedAll() {
     if(!this.checkAll){
