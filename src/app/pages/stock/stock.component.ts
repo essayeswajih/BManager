@@ -111,7 +111,8 @@ export class StockComponent implements OnInit {
     this.ste.toInventaire(articleList).then(
       (response) => {
         this.toastr.success("ssss","sss");
-        console.log("response:",response)
+        console.log("response:"+response)
+        this.ste.download("Inventory.pdf");
       }
     );
   }
