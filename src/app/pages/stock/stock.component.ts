@@ -110,7 +110,8 @@ export class StockComponent implements OnInit {
     }
     this.ste.toInventaire(articleList).then(
       (response) => {
-        this.toastr.success("ssss","sss")
+        this.toastr.success("ssss","sss");
+        console.log("response:",response)
       }
     );
   }
