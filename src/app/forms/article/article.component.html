@@ -160,7 +160,7 @@
                             </select>
                         </td>
                         <td></td>
-                        <td><input class="form-control" type="text" name="seuilStock" id="seuilStock" [value]="article?.seuilStock" disabled="disabled" (change)="check(article,$event,'seuilStock')"></td>
+                        <td><input class="form-control" type="text" name="seuilStock" id="seuilStock" [value]="article?.seuilStock" (change)="check(article,$event,'seuilStock')"></td>
                         <td><button class="btn btn-danger" (click)="onDelete(article.idArticle)">Supprimer</button></td>
                     </tr>
                 }
