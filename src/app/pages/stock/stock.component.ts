@@ -101,5 +101,17 @@ export class StockComponent implements OnInit {
       this.checkAll=false;
     }
   }
-
+  toInventaire() {
+    let articleList :any[] = [];
+    for(let x of this.filteredArticles){
+      if(x.checked){
+        articleList.push(x.article);
+      }
+    }
+    this.ste.toInventaire(articleList).then(
+      (response) => {
+        this.toastr.success("ssss","sss")
+      }
+    );
+  }
 }

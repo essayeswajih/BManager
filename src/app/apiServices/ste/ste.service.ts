@@ -615,4 +615,16 @@ export class SteService {
       throw error;
     }
   }
+  async toInventaire(articleList: any[]) {
+    try {
+      const response = await this.axios.post(`articles/toInventaire`,articleList);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("SteService: toInventaire ERROR: ", error);
+      throw error;
+    }
+  }
+
 }

@@ -19,11 +19,11 @@
                                 </select></p>
                             </td>
                             <td class="form-label">Select All:<input type="checkbox" class="form-check-input" name="checkAll" id="checkAll" [checked]="checkAll" (change)="checkedAll()"></td>
-                            <td class="form-label">To</td>
+                            <td class="form-label">Transfert</td>
                             <td> <div class="fc nav-item dropdown">
-                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Mes Ventes</a>
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">To</a>
                                 <div class="dropdown-menu m-0">
-                                    <a class="dropdown-item" >Inventaire</a>
+                                    <a class="dropdown-item" (click)="toInventaire()" >Inventaire</a>
                                     <a class="dropdown-item" >Devis</a>
                                 </div>
                             </div></td>
