@@ -45,6 +45,7 @@ export class ArticleComponent implements OnInit {
       unite:['0', Validators.required],
       devise:['0', Validators.required],
       sotckInitiale:[0,Validators.required],
+      seuilStock:[10,Validators.required],
       ventetHT:['', Validators.required]
     });
   }
