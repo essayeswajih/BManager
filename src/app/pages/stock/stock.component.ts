@@ -112,7 +112,7 @@ export class StockComponent implements OnInit {
       (response) => {
         this.toastr.success("ssss","sss");
         console.log("response:"+response)
-        this.ste.download("Inventory.pdf");
+        this.ste.download(response);
       }
     );
   }
