@@ -205,6 +205,10 @@ export class ArticleComponent implements OnInit {
           else if(key === 'idFamille'){
             a["famille"][key]=value;
           
+          }
+          else if(key === 'seuilStock'){
+            a["seuilStock"]=value;
+          
           } else if (a[key] !== value) {
             // Handle other field changes
             a[key] = value;
