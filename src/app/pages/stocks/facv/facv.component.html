@@ -1,0 +1,74 @@
+<div>
+    <app-bon-liv-a-details class="articleDetails" (click)="Active()" [ngClass]="isActive ? 'active' : 'hidden'" [bonLiv] = selectedBonLiv></app-bon-liv-a-details>
+</div>
+<form [formGroup]="bonForm">
+    <label for="articles" class="form-label">Factures de sortie:</label>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="form-label">Find:</td>
+                    <td><input type="search" name="" id="" class="form-control" (input)="onSearchChange($event)"></td>
+                    <td class="form-label">Sorted By:</td>
+                    <td>
+                        <select name="" id="" class="form-control" (change)="onSortChange($event)">
+                            <option value="1">Client</option>
+                            <option value="0">Date</option>
+                            <option value="3">Payed</option>
+                            <option value="2">payment</option>
+                        </select>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr>
+                    <td class="form-label">Start:</td>
+                    <td><input type="date" class="form-control" name="start" id="start" formControlName="dateStart" (change)="onSortChange1()"></td>
+                    <td class="form-label">End:</td>
+                    <td><input type="date" class="form-control" name="end" id="end" formControlName="dateEnd" (change)="onSortChange1()"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <th>#</th>
+                <th>Ref Facture</th>
+                <th>Client</th>
+                <th>Date</th>
+                <th>TTC</th>
+                <th>payé</th>
+                <th>Règlements</th>
+            </thead>
+            <tbody>
+                @for (item of filteredBons; track $index) {
+                    <tr ((dblclick))="select(item)">
+                        <td>{{$index}}</td>
+                        <td>{{item?.ref}}</td>
+                        <td>{{item?.client?.name}}</td>
+                        <td>{{item?.dateCreation}}</td>
+                        <td>{{item?.totalTTC}}</td>
+                        <td>
+                            <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item?.payed" (change)="change(item,'payed',$event)">
+                        </td>
+                        <td>
+                            <select class="form-control" name="payment" id="payment" (change)="change(item,'payment',$event)">
+                            <option [value]="item?.payment">{{item?.payment}}</option>
+                            @for(payment of paymentList;track $index){
+                                @if(payment != item?.payment){
+                                    <option [value]="payment">{{payment}}</option>
+                                }
+                            }
+                            </select>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>

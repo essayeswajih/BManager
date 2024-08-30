@@ -1,0 +1,53 @@
+@if (this.bonLiv?.id) {
+    <main class="container">
+        <div class="row justify-content-center align-items-center">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Réf</th>
+                            <th>Numéro</th>
+                            <th>Doc Name</th>
+                            <th>Fournisseur</th>
+                            <th>Date</th>
+                            <th>Transfared</th>
+                        </tr>
+                        <tr>
+                            <td>{{bonLiv?.id}}</td>
+                            <td>{{bonLiv?.ref}}</td>
+                            <td>{{"bonLivAchat"+bonLiv?.id+".pdf"}}</td>
+                            <td>{{bonLiv?.fournisseur.intitule}}</td>
+                            <td>{{bonLiv?.dateCreation}}</td>
+                            <td>{{bonLiv?.trans}}</td>
+                        </tr>
+                        
+                        
+                    </thead>
+                   
+                    @if(bonLiv?.items!=[]){
+                    @for (item1 of bonLiv?.items; track $index) {
+                    <tbody>
+                        <tr>
+                            <th>Réf Article</th>
+                            <th>Designation</th>
+                            <th>Qte</th>
+                            <th>PUHT</th>
+                            <th>Remise</th>
+                            <th>Total Net HT</th>
+                        </tr>
+                        <tr>
+                            <td>{{item1?.article.refArticle}}</td>
+                            <td>{{item1?.article.designation}}</td>
+                            <td>{{item1?.qte}}</td>
+                            <td>{{item1?.newAchatHT}}</td>
+                            <td>{{item1?.remise}}</td>
+                            <td>{{item1?.totalNet}}</td>
+                        </tr>
+                    </tbody>
+                }
+                }
+                </table>
+            </div>
+        </div>
+    </main>
+    }
