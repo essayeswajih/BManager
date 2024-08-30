@@ -5,11 +5,13 @@
             <thead>
                 <tr>
                     <th>n° bon de livraison</th>
+                    <th></th>
                 </tr>
                 <tr>
                     <td>
-                        <input class="form-control" type="search" name="search" id="search" formControlName="id" (search)="onClick()" >
+                        <input type="search" class="form-control" type="search" name="search" id="search" formControlName="id" >
                     </td>
+                    <td><button class="btn btn-primary" (click)="onClick()">search</button></td>
                 </tr>
 
             </thead>

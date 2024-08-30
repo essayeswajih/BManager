@@ -58,7 +58,7 @@ export class BonDeRetourComponent {
     if(this.bon?.id != null){
       this.ste.saveBonRetour(this.bon).then(
         (data)=>{
-          console.log(data)
+          this.tstr.success("changes saved")
         }
       ).catch(
         (error)=>console.log(error)

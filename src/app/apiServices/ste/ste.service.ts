@@ -562,6 +562,21 @@ export class SteService {
       throw error;
     }
   }
+  async getAllVFactures(){
+    try{
+      return await this.axios.get(`vente/facture/ste/${this.idSte}`);
+    }catch(error){
+      return error;
+    } 
+  }
+  async getAllAFactures(){
+    try{
+      return await this.axios.get(`achat/facture/ste/${this.idSte}`);
+    }catch(error){
+      return error;
+    } 
+  }
+
   download(filename:string): void {
     this.downloadFile(filename)
     .then((data: ArrayBuffer) => {
@@ -626,5 +641,26 @@ export class SteService {
       throw error;
     }
   }
-
+  async saveFactureA(data:any) {
+    try {
+      const response = await this.axios.post(`achat/facture/update`,data);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("SteService: saveBonRetour ERROR: ", error);
+      throw error;
+    }
+  }
+  async saveFactureV(data:any) {
+    try {
+      const response = await this.axios.post(`vente/facture/update`,data);
+      if (response.status === 200) {
+        return response.data;
+      }
+    } catch (error) {
+      console.error("SteService: saveBonRetour ERROR: ", error);
+      throw error;
+    }
+  }
 }

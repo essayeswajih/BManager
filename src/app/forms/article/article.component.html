@@ -8,7 +8,7 @@
                     <th>refArticle</th>
                     <!--<th>refFournisseur</th>-->
                     <th>Fournisseur</th>
-                    <th>Designation</th>
+                    <th class="designation">Designation</th>
                     <th>Famille</th>
                     <th>Sous Famille</th>
                     <th>Achat HT<span>(DNT)</span></th>
@@ -40,7 +40,7 @@
                             }
                         </select>
                     </td>
-                    <td><input class="form-control" type="text" name="designation" id="designation" formControlName="designation"></td>
+                    <td><input class="designation form-control" type="text" name="designation" id="designation" formControlName="designation"></td>
                     <td>
                         <select  class="form-control" name="famille" id="famille" formControlName="famille">
                             @for (famille of familles; track $index) {
@@ -103,7 +103,7 @@
 
                             </select>
                         </td>
-                        <td><input class="form-control" type="text" name="designation" id="designation" [value]="article.designation" (keyup)="check(article,$event,'designation')"></td>
+                        <td><input class="form-control designation" type="text" name="designation" id="designation" [value]="article.designation" (keyup)="check(article,$event,'designation')"></td>
                         <td>
                             <select  class="form-control" name="famille" id="famille"  (change)="check(article,$event,'idFamille')">
                                 <option [value]="article.idFamille">{{article.famille.nomFamille}}</option>

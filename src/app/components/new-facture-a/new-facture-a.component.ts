@@ -85,7 +85,7 @@ export class NewFactureAComponent {
           for(let i of this.items){
             if(i==item){
               i[key]=value;
-              i.totalNet = this.roundToThreeDecimal(i?.puht - (i?.puht *  i?.remise  / 100)) * i.qte;
+              i.totalNet = this.roundToThreeDecimal((i?.newAchatHT - (i?.newAchatHT * i?.remise / 100)) * i?.qte);
             }
           }
         }else{
@@ -107,11 +107,11 @@ export class NewFactureAComponent {
         item.article = article;
         item.designation = article?.designation;
         item.unite = article?.unite;
-        item.puht = this.roundToThreeDecimal(article?.achatHT);
+        item.newAchatHT = article?.achatHT;
         item.qte = qte || 1;
         item.remise = rem || 0;
         item.tva = article?.tva;
-        item.totalNet = this.roundToThreeDecimal(article?.achatHT - (article?.achatHT * item.remise / 100)) * qte;
+        item.totalNet = (item.newAchatHT - (item.newAchatHT * item.remise / 100)) * qte;
         return item;
       }
       save() {

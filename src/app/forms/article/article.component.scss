@@ -7,6 +7,12 @@
     min-width: 50px;
     background-color:#333333c4;
     color: white;
+    font-size: .8em;
+}
+.designation{
+    width: auto !important;
+    min-width: 350px;
+    max-width:none !important;
 }
 .btn{
     width: fit-content;

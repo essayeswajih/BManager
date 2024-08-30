@@ -42,6 +42,10 @@ import { BlaComponent } from './pages/stocks/bla/bla.component';
 import { BonDeRetourComponent } from './forms/bon-de-retour/bon-de-retour.component';
 import { BonLivADetailsComponent } from './components/bon-liv-a-details/bon-liv-a-details.component';
 import { BonLivVDetailsComponent } from './components/bon-liv-v-details/bon-liv-v-details.component';
+import { FactureDetailsComponent } from './components/facture-details/facture-details.component';
+import { FacComponent } from './pages/stocks/fac/fac.component';
+import { FacvComponent } from './pages/stocks/facv/facv.component';
+import { FactureVDetailsComponent } from './components/facture-v-details/facture-v-details.component';
 
 
 @NgModule({
@@ -81,7 +85,11 @@ import { BonLivVDetailsComponent } from './components/bon-liv-v-details/bon-liv-
     BlaComponent,
     BonDeRetourComponent,
     BonLivADetailsComponent,
-    BonLivVDetailsComponent
+    BonLivVDetailsComponent,
+    FactureDetailsComponent,
+    FacComponent,
+    FacvComponent,
+    FactureVDetailsComponent
   ],
   imports: [
     BrowserModule,
