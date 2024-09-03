@@ -133,4 +133,7 @@ export class FacvComponent {
       }
     );
   }
+  down(id:number) {
+    this.ste.download(`factureVente${id}.pdf`)
+  }
 }

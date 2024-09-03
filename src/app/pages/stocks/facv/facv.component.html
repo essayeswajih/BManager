@@ -1,5 +1,5 @@
 <div>
-    <app-bon-liv-a-details class="articleDetails" (click)="Active()" [ngClass]="isActive ? 'active' : 'hidden'" [bonLiv] = selectedBonLiv></app-bon-liv-a-details>
+    <app-facture-v-details (click)="Active()" [ngClass]="isActive ? 'active' : 'hidden'" [bonLiv] = selectedBonLiv></app-facture-v-details>
 </div>
 <form [formGroup]="bonForm">
     <label for="articles" class="form-label">Factures de sortie:</label>
@@ -44,10 +44,11 @@
                 <th>TTC</th>
                 <th>payé</th>
                 <th>Règlements</th>
+                <th>Action</th>
             </thead>
             <tbody>
                 @for (item of filteredBons; track $index) {
-                    <tr ((dblclick))="select(item)">
+                    <tr (dblclick)="select(item)">
                         <td>{{$index}}</td>
                         <td>{{item?.ref}}</td>
                         <td>{{item?.client?.name}}</td>
@@ -66,6 +67,7 @@
                             }
                             </select>
                         </td>
+                        <td><button class="btn btn-primary" (click)="down(item?.id)">imprimé</button></td>
                     </tr>
                 }
             </tbody>

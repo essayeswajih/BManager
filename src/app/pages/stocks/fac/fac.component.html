@@ -45,6 +45,7 @@
                 <th>TTC</th>
                 <th>payé</th>
                 <th>Règlements</th>
+                <th>Action</th>
             </thead>
             <tbody>
                 @for (item of filteredBons; track $index) {
@@ -67,6 +68,7 @@
                             }
                             </select>
                         </td>
+                        <td><button class="btn btn-primary" (click)="down(item?.id)">imprimé</button></td>
                     </tr>
                 }
             </tbody>

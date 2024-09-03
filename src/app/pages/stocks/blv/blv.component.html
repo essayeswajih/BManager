@@ -31,10 +31,11 @@
                 <th>Facture</th>
                 <th>Devis</th>
                 <th>trans</th>
+                <th>action</th>
             </thead>
             <tbody>
                 @for (item of filteredBons; track $index) {
-                    <tr (click)="select(item)">
+                    <tr (dblclick)="select(item)">
                         <td>{{$index}}</td>
                         <td>{{item.client.name}}</td>
                         <td>{{item.dateCreation}}</td>
@@ -43,6 +44,7 @@
                         <td>
                             <input type="checkbox" class="form-check-input" name="trans" id="trans" [checked]="item.trans">
                         </td>
+                        <td><button class="btn btn-primary" (click)="down(item?.id)">imprimé</button></td>
                     </tr>
                 }
             </tbody>

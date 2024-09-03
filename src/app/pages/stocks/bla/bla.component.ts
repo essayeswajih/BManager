@@ -85,4 +85,7 @@ export class BlaComponent {
     this.selectedBonLiv=bonLiv;
     this.Active();
   }
+  down(id:number) {
+    this.ste.download(`bonLivAchat${id}.pdf`)
+  }
 }

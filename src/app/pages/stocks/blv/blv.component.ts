@@ -93,4 +93,7 @@ export class BlvComponent implements OnInit {
     this.selectedBonLiv=bonLiv;
     this.Active();
   }
+  down(id:number) {
+    this.ste.download(`bonLivVente${id}.pdf`)
+  }
 }

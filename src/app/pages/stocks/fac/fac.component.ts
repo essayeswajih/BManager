@@ -157,4 +157,7 @@ export class FacComponent {
       }
     }
   }
+  down(id:number) {
+    this.ste.download(`factureAchat${id}.pdf`)
+  }
 }
